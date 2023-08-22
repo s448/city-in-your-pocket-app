@@ -34,7 +34,7 @@ class StyleManager {
   //box decorations
   static const BoxDecoration roundedBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
-    color: Colors.grey,
+    color: ColorManager.secondaryColor,
   );
 
   static const BoxDecoration gradientBoxDecoration = BoxDecoration(
