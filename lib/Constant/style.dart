@@ -12,17 +12,20 @@ class StyleManager {
     fontSize: 23,
     fontFamily: font,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    color: Colors.black,
   );
 
   static const TextStyle bodyText1 = TextStyle(
     fontSize: 16,
     fontFamily: font,
-    color: Colors.grey,
+    color: Colors.black,
   );
 
   //light theme
   static final themeManager = ThemeData(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       primaryColor: ColorManager.primaryColorDark,
       hintColor: ColorManager.accentColor,
       appBarTheme: const AppBarTheme(

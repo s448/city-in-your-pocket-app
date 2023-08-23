@@ -15,10 +15,9 @@ class AdCarouselSlider extends StatelessWidget {
       height: Get.height * 0.35,
       width: Get.width,
       activateIndicatorColor: ColorManager.primaryColor,
-      //animationPageDuration: const Duration(microseconds: 500),
       indicatorBarColor: ColorManager.secondaryColor,
       unActivatedIndicatorColor: ColorManager.navBarUnselectedColor,
-      isCircle: true,
+      isCircle: false,
       items: [
         carouselItem(),
         carouselItem(),
@@ -33,6 +32,7 @@ class AdCarouselSlider extends StatelessWidget {
         //implement the launch here
       },
       child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: StyleManager.roundedBoxDecoration,
         child: Image.network(
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGbzrhpTi4Q0o5o0JSRVDSZ6zifJth2yxXYg26zgW&s',
