@@ -42,7 +42,10 @@ class _SnakeNavigationBarExampleScreenState
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("CinP"),
+        title: const Text(
+          "أسم التطبيق",
+          style: TextStyle(fontSize: 22, color: Colors.white),
+        ),
       ),
       body: Directionality(
         textDirection: TextDirection.rtl,
@@ -74,42 +77,6 @@ class _SnakeNavigationBarExampleScreenState
       ),
     );
   }
-
-  // void _onPageChanged(int page) {
-  //   switch (page) {
-  //     case 0:
-  //       setState(() {
-  //         snakeBarStyle = SnakeBarBehaviour.floating;
-  //         snakeShape = SnakeShape.circle;
-  //         padding = const EdgeInsets.all(12);
-  //         bottomBarShape =
-  //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(25));
-  //         showSelectedLabels = false;
-  //         showUnselectedLabels = false;
-  //       });
-  //       break;
-  //     case 1:
-  //       setState(() {
-  //         snakeBarStyle = SnakeBarBehaviour.pinned;
-  //         snakeShape = SnakeShape.circle;
-  //         padding = EdgeInsets.zero;
-  //         bottomBarShape = RoundedRectangleBorder(borderRadius: _borderRadius);
-  //         showSelectedLabels = false;
-  //         showUnselectedLabels = false;
-  //       });
-  //       break;
-  //     case 2:
-  //       setState(() {
-  //         snakeBarStyle = SnakeBarBehaviour.pinned;
-  //         snakeShape = SnakeShape.rectangle;
-  //         padding = EdgeInsets.zero;
-  //         bottomBarShape = BeveledRectangleBorder(borderRadius: _borderRadius);
-  //         showSelectedLabels = true;
-  //         showUnselectedLabels = true;
-  //       });
-  //       break;
-  //   }
-  // }
 }
 
 const List<Widget> _pages = <Widget>[

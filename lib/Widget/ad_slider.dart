@@ -35,7 +35,7 @@ class AdCarouselSlider extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: StyleManager.roundedBoxDecoration,
         child: Image.network(
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGbzrhpTi4Q0o5o0JSRVDSZ6zifJth2yxXYg26zgW&s',
+          'https://graphicsfamily.com/wp-content/uploads/edd/2021/10/Facebook-Ads-Banner-Design-Photoshop-Tutorial-1180x664.jpg',
           fit: BoxFit.fill,
         ),
       ),

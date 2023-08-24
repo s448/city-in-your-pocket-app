@@ -1,13 +1,16 @@
-import 'package:cityinpocket/Constant/Carousel/section1_elemtents.dart';
+import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
 import 'package:cityinpocket/Constant/colors.dart';
-import 'package:cityinpocket/Widget/Section/section_container.dart';
-import 'package:cityinpocket/Widget/Section/section_item.dart';
+import 'package:cityinpocket/Widget/Features/feature_container.dart';
+import 'package:cityinpocket/Widget/Features/feature_item.dart';
 import 'package:cityinpocket/Widget/ad_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:flutter_image_slider/carousel.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+
+import '../Widget/Categories/section_container.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -21,51 +24,25 @@ class _HomePageState extends State<HomePage> {
     return Container(
       padding: const EdgeInsets.all(6.0),
       height: Get.height,
-        child:  SingleChildScrollView(
-          child: Column(
-            children: [
-              const AdCarouselSlider(),
-              // StaggeredGrid.count(
-              //   crossAxisCount: 4,
-              //   mainAxisSpacing: 20,
-              //   crossAxisSpacing: 10,
-              //   axisDirection: AxisDirection.up,
-              //   children: [
-              //     StaggeredGridTile.count(
-              //       crossAxisCellCount: 2,
-              //       mainAxisCellCount: 2,
-              //       child: Container(
-              //         color: ColorManager.accentColor,
-              //       )
-              //     ),
-              //     StaggeredGridTile.count(
-              //       crossAxisCellCount: 3,
-              //       mainAxisCellCount: 0.8,
-              //       child: Container(
-              //       color: ColorManager.primaryColorLight,
-              //     )
-              //     ),
-              //     StaggeredGridTile.count(
-              //         crossAxisCellCount: 2,
-              //         mainAxisCellCount: 1,
-              //         child: Container(
-              //           color: ColorManager.accentColor,
-              //         )
-              //     ),
-              //     StaggeredGridTile.count(
-              //         crossAxisCellCount: 2,
-              //         mainAxisCellCount: 0.8,
-              //         child: Container(
-              //           color: ColorManager.primaryColorLight,
-              //         )
-              //     ),
-              //   ],
-              // )
-              SectionContainer(listOfElements: section1Elements, heading: 'بيع وشراء',),
-              SectionContainer(listOfElements: section1Elements, heading: 'بيع وشراء',)
-            ],
-          ),
+      child: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Column(
+          children: [
+            const AdCarouselSlider(),
+            SectionContainer(
+              listOfElements: shoppingCategories,
+              heading: 'بيع وشراء',
+            ),
+            const SizedBox(height: 15),
+            SectionContainer(
+              listOfElements: freelanceCategories,
+              heading: 'المهن والأعمال اليدوية',
+            ),
+            const SizedBox(height: 15),
+            const FeatureContainer(),
+          ],
         ),
+      ),
     );
   }
 }

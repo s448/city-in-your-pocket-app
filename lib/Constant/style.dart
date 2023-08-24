@@ -9,7 +9,7 @@ class StyleManager {
 
   //text style
   static const TextStyle headline1 = TextStyle(
-    fontSize: 23,
+    fontSize: 18,
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
