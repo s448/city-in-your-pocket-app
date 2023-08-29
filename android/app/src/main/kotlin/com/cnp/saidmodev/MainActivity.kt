@@ -1,4 +1,4 @@
-package com.example.cityinpocket
+package com.cnp.saidmodev
 
 import io.flutter.embedding.android.FlutterActivity
 

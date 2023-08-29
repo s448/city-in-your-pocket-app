@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "356792877934",
+    "project_id": "zag-cnp",
+    "storage_bucket": "zag-cnp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356792877934:android:9ad9e7e57564d48e80377f",
+        "android_client_info": {
+          "package_name": "com.cnp.saidmodev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356792877934-0lqjf6v7312luhhjjv59h8bfnkcusp82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cnp.saidmodev",
+            "certificate_hash": "24233e2c4d6d70dd00d96b7ef0d1344f7d2da276"
+          }
+        },
+        {
+          "client_id": "356792877934-ltl6j2tdgm5lk6cdfpe770fqif8vmnm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAipG-vuYFRRJgmmnl_J0EDvNzf4fmXayc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356792877934-ltl6j2tdgm5lk6cdfpe770fqif8vmnm2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "356792877934-2go9nqog6517ie298pilgsu5aruf8gdc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cityinpocket.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356792877934:android:9d7f33ae3cb4e24f80377f",
+        "android_client_info": {
+          "package_name": "com.sas.sas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356792877934-ltl6j2tdgm5lk6cdfpe770fqif8vmnm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAipG-vuYFRRJgmmnl_J0EDvNzf4fmXayc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356792877934-ltl6j2tdgm5lk6cdfpe770fqif8vmnm2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "356792877934-2go9nqog6517ie298pilgsu5aruf8gdc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cityinpocket.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

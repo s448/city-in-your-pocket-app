@@ -13,7 +13,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
+        const Center(
           child: Text(
             "Favourites page",
             style: StyleManager.headline1,
@@ -23,8 +23,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(onPressed: () {
 
-          }, child: Text("Click"),
-          style: StyleManager.primaryButtonStyle,),
+          },
+          style: StyleManager.primaryButtonStyle, child: const Text("Click"),),
         )
       ],
     );

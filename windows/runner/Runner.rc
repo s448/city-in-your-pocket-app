@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "cityinpocket" "\0"
+            VALUE "FileDescription", "cnp" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "cityinpocket" "\0"
+            VALUE "InternalName", "cnp" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "cityinpocket.exe" "\0"
-            VALUE "ProductName", "cityinpocket" "\0"
+            VALUE "OriginalFilename", "cnp.exe" "\0"
+            VALUE "ProductName", "cnp" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -15,10 +15,26 @@ class StyleManager {
     color: Colors.black,
   );
 
-  static const TextStyle bodyText1 = TextStyle(
+
+  static const TextStyle headlineWhite = TextStyle(
+      fontSize: 18,
+      fontFamily: font,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+      height: 1);
+
+  static const TextStyle bodyText1 =
+      TextStyle(fontSize: 16, fontFamily: font, color: Colors.black, height: 1);
+
+  static const TextStyle bodyWithPrimaryColor =
+  TextStyle(fontSize: 16, fontFamily: font, color: ColorManager.primaryColorDark, height: 1);
+
+
+  static const TextStyle bodyWhiteText = TextStyle(
     fontSize: 16,
     fontFamily: font,
-    color: Colors.black,
+    height: 1,
+    color: Colors.white,
   );
 
   //light theme
@@ -29,21 +45,23 @@ class StyleManager {
       primaryColor: ColorManager.primaryColorDark,
       hintColor: ColorManager.accentColor,
       appBarTheme: const AppBarTheme(
-        color: ColorManager.primaryColorDark,
-        titleTextStyle: headline1
-      )
-  );
+          color: ColorManager.primaryColorDark, titleTextStyle: headline1));
 
   //box decorations
   static const BoxDecoration roundedBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
     color: ColorManager.secondaryColor,
   );
+  static const BoxDecoration shadowBoxDecoration = BoxDecoration(
+    borderRadius: BorderRadius.vertical(
+        top: Radius.circular(0), bottom: Radius.circular(15)),
+    color: Colors.black45,
+  );
 
   static const BoxDecoration gradientBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
     gradient: LinearGradient(
-      colors: [ColorManager.primaryColorDark, ColorManager.primaryColorLight],
+      colors: [ColorManager.primaryColorLight,ColorManager.primaryColorDark],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     ),
@@ -53,7 +71,7 @@ class StyleManager {
   static final ButtonStyle primaryButtonStyle = ButtonStyle(
     minimumSize: MaterialStateProperty.all(Size(Get.width, Get.height * 0.05)),
     backgroundColor: MaterialStateProperty.all(ColorManager.primaryColor),
-    textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.white)),
+    textStyle: MaterialStateProperty.all(StyleManager.headlineWhite),
     // Add more properties like padding, shape, etc.
   );
 

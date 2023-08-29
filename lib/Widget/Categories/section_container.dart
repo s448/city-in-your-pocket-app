@@ -1,6 +1,4 @@
-import 'dart:convert';
 
-import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Widget/Categories/section_item.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 {
-    "name": "cityinpocket",
-    "short_name": "cityinpocket",
+    "name": "cnp",
+    "short_name": "cnp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

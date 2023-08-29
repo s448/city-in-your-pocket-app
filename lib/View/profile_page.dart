@@ -11,7 +11,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
+      child: const Center(
         child: Text("Profile page"),
       ),
     );

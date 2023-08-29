@@ -35,9 +35,9 @@ List freelanceCategories = [
     "route":"driver"
   },
   {
-    "icon":Icons.mobile_friendly_outlined,
-    "title":"الكترونيات",
-    "route":"electronics"
+    "icon":Icons.work,
+    "title":"أعمال يدوية",
+    "route":"handmade_things"
   },
   {
     "icon":Icons.more_outlined,

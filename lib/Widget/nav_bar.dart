@@ -9,11 +9,11 @@ class SnakeNavigationBarExampleScreen extends StatefulWidget {
   const SnakeNavigationBarExampleScreen({Key? key}) : super(key: key);
 
   @override
-  _SnakeNavigationBarExampleScreenState createState() =>
-      _SnakeNavigationBarExampleScreenState();
+  _SnakeNavigationBarState createState() =>
+      _SnakeNavigationBarState();
 }
 
-class _SnakeNavigationBarExampleScreenState
+class _SnakeNavigationBarState
     extends State<SnakeNavigationBarExampleScreen> {
   final BorderRadius _borderRadius = const BorderRadius.only(
     topLeft: Radius.circular(25),
@@ -68,9 +68,11 @@ class _SnakeNavigationBarExampleScreenState
         currentIndex: _selectedItemPosition,
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'tickets'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'calendar'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.mark_unread_chat_alt_outlined),
+              label: 'My chats'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         selectedLabelStyle: const TextStyle(fontSize: 14),
         unselectedLabelStyle: const TextStyle(fontSize: 10),
