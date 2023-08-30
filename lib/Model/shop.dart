@@ -5,23 +5,23 @@ class Shop {
   String? type;
   String? activity;
   String? description;
-  User? user;
+  UserModel? user;
   List<String>? images;
 
   Shop(
       {this.name,
-        this.type,
-        this.activity,
-        this.description,
-        this.user,
-        this.images});
+      this.type,
+      this.activity,
+      this.description,
+      this.user,
+      this.images});
 
   Shop.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     type = json['type'];
     activity = json['activity'];
     description = json['description'];
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
     images = json['images'].cast<String>();
   }
 

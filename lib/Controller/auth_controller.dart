@@ -1,19 +1,26 @@
 import 'dart:async';
 
+import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
+import 'package:cityinpocket/Model/user.dart';
 import 'package:cityinpocket/View/home_page.dart';
 import 'package:cityinpocket/Widget/nav_bar.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
+
+
+  final _sharedPrefController = Get.put(SharedPrefsController());
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   loginWithGoogle() async {
-    //bool res = false;
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount? googleSignInAccount =
@@ -50,6 +57,12 @@ class AuthController extends GetxController {
     }
   }
 
+  logout() async {
+     await _auth.signOut();
+     _sharedPrefController.clearUserCredentials();
+     Get.offAllNamed(Routes.login);
+  }
+
   Future<void> logoutGoogle() async {
     await googleSignIn.signOut();
     Get.back(); // navigate to your wanted page after logout.
@@ -57,12 +70,24 @@ class AuthController extends GetxController {
 
   Future<bool> saveUserData() async {
     try {
-      await _firestore.collection('users').doc(phoneNo.value).set({
-        'username': username.value,
-        'uid': phoneNo.value,
-        'phoneNumber': phoneNo.value,
-        'email': email.value,
-      });
+      UserModel user = UserModel(
+        id: phoneNo.value,
+        name: username.value,
+        email: email.value,
+        imgUrl: "",
+        phone: phoneNo.value,
+      );
+
+      await _firestore
+          .collection('users')
+          .doc(phoneNo.value)
+          .set(user.toJson());
+      // await _firestore.collection('users').doc(phoneNo.value).set({
+      //   'username': username.value,
+      //   'uid': phoneNo.value,
+      //   'phoneNumber': phoneNo.value,
+      //   'email': email.value,
+      // });
       return true;
     } catch (e) {
       return false;
@@ -70,7 +95,9 @@ class AuthController extends GetxController {
   }
 
   Future<bool> userExist(String documentId) async {
-    print("call user exist methode >>>>>>>>>>");
+    if (kDebugMode) {
+      print("call user exist methode >>>>>>>>>>");
+    }
     try {
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
           .collection('users')
@@ -158,12 +185,14 @@ class AuthController extends GetxController {
   verifyOTP() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
-      statusMessage.value = "Verifying... ${otp.value}";
+      statusMessage.value = "يتم التحقق.. ${otp.value}";
       // Create a PhoneAuthCredential with the code
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: firebaseVerificationId, smsCode: otp.value);
       // Sign the user in (or link) with the credential
       await auth.signInWithCredential(credential);
+      //save user credentials to local storage
+      await _sharedPrefController.saveUserCredentials(phoneNo.value, firebaseVerificationId);
       if (!await userExist(phoneNo.value)) {
         saveUserData();
       }

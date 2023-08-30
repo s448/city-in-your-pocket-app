@@ -1,24 +1,23 @@
 import 'package:cityinpocket/Constant/colors.dart';
-import 'package:cityinpocket/View/favourites_page.dart';
+import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/Controller/auth_controller.dart';
+import 'package:cityinpocket/View/messaging_page.dart';
 import 'package:cityinpocket/View/home_page.dart';
 import 'package:cityinpocket/View/profile_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:get/get.dart';
 
 class SnakeNavigationBarExampleScreen extends StatefulWidget {
   const SnakeNavigationBarExampleScreen({Key? key}) : super(key: key);
 
   @override
-  _SnakeNavigationBarState createState() =>
-      _SnakeNavigationBarState();
+  _SnakeNavigationBarState createState() => _SnakeNavigationBarState();
 }
 
-class _SnakeNavigationBarState
-    extends State<SnakeNavigationBarExampleScreen> {
-  final BorderRadius _borderRadius = const BorderRadius.only(
-    topLeft: Radius.circular(25),
-    topRight: Radius.circular(25),
-  );
+class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
+  final _authController = Get.put(AuthController());
 
   ShapeBorder? bottomBarShape = const RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -41,6 +40,50 @@ class _SnakeNavigationBarState
       backgroundColor: ColorManager.secondaryColor,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        leading: _selectedItemPosition == 2
+            ? IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: (() {
+                  showDialog<void>(
+                    context: context,
+                    barrierDismissible: false, // user must tap button!
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        // <-- SEE HERE
+                        title: const Text('تسجيل الخروج'),
+                        content: const SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              Text('هل تريد تسجيل الخروج ؟'),
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('لا'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          TextButton(
+                            child: const Text(
+                              'نعم',
+                              style: StyleManager.warningTextStyle,
+                            ),
+                            onPressed: () {
+                              _authController.logout();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+              )
+            : IconButton(
+                icon: const Icon(CupertinoIcons.bell),
+                onPressed: (() {}),
+              ),
         centerTitle: true,
         title: const Text(
           "أسم التطبيق",

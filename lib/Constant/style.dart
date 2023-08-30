@@ -15,6 +15,8 @@ class StyleManager {
     color: Colors.black,
   );
 
+  static const TextStyle warningTextStyle =
+      TextStyle(fontSize: 16, fontFamily: font, color: Colors.redAccent, height: 1);
 
   static const TextStyle headlineWhite = TextStyle(
       fontSize: 18,
@@ -26,9 +28,11 @@ class StyleManager {
   static const TextStyle bodyText1 =
       TextStyle(fontSize: 16, fontFamily: font, color: Colors.black, height: 1);
 
-  static const TextStyle bodyWithPrimaryColor =
-  TextStyle(fontSize: 16, fontFamily: font, color: ColorManager.primaryColorDark, height: 1);
-
+  static const TextStyle bodyWithPrimaryColor = TextStyle(
+      fontSize: 16,
+      fontFamily: font,
+      color: ColorManager.primaryColorDark,
+      height: 1);
 
   static const TextStyle bodyWhiteText = TextStyle(
     fontSize: 16,
@@ -42,6 +46,7 @@ class StyleManager {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
+      fontFamily: font,
       primaryColor: ColorManager.primaryColorDark,
       hintColor: ColorManager.accentColor,
       appBarTheme: const AppBarTheme(
@@ -61,7 +66,7 @@ class StyleManager {
   static const BoxDecoration gradientBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
     gradient: LinearGradient(
-      colors: [ColorManager.primaryColorLight,ColorManager.primaryColorDark],
+      colors: [ColorManager.primaryColorLight, ColorManager.primaryColorDark],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     ),

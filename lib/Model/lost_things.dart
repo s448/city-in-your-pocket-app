@@ -2,13 +2,13 @@ import 'package:cityinpocket/Model/user.dart';
 
 class LostThings {
   String? description;
-  User? user;
+  UserModel? user;
 
   LostThings({this.description, this.user});
 
   LostThings.fromJson(Map<String, dynamic> json) {
     description = json['description'];
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {

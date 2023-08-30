@@ -4,14 +4,14 @@ import 'package:cityinpocket/Model/user.dart';
 class Discount {
   int? discount;
   String? description;
-  User? user;
+  UserModel? user;
   Shop? shop;
   Discount({this.discount, this.description, this.user, this.shop});
 
   Discount.fromJson(Map<String, dynamic> json) {
     discount = json['discount'];
     description = json['description'];
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
     shop = json['shop'] != null ? Shop.fromJson(json['shop']) : null;
   }
 

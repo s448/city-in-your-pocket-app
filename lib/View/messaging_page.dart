@@ -11,21 +11,21 @@ class FavouritesPage extends StatefulWidget {
 class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const Center(
+         Center(
           child: Text(
-            "Favourites page",
+            "لا يوجد مراسلات",
             style: StyleManager.headline1,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(onPressed: () {
-
-          },
-          style: StyleManager.primaryButtonStyle, child: const Text("Click"),),
-        )
+        // Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: ElevatedButton(onPressed: () {
+        //
+        //   },
+        //   style: StyleManager.primaryButtonStyle, child: const Text("Click"),),
+        // )
       ],
     );
   }

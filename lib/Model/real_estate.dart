@@ -3,7 +3,7 @@ import 'package:cityinpocket/Model/user.dart';
 class RealEstate {
   String? address;
   String? description;
-  User? user;
+  UserModel? user;
   List<String>? images;
 
   RealEstate({this.address, this.description, this.user, this.images});
@@ -11,7 +11,7 @@ class RealEstate {
   RealEstate.fromJson(Map<String, dynamic> json) {
     address = json['address'];
     description = json['description'];
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
     images = json['images'].cast<String>();
   }
 
