@@ -14,12 +14,17 @@ class UserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // _user.bindStream(FirebaseAuth.instance.authStateChanges());
+    loadUserData();
+    // bindStream(FirebaseAuth.instance.authStateChanges());
+  }
+
+  loadUserData() async{
+    DocumentSnapshot<Map<String, dynamic>> data = await fetchUserData();
+    userModel = data.data() as UserModel;
   }
 
   Future<DocumentSnapshot<Map<String, dynamic>>>fetchUserData() async {
     String userId = _sharedPrefController.getPhoneNumber();
-
     var result = await _firestore
         .collection("users").doc(userId)
         .get();
@@ -28,6 +33,7 @@ class UserController extends GetxController {
     }
     return result;
   }
+
 
   // Future<void> updateUserProfile(String displayName) async {
   //   try {

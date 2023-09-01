@@ -19,13 +19,6 @@ class _FavouritesPageState extends State<FavouritesPage> {
             style: StyleManager.headline1,
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   child: ElevatedButton(onPressed: () {
-        //
-        //   },
-        //   style: StyleManager.primaryButtonStyle, child: const Text("Click"),),
-        // )
       ],
     );
   }

@@ -1,10 +1,12 @@
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
-import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/Model/user.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../Controller/user_controller.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -14,13 +16,12 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final userController = Get.put(UserController());
+  final userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: userController.fetchUserData(),
       builder: (context, snapshot){
-
         if(snapshot.hasError){
           return const Text("Cannot retrieve user data");
         }else if(snapshot.connectionState == ConnectionState.waiting){
@@ -28,11 +29,11 @@ class _ProfilePageState extends State<ProfilePage> {
         }else if(snapshot.hasData){
           var data = snapshot.data!.data();
           UserModel user = UserModel(
-            id: data!['uid'],
-            name: data['username'],
+            id: data!['id'],
+            name: data['name'],
             email: data['email'],
             imgUrl: data['imgUrl'],
-            phone: data['phoneNumber'],
+            phone: data['phone'],
           );
           if (kDebugMode) {
             print("${user.name}>>>>>>>>>>>");
@@ -43,35 +44,36 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
                     decoration: StyleManager.gradientBoxDecoration,
-                    child: ListTile(
-                      dense: false,
-                      titleTextStyle: StyleManager.headlineWhite,
-                      leading: Image.network(user.imgUrl ?? "https://img.icons8.com/fluency/48/user-male-circle--v1.png"),
-                      title: Text(user.name.toString()),
-                    ),
-                  ),
-                  const SizedBox(height: 15,),
-                  Container(
-                    decoration: StyleManager.gradientBoxDecoration,
-                    child: ListTile(
-                      dense: false,
-                      titleTextStyle: StyleManager.headlineWhite,
-                      title: Text(user.phone.toString()),
-                      subtitle: const Text("رقم الهاتف المحمول",style: StyleManager.bodyWhiteText,),
-                      trailing: const Icon(Icons.phone_android_outlined,color: Colors.white,),
-                    ),
-                  ),
-                  const SizedBox(height: 15,),
-                  Container(
-                    decoration: StyleManager.gradientBoxDecoration,
-                    child: ListTile(
-                      dense: false,
-                      titleTextStyle: StyleManager.headlineWhite,
-                      title: Text(user.email.toString()),
-                      subtitle: const Text("البريد الالكتروني",style: StyleManager.bodyWhiteText,),
-                      trailing: const Icon(Icons.email,color: Colors.white,),
-                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 15,),
+                        const Text("المعلومات الشخصية",style: StyleManager.headlineWhite,),
+                        ListTile(
+                          dense: false,
+                          titleTextStyle: StyleManager.headlineWhite,
+                          trailing: const Icon(CupertinoIcons.person,color: Colors.white,),
+                          title: Text(user.name.toString()),
+                        ),
+                        const Divider(color: Colors.white,thickness: 2.0,),
+                        ListTile(
+                          dense: false,
+                          titleTextStyle: StyleManager.headlineWhite,
+                          title: Text(user.phone.toString()),
+                          subtitle: const Text("رقم الهاتف المحمول",style: StyleManager.bodyWhiteText,),
+                          trailing: const Icon(CupertinoIcons.device_phone_portrait,color: Colors.white,),
+                        ),
+                        const Divider(color: Colors.white,thickness: 2.0,),
+                        ListTile(
+                          dense: false,
+                          titleTextStyle: StyleManager.headlineWhite,
+                          title: Text(user.email.toString()),
+                          subtitle: const Text("البريد الالكتروني",style: StyleManager.bodyWhiteText,),
+                          trailing: const Icon(CupertinoIcons.mail,color: Colors.white,),
+                        ),
+                      ],
+                    )
                   ),
                   const SizedBox(height: 30,),
                   Container(
@@ -81,6 +83,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       titleTextStyle: StyleManager.headlineWhite,
                       title: Text("تعديل الحساب"),
                       trailing: Icon(Icons.edit,color: Colors.white,),
+                    ),
+                  ),
+                  const SizedBox(height: 15,),
+
+                  Container(
+                    decoration: StyleManager.dangerRoundedDecoration,
+                    child:const ListTile(
+                      dense: false,
+                      titleTextStyle: StyleManager.headlineWhite,
+                      title: Text("حذف الحساب"),
+                      trailing: Icon(CupertinoIcons.delete,color: Colors.white,),
                     ),
                   ),
                   // const SizedBox(height: 35,),

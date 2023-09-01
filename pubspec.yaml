@@ -45,6 +45,8 @@ dependencies:
   google_sign_in: ^6.1.4
   cloud_firestore: ^4.9.0
   shared_preferences: ^2.2.0
+  image_picker: ^1.0.4
+  firebase_storage: ^11.2.6
 
   #we_slide >>>>>>>>>>
 

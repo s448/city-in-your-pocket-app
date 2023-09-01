@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/colors.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class SectionItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         //implement the route
+        Get.toNamed(Routes.buySell, arguments: {'title' : title});
       },
       child: IntrinsicHeight(
         child: Column(

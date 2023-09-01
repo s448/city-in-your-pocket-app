@@ -1,14 +1,14 @@
 import 'package:cityinpocket/Model/user.dart';
 
-class SecondHandStuff {
+class BuySell {
   String? type;
   String? description;
   UserModel? user;
   List<String>? images;
 
-  SecondHandStuff({this.type, this.description, this.user, this.images});
+  BuySell({this.type, this.description, this.user, this.images});
 
-  SecondHandStuff.fromJson(Map<String, dynamic> json) {
+  BuySell.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     description = json['description'];
     user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
@@ -26,3 +26,4 @@ class SecondHandStuff {
     return data;
   }
 }
+

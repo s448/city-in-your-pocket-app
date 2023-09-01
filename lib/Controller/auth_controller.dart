@@ -43,10 +43,10 @@ class AuthController extends GetxController {
         if (userCredential.additionalUserInfo!.isNewUser) {
           //add user to firestore
           _firestore.collection('users').doc(user.uid).set({
-            'username': user.displayName,
-            'uid': user.uid,
-            'profilePhoto': user.photoURL,
-            'phoneNumber': user.phoneNumber,
+            'name': user.displayName,
+            'id': user.uid,
+            'email': user.email,
+            'phone': user.phoneNumber,
           });
         }
       }

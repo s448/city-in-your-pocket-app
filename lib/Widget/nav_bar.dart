@@ -26,10 +26,10 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
   EdgeInsets padding = const EdgeInsets.all(12);
 
   int _selectedItemPosition = 1;
-  SnakeShape snakeShape = SnakeShape.circle;
-
   bool showSelectedLabels = false;
   bool showUnselectedLabels = false;
+  SnakeShape snakeShape = SnakeShape.circle;
+
 
   Color selectedColor = ColorManager.primaryColor;
   Color unselectedColor = ColorManager.navBarUnselectedColor;

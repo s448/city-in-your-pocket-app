@@ -32,12 +32,12 @@ class StyleManager {
       fontSize: 16,
       fontFamily: font,
       color: ColorManager.primaryColorDark,
-      height: 1);
+      height: 1.2);
 
   static const TextStyle bodyWhiteText = TextStyle(
     fontSize: 16,
     fontFamily: font,
-    height: 1,
+    height: 1.2,
     color: Colors.white,
   );
 
@@ -50,12 +50,17 @@ class StyleManager {
       primaryColor: ColorManager.primaryColorDark,
       hintColor: ColorManager.accentColor,
       appBarTheme: const AppBarTheme(
-          color: ColorManager.primaryColorDark, titleTextStyle: headline1));
+          color: ColorManager.primaryColorDark, titleTextStyle: headlineWhite));
 
   //box decorations
   static const BoxDecoration roundedBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
     color: ColorManager.secondaryColor,
+  );
+
+  static const BoxDecoration dangerRoundedDecoration = BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+    color: Colors.redAccent,
   );
   static const BoxDecoration shadowBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.vertical(

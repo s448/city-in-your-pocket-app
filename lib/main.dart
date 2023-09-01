@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,15 @@ void main() async {
 
 class App extends StatelessWidget {
   App({Key? key}) : super(key: key);
-  final _sharedPrefController = Get.put(SharedPrefsController());
+  final _sharedPrefController = Get.put(SharedPrefsController(),permanent: true);
+  final userController = Get.put(UserController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       textDirection: TextDirection.rtl,
       debugShowCheckedModeBanner: false,
       theme: StyleManager.themeManager,
+      // initialRoute: Routes.navbar,
       initialRoute:_sharedPrefController.userAuthenticated()? Routes.navbar : Routes.login,
       getPages: getPages
     );
