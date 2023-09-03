@@ -1,7 +1,8 @@
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/buy_sell_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class AddItem extends StatelessWidget {
   final controller = Get.put(BuySellController());
@@ -12,59 +13,154 @@ class AddItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Post'),
+        title: const Text('اضافة عنصر مجانا'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // DropdownButtonFormField<String>(
-            //   value: controller.type.value,
-            //   decoration: InputDecoration(labelText: 'Type'),
-            //   onChanged: (value) {
-            //     controller.type.value = value!;
-            //   },
-            //   items: ['Type 1', 'Type 2', 'Type 3']
-            //       .map(
-            //         (type) => DropdownMenuItem<String>(
-            //       value: type,
-            //       child: Text(type),
-            //     ),
-            //   )
-            //       .toList(),
-            // ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Description',
-              ),
-              onChanged: (value) {
-                controller.description.value = value;
-              },
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: controller.selectImages,
-              child: Text('Select Images'),
-            ),
-            SizedBox(height: 16.0),
-            Expanded(
-              child: Obx(
-                    () => ListView.builder(
-                  itemCount: controller.selectedImages.length,
-                  itemBuilder: (context, index) {
-                    return Image.file(controller.selectedImages[index]);
-                  },
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // const SizedBox(height: 16.0),
+              Container(
+                decoration: StyleManager.shadowBoxDecoration,
+                child: ListTile(
+                  trailing: Text(
+                    Get.arguments['type'],
+                    style: StyleManager.headlineWhite,
+                  ),
+                  title: const Text(
+                    "نوع العنصر",
+                    style: StyleManager.bodyWhiteText,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: controller.submitPost,
-              child: Text('Submit Post'),
-            ),
-          ],
+              const SizedBox(height: 22.0),
+              Form(
+                key: controller.addItemKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      autocorrect: true,
+                      autofocus: true,
+                      minLines: 1,
+                      maxLines: 2,
+                      maxLength: 80,
+                      decoration: InputDecoration(
+                        labelText: 'اسم العنصر',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      onChanged: (value) {
+                        controller.title.value = value;
+                        print(controller.title.value);
+                      },
+                      validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
+                    ),
+                    TextFormField(
+                      autocorrect: true,
+                      autofocus: true,
+                      minLines: 4,
+                      maxLines: 10,
+                      maxLength: 800,
+                      decoration: InputDecoration(
+                        labelText: 'الوصف والتفاصيل',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      onChanged: (value) {
+                        controller.description.value = value;
+                      },
+                      validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
+                    ),
+                    const SizedBox(height: 16.0),
+                  ],
+                ),
+              ),
+              TextButton.icon(
+                onPressed: controller.selectImages,
+                style: StyleManager.primaryButtonStyle,
+                icon: const Icon(
+                  CupertinoIcons.photo,
+                  color: Colors.white,
+                ),
+                label: Obx(() {
+                  return Text(
+                    controller.selectedImages.isEmpty
+                        ? 'أضف صور للعنصر'
+                        : 'اعادة تعيين الصور',
+                    style: StyleManager.bodyWhiteText,
+                  );
+                }),
+              ),
+              const SizedBox(height: 16.0),
+              SizedBox(
+                height: Get.height * 0.2, // Set a fixed height for the GridView
+                child: Obx(
+                  () => ListView.builder(
+                    scrollDirection: Axis
+                        .horizontal, // Set the scroll direction to horizontal
+                    itemCount: controller.selectedImages.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: Get.width *
+                            0.3, // Set the width of each item in the horizontal scroll
+                        margin: const EdgeInsets.only(
+                            right: 20.0), // Add spacing between items
+                        child: Image.file(controller.selectedImages[index]),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Obx(
+                () => ElevatedButton(
+                  onPressed: controller.submitPost,
+                  style: StyleManager.primaryButtonStyle,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: !controller.isUploading.value
+                        ? const Text('نشر الاعلان')
+                        : const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                  ),
+                ),
+              )
+              // Obx(
+              //   () => Visibility(
+              //     visible: controller.isUploading.value,
+              //     child: Container(
+              //       color: Colors.black.withOpacity(0.5),
+              //       child: const Center(
+              //         child: CircularProgressIndicator(),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );

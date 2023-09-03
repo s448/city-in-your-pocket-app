@@ -9,31 +9,31 @@ import '../Model/user.dart';
 class UserController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _sharedPrefController = Get.find<SharedPrefsController>();
-  late UserModel userModel;
+  late UserModel userModel = UserModel();
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    loadUserData();
+    await loadUserData();
     // bindStream(FirebaseAuth.instance.authStateChanges());
   }
 
-  loadUserData() async{
+  loadUserData() async {
     DocumentSnapshot<Map<String, dynamic>> data = await fetchUserData();
-    userModel = data.data() as UserModel;
+    userModel = UserModel.fromJson(data.data() ?? {});
+    print("user data retreived .......");
+
+    print(userModel.toJson());
   }
 
-  Future<DocumentSnapshot<Map<String, dynamic>>>fetchUserData() async {
+  Future<DocumentSnapshot<Map<String, dynamic>>> fetchUserData() async {
     String userId = _sharedPrefController.getPhoneNumber();
-    var result = await _firestore
-        .collection("users").doc(userId)
-        .get();
+    var result = await _firestore.collection("users").doc(userId).get();
     if (kDebugMode) {
       print(result.data().toString());
     }
     return result;
   }
-
 
   // Future<void> updateUserProfile(String displayName) async {
   //   try {

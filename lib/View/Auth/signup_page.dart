@@ -16,7 +16,10 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("تسجيل حساب جديد",style: StyleManager.headlineWhite,),
+        title: const Text(
+          "تسجيل حساب جديد",
+          style: StyleManager.headlineWhite,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -47,12 +50,16 @@ class SignUpPage extends StatelessWidget {
               labelText: "الاسم",
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               enabledBorder: OutlineInputBorder(
-                  borderSide:
-                  const BorderSide(color: Colors.black12),
+                  borderSide: const BorderSide(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(10)),
+              errorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
-                  borderSide:
-                  const BorderSide(color: Colors.black12),
+                  borderSide: const BorderSide(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(10)),
+              focusedErrorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
             ),
             onChanged: (val) {
@@ -65,19 +72,25 @@ class SignUpPage extends StatelessWidget {
               return null;
             },
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           TextFormField(
             controller: authController.emailController,
             decoration: InputDecoration(
               labelText: "عنوان البريد الالكتروني",
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               enabledBorder: OutlineInputBorder(
-                  borderSide:
-                  const BorderSide(color: Colors.black12),
+                  borderSide: const BorderSide(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(10)),
+              errorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
-                  borderSide:
-                  const BorderSide(color: Colors.black12),
+                  borderSide: const BorderSide(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(10)),
+              focusedErrorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
             ),
             onChanged: (val) {
@@ -90,7 +103,9 @@ class SignUpPage extends StatelessWidget {
               return null;
             },
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           TextFormField(
             keyboardType: TextInputType.number,
             maxLength: 11,
@@ -99,36 +114,39 @@ class SignUpPage extends StatelessWidget {
               authController.showPrefix.value = val.isNotEmpty;
             },
             onSaved: (val) => authController.phoneNo.value = val!,
-            validator: (val) => (val!.isEmpty || val.length < 11)
-                ? "أدخل رقم صحيح"
-                : null,
+            validator: (val) =>
+                (val!.isEmpty || val.length < 11) ? "أدخل رقم صحيح" : null,
             decoration: InputDecoration(
               hintText: "رقم المحمول",
               labelText: "رقم المحمول",
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               enabledBorder: OutlineInputBorder(
-                  borderSide:
-                  const BorderSide(color: Colors.black12),
+                  borderSide: const BorderSide(color: Colors.black12),
                   borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
-                  borderSide:
-                  const BorderSide(color: Colors.black12),
+                  borderSide: const BorderSide(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(10)),
+              errorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.circular(10)),
+              focusedErrorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
               prefix: authController.showPrefix.value
                   ? const Padding(
-                padding:
-                EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  '(+2)',
-                ),
-              )
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        '(+2)',
+                      ),
+                    )
                   : null,
             ),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           ElevatedButton(
             onPressed: () {
-
               if (authController.signupFormKey.currentState!.validate()) {
                 print("username >>>>>>>>" + authController.username.value);
                 print("email >>>>>>>>" + authController.email.value);
@@ -139,16 +157,17 @@ class SignUpPage extends StatelessWidget {
             style: StyleManager.primaryButtonStyle,
             child: const Text('تسجيل'),
           ),
-       Row(
-         mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("لديك حياب"),
-                TextButton(onPressed: ((){
-                  Get.offAllNamed(Routes.login);
-                }), child: const Text("تسجيل الدخول"))
-              ],
-            ),
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("لديك حياب"),
+              TextButton(
+                  onPressed: (() {
+                    Get.offAllNamed(Routes.login);
+                  }),
+                  child: const Text("تسجيل الدخول"))
+            ],
+          ),
         ],
       ),
     );
@@ -256,11 +275,11 @@ class SignUpPage extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
+                            MaterialStateProperty.all<Color>(Colors.white),
                         // backgroundColor:
                         //     MaterialStateProperty.all<Color>(kPrimaryColor),
                         shape:
-                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24.0),
                           ),
@@ -294,7 +313,7 @@ class SignUpPage extends StatelessWidget {
               height: 18,
             ),
             Obx(
-                  () => TextButton(
+              () => TextButton(
                 onPressed: () => authController.resendOTP.value
                     ? authController.resendOtp()
                     : null,
@@ -339,7 +358,7 @@ class SignUpPage extends StatelessWidget {
           decoration: InputDecoration(
             isDense: true,
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
             counter: const Offstage(),
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(width: 2, color: Colors.black12),
@@ -353,5 +372,4 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
-
 }

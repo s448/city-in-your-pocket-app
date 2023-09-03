@@ -9,35 +9,47 @@ class StyleManager {
 
   //text style
   static const TextStyle headline1 = TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
 
-  static const TextStyle warningTextStyle =
-      TextStyle(fontSize: 16, fontFamily: font, color: Colors.redAccent, height: 1);
+  static const TextStyle warningTextStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: font,
+    color: Colors.redAccent,
+    height: 1,
+    fontWeight: FontWeight.w100,
+  );
 
   static const TextStyle headlineWhite = TextStyle(
-      fontSize: 18,
+      fontSize: 16,
       fontFamily: font,
       fontWeight: FontWeight.bold,
       color: Colors.white,
       height: 1);
 
-  static const TextStyle bodyText1 =
-      TextStyle(fontSize: 16, fontFamily: font, color: Colors.black, height: 1);
+  static const TextStyle bodyText1 = TextStyle(
+    fontSize: 14,
+    fontFamily: font,
+    color: Colors.black,
+    height: 1,
+    fontWeight: FontWeight.w100,
+  );
 
   static const TextStyle bodyWithPrimaryColor = TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       fontFamily: font,
       color: ColorManager.primaryColorDark,
+      fontWeight: FontWeight.w100,
       height: 1.2);
 
   static const TextStyle bodyWhiteText = TextStyle(
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: font,
     height: 1.2,
+    fontWeight: FontWeight.w100,
     color: Colors.white,
   );
 
@@ -62,10 +74,9 @@ class StyleManager {
     borderRadius: BorderRadius.all(Radius.circular(10)),
     color: Colors.redAccent,
   );
-  static const BoxDecoration shadowBoxDecoration = BoxDecoration(
-    borderRadius: BorderRadius.vertical(
-        top: Radius.circular(0), bottom: Radius.circular(15)),
-    color: Colors.black45,
+  static BoxDecoration shadowBoxDecoration = BoxDecoration(
+    borderRadius: BorderRadius.circular(4),
+    color: ColorManager.primaryColor,
   );
 
   static const BoxDecoration gradientBoxDecoration = BoxDecoration(

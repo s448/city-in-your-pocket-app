@@ -9,7 +9,7 @@ class FeaturedCard extends StatelessWidget {
     return Container(
       decoration: StyleManager.gradientBoxDecoration,
       width: Get.width,
-      height: Get.height * 0.3,
+      height: Get.height * 0.35,
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -54,7 +54,7 @@ class FeaturedCard extends StatelessWidget {
             child: Image.asset(
               'assets/images/jobs.png',
               fit: BoxFit.contain,
-              width: Get.width *0.3,
+              width: Get.width * 0.3,
             ),
           )
         ],
