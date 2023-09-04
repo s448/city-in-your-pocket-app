@@ -1,7 +1,6 @@
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../Model/user.dart';

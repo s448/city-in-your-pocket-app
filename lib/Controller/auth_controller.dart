@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/user.dart';
-import 'package:cityinpocket/View/home_page.dart';
 import 'package:cityinpocket/Widget/nav_bar.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,8 +11,6 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
-
-
   final _sharedPrefController = Get.put(SharedPrefsController());
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -58,9 +54,9 @@ class AuthController extends GetxController {
   }
 
   logout() async {
-     await _auth.signOut();
-     _sharedPrefController.clearUserCredentials();
-     Get.offAllNamed(Routes.login);
+    await _auth.signOut();
+    _sharedPrefController.clearUserCredentials();
+    Get.offAllNamed(Routes.login);
   }
 
   Future<void> logoutGoogle() async {
@@ -192,7 +188,8 @@ class AuthController extends GetxController {
       // Sign the user in (or link) with the credential
       await auth.signInWithCredential(credential);
       //save user credentials to local storage
-      await _sharedPrefController.saveUserCredentials(phoneNo.value, firebaseVerificationId);
+      await _sharedPrefController.saveUserCredentials(
+          phoneNo.value, firebaseVerificationId);
       if (!await userExist(phoneNo.value)) {
         saveUserData();
       }

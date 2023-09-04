@@ -28,7 +28,7 @@ class BuySellController extends GetxController {
     final List<XFile> images =
         await ImagePicker().pickMultiImage(imageQuality: 80);
 
-    if (images != null && images.isNotEmpty) {
+    if (images.isNotEmpty) {
       selectedImages.value = images.map((image) => File(image.path)).toList();
     }
   }

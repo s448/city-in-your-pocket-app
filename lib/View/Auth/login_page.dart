@@ -1,7 +1,6 @@
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/auth_controller.dart';
-import 'package:cityinpocket/View/Auth/signup_page.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
