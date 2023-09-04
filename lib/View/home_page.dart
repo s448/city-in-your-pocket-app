@@ -24,7 +24,12 @@ class _HomePageState extends State<HomePage> {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
-            const AdCarouselSlider(),
+            const CarouselSlider(
+              images: [
+                "https://cdnb.artstation.com/p/assets/images/images/019/250/843/large/ali-nouman-pocket-t-shirt-add-banner.jpg?1562679888",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5XALJfHrrKrnjfsnfothd0VxTWifzDFrSuw&usqp=CAU"
+              ],
+            ),
             // GridView.count(
             //     scrollDirection: Axis.vertical,
             //     shrinkWrap: true,
@@ -36,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             //       VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
             //       VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
             //     ]),
-           // VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
+            // VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
             SectionContainer(
               listOfElements: shoppingCategories,
               heading: 'بيع وشراء',

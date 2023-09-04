@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddItem extends StatelessWidget {
-  final controller = Get.put(BuySellController());
+  final controller = Get.find<BuySellController>();
 
   AddItem({super.key});
 
@@ -26,7 +26,7 @@ class AddItem extends StatelessWidget {
                 decoration: StyleManager.shadowBoxDecoration,
                 child: ListTile(
                   trailing: Text(
-                    Get.arguments['type'],
+                    Get.arguments['title'],
                     style: StyleManager.headlineWhite,
                   ),
                   title: const Text(
@@ -114,10 +114,12 @@ class AddItem extends StatelessWidget {
                 }),
               ),
               const SizedBox(height: 16.0),
-              SizedBox(
-                height: Get.height * 0.2, // Set a fixed height for the GridView
-                child: Obx(
-                  () => ListView.builder(
+              Obx(
+                () => SizedBox(
+                  height: controller.selectedImages.isNotEmpty
+                      ? Get.height * 0.2
+                      : 0, // Set a fixed height for the GridView
+                  child: ListView.builder(
                     scrollDirection: Axis
                         .horizontal, // Set the scroll direction to horizontal
                     itemCount: controller.selectedImages.length,
@@ -127,7 +129,10 @@ class AddItem extends StatelessWidget {
                             0.3, // Set the width of each item in the horizontal scroll
                         margin: const EdgeInsets.only(
                             right: 20.0), // Add spacing between items
-                        child: Image.file(controller.selectedImages[index]),
+                        child: Image.file(
+                          controller.selectedImages[index],
+                          fit: BoxFit.contain,
+                        ),
                       );
                     },
                   ),
@@ -135,30 +140,21 @@ class AddItem extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               Obx(
-                () => ElevatedButton(
-                  onPressed: controller.submitPost,
-                  style: StyleManager.primaryButtonStyle,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: !controller.isUploading.value
-                        ? const Text('نشر الاعلان')
-                        : const CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                  ),
-                ),
+                () => controller.selectedImages.isEmpty
+                    ? const SizedBox()
+                    : ElevatedButton(
+                        onPressed: controller.submitPost,
+                        style: StyleManager.primaryButtonStyle,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: !controller.isUploading.value
+                              ? const Text('نشر الاعلان')
+                              : const CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                        ),
+                      ),
               )
-              // Obx(
-              //   () => Visibility(
-              //     visible: controller.isUploading.value,
-              //     child: Container(
-              //       color: Colors.black.withOpacity(0.5),
-              //       child: const Center(
-              //         child: CircularProgressIndicator(),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

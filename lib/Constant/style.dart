@@ -13,6 +13,15 @@ class StyleManager {
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
+    height: 1.2,
+  );
+
+  static const TextStyle title = TextStyle(
+    fontSize: 15,
+    fontFamily: font,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    height: 1.1,
   );
 
   static const TextStyle warningTextStyle = TextStyle(
@@ -28,7 +37,7 @@ class StyleManager {
       fontFamily: font,
       fontWeight: FontWeight.bold,
       color: Colors.white,
-      height: 1);
+      height: 1.2);
 
   static const TextStyle bodyText1 = TextStyle(
     fontSize: 14,
@@ -39,11 +48,12 @@ class StyleManager {
   );
 
   static const TextStyle bodyWithPrimaryColor = TextStyle(
-      fontSize: 14,
-      fontFamily: font,
-      color: ColorManager.primaryColorDark,
-      fontWeight: FontWeight.w100,
-      height: 1.2);
+    fontSize: 14,
+    fontFamily: font,
+    color: ColorManager.primaryColorDark,
+    fontWeight: FontWeight.w100,
+    height: 1,
+  );
 
   static const TextStyle bodyWhiteText = TextStyle(
     fontSize: 14,
@@ -70,6 +80,12 @@ class StyleManager {
     color: ColorManager.secondaryColor,
   );
 
+  static BoxDecoration borderedRoundedBoxDecoration = BoxDecoration(
+    borderRadius: const BorderRadius.all(Radius.circular(10)),
+    border: Border.all(color: Colors.black54),
+    color: ColorManager.secondaryColor,
+  );
+
   static const BoxDecoration dangerRoundedDecoration = BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
     color: Colors.redAccent,
@@ -77,6 +93,14 @@ class StyleManager {
   static BoxDecoration shadowBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.circular(4),
     color: ColorManager.primaryColor,
+  );
+
+  static BoxDecoration listTileStyle = BoxDecoration(
+    border: Border.all(
+      color: const Color.fromARGB(31, 39, 36, 36),
+    ),
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(8.0),
   );
 
   static const BoxDecoration gradientBoxDecoration = BoxDecoration(

@@ -1,7 +1,8 @@
-
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Widget/Categories/section_item.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SectionContainer extends StatelessWidget {
   const SectionContainer(
@@ -34,11 +35,15 @@ class SectionContainer extends StatelessWidget {
           children: List.generate(listOfElements.length, (index) {
             Map<String, dynamic> element =
                 listOfElements[index] as Map<String, dynamic>;
-            return SectionItem(
-              icon: element['icon'],
-              title: element['title'],
-              route: element['route'],
-            );
+            return InkWell(
+                onTap: () {
+                  //implement the route
+                  Get.toNamed(Routes.buySell, arguments: {"element": element});
+                },
+                child: SectionItem(
+                  icon: element['icon'],
+                  title: element['title'],
+                ));
           }),
         )
       ],

@@ -14,7 +14,8 @@ class BuySellController extends GetxController {
   final userController = Get.find<UserController>();
   final addItemKey = GlobalKey<FormState>();
 
-  var type = Get.arguments['type'];
+  final product = Get.arguments['element'] ?? "البيع والشراء";
+
   RxString title = ''.obs;
   RxString description = ''.obs;
   RxList<File> selectedImages = <File>[].obs;
@@ -34,9 +35,10 @@ class BuySellController extends GetxController {
 
   Future<void> createItem() async {
     try {
+      print(Get.arguments['id']);
       BuySell model = BuySell(
-        type: type,
         title: title.value,
+        id: product['id'],
         description: description.value,
         user: userController.userModel,
         images: imageUrls,
@@ -50,8 +52,8 @@ class BuySellController extends GetxController {
   }
 
   Future<void> submitPost() async {
-    isUploading.value = true;
     if (addItemKey.currentState!.validate()) {
+      isUploading.value = true;
       try {
         userController.loadUserData();
         // Upload each image and retrieve the download URL
@@ -67,7 +69,7 @@ class BuySellController extends GetxController {
         await createItem().then((value) {
           isUploading.value = false;
           Get.back();
-          Get.snackbar("تم رفع الاعلان للمراجعة", "سيتم نشرة خلال دقائق");
+          // Get.snackbar("تم رفع الاعلان للمراجعة", "سيتم نشرة خلال دقائق");
         });
         print(imageUrls);
       } catch (e) {
@@ -78,5 +80,49 @@ class BuySellController extends GetxController {
     } else {
       return;
     }
+  }
+
+  Stream<List<BuySell>> fetchMarketItems() {
+    //   final List<BuySell> market = [
+    //     BuySell(
+    //         user: userController.userModel,
+    //         title: "Title 1",
+    //         description: "description description description description 1",
+    //         images: [
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //         ],
+    //         type: "Electronics"),
+    //     BuySell(
+    //         user: userController.userModel,
+    //         title: "Title 1",
+    //         description: "description description description description 1",
+    //         images: [
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //         ],
+    //         type: "Electronics"),
+    //     BuySell(
+    //         user: userController.userModel,
+    //         title: "Title 1",
+    //         description: "description description description description 1",
+    //         images: [
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    //         ],
+    //         type: "Electronics"),
+    //   ];
+    //   return Stream<List<BuySell>>.fromIterable([market]);
+
+    return buySellRef.snapshots().map((snapshot) {
+      print("category >>>>>>" + product['id']);
+      return snapshot.docs.where((e) => e['id'] == product['id']).map((doc) {
+        Map<String, dynamic> data = (doc.data() as Map<String, dynamic>);
+        return BuySell.fromJson(data);
+      }).toList();
+    });
   }
 }
