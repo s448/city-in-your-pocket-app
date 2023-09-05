@@ -5,6 +5,7 @@ class BuySell {
   String? title;
   String? description;
   String? id;
+  String? price;
   UserModel? user;
   List<dynamic>? images;
 
@@ -14,12 +15,14 @@ class BuySell {
       this.id,
       this.description,
       this.user,
+      this.price,
       this.images});
 
   BuySell.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     title = json['title'];
     id = json['id'];
+    price = json['price'];
     description = json['description'];
     user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
     images = json['images'].cast<String>();
@@ -30,6 +33,7 @@ class BuySell {
     data['type'] = type;
     data['title'] = title;
     data['id'] = id;
+    data['price'] = price;
     data['description'] = description;
     if (user != null) {
       data['user'] = user!.toJson();

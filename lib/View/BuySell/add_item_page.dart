@@ -67,6 +67,37 @@ class AddItem extends StatelessWidget {
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
+                    const SizedBox(
+                      height: 7.0,
+                    ),
+                    TextFormField(
+                      minLines: 1,
+                      maxLines: 1,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'السعر',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      onChanged: (value) {
+                        controller.price.value = value;
+                        print(controller.price.value);
+                      },
+                      validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
+                    ),
+                    const SizedBox(
+                      height: 7.0,
+                    ),
                     TextFormField(
                       autocorrect: true,
                       autofocus: true,

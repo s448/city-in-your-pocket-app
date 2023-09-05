@@ -8,15 +8,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BuySellPage extends StatelessWidget {
-  BuySellPage({Key? key}) : super(key: key);
-  final marketController = Get.put(BuySellController());
+class BuySellPage extends StatefulWidget {
+  const BuySellPage({Key? key}) : super(key: key);
+
+  @override
+  State<BuySellPage> createState() => _BuySellPageState();
+}
+
+class _BuySellPageState extends State<BuySellPage> {
+  final marketController = Get.put(BuySellController(), permanent: false);
+  @override
+  void dispose() {
+    Get.delete<BuySellController>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(marketController.product['title']);
     return Scaffold(
         appBar: AppBar(
           title: Text(marketController.product['title']),
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Get.back();
+                Get.delete<BuySellController>();
+              }),
         ),
         body: Padding(
           padding: const EdgeInsets.all(6.0),
@@ -49,13 +66,23 @@ class BuySellPage extends StatelessWidget {
                                     isThreeLine: true,
                                     title: Text(
                                       item.title!,
-                                      maxLines: 2,
+                                      maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    subtitle: Text(
-                                      item.description!,
-                                      maxLines: 4,
-                                      overflow: TextOverflow.ellipsis,
+                                    subtitle: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          item.description!,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text(
+                                          "${item.price} جنيه",
+                                          style: StyleManager.priceStyle,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -65,7 +92,7 @@ class BuySellPage extends StatelessWidget {
                                     item.images![0],
                                     fit: BoxFit.cover,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -78,7 +105,7 @@ class BuySellPage extends StatelessWidget {
                   },
                 );
               } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
+                return Text('خطأ: ${snapshot.error}');
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

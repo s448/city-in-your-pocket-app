@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
       future: userController.fetchUserData(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Text("Cannot retrieve user data");
+          return const Center(child: Text("خطأ"));
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
               child: CircularProgressIndicator(
@@ -122,15 +122,54 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 15,
                   ),
 
-                  Container(
-                    decoration: StyleManager.dangerRoundedDecoration,
-                    child: const ListTile(
-                      dense: false,
-                      titleTextStyle: StyleManager.headlineWhite,
-                      title: Text("حذف الحساب"),
-                      trailing: Icon(
-                        CupertinoIcons.delete,
-                        color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      showDialog<void>(
+                        context: context,
+                        barrierDismissible: false, // user must tap button!
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            // <-- SEE HERE
+                            title: const Text('حذف الحساب'),
+                            content: const SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  Text(
+                                      'سيتم حذف حسابك نهائيا وحذف كل مل قمت بنشره, هل تريد المتابعة ؟'),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text('لا'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: const Text(
+                                  'نعم',
+                                  style: StyleManager.warningTextStyle,
+                                ),
+                                onPressed: () {
+                                  userController.deleteAccount(user.phone);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      decoration: StyleManager.dangerRoundedDecoration,
+                      child: const ListTile(
+                        dense: false,
+                        titleTextStyle: StyleManager.headlineWhite,
+                        title: Text("حذف الحساب"),
+                        trailing: Icon(
+                          CupertinoIcons.delete,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

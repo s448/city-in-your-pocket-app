@@ -6,7 +6,8 @@ class ProductDetailsController extends GetxController {
   var isAddLoading = false.obs;
 
   @override
-  void onInit() {
-    super.onInit();
+  void dispose() {
+    Get.delete<ProductDetailsController>();
+    super.dispose();
   }
 }

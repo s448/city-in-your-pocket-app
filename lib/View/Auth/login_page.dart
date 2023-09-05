@@ -71,7 +71,6 @@ class LoginPage extends StatelessWidget {
                               ? "أدخل رقم صحيح"
                               : null,
                           decoration: InputDecoration(
-                            hintText: "رقم المحمول",
                             labelText: "رقم المحمول",
                             floatingLabelBehavior: FloatingLabelBehavior.auto,
                             enabledBorder: OutlineInputBorder(
@@ -160,22 +159,22 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 0),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: GestureDetector(
-                onTap: () {
-                  authController.isOtpSent.value = false;
-                  Get.off(LoginPage());
-                },
-                child: const Icon(
-                  Icons.arrow_back,
-                  size: 32,
-                  color: Colors.black54,
-                ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.topLeft,
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       authController.isOtpSent.value = false;
+            //       Get.off(LoginPage());
+            //     },
+            //     child: const Icon(
+            //       Icons.arrow_forward,
+            //       size: 32,
+            //       color: Colors.black54,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
-              height: 180,
+              height: 20,
             ),
             const Text('التحقق', style: StyleManager.headline1),
             const SizedBox(

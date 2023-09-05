@@ -17,6 +17,7 @@ class BuySellController extends GetxController {
   final product = Get.arguments['element'] ?? "البيع والشراء";
 
   RxString title = ''.obs;
+  RxString price = ''.obs;
   RxString description = ''.obs;
   RxList<File> selectedImages = <File>[].obs;
   List<String> imageUrls = [];
@@ -39,6 +40,7 @@ class BuySellController extends GetxController {
       BuySell model = BuySell(
         title: title.value,
         id: product['id'],
+        price: price.value,
         description: description.value,
         user: userController.userModel,
         images: imageUrls,
@@ -69,7 +71,7 @@ class BuySellController extends GetxController {
         await createItem().then((value) {
           isUploading.value = false;
           Get.back();
-          // Get.snackbar("تم رفع الاعلان للمراجعة", "سيتم نشرة خلال دقائق");
+          Get.snackbar("تم النشر", "يمكنك تلقي العروض في قسم الرسائل");
         });
         print(imageUrls);
       } catch (e) {
@@ -116,9 +118,7 @@ class BuySellController extends GetxController {
     //         type: "Electronics"),
     //   ];
     //   return Stream<List<BuySell>>.fromIterable([market]);
-
     return buySellRef.snapshots().map((snapshot) {
-      print("category >>>>>>" + product['id']);
       return snapshot.docs.where((e) => e['id'] == product['id']).map((doc) {
         Map<String, dynamic> data = (doc.data() as Map<String, dynamic>);
         return BuySell.fromJson(data);

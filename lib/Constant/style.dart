@@ -16,6 +16,14 @@ class StyleManager {
     height: 1.2,
   );
 
+  static const TextStyle priceStyle = TextStyle(
+    fontSize: 17,
+    fontFamily: font,
+    fontWeight: FontWeight.w700,
+    color: Colors.green,
+    height: 1.2,
+  );
+
   static const TextStyle title = TextStyle(
     fontSize: 15,
     fontFamily: font,

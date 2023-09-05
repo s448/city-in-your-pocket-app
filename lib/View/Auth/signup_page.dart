@@ -44,6 +44,9 @@ class SignUpPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("أدخل بياناتك", style: StyleManager.headline1),
+          const SizedBox(
+            height: 6.0,
+          ),
           TextFormField(
             controller: authController.nameController,
             decoration: InputDecoration(
@@ -117,7 +120,6 @@ class SignUpPage extends StatelessWidget {
             validator: (val) =>
                 (val!.isEmpty || val.length < 11) ? "أدخل رقم صحيح" : null,
             decoration: InputDecoration(
-              hintText: "رقم المحمول",
               labelText: "رقم المحمول",
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               enabledBorder: OutlineInputBorder(
@@ -189,22 +191,8 @@ class SignUpPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 0),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: GestureDetector(
-                onTap: () {
-                  authController.isOtpSent.value = false;
-                  Get.off(LoginPage());
-                },
-                child: const Icon(
-                  Icons.arrow_back,
-                  size: 32,
-                  color: Colors.black54,
-                ),
-              ),
-            ),
             const SizedBox(
-              height: 180,
+              height: 20,
             ),
             const Text('التحقق', style: StyleManager.headline1),
             const SizedBox(

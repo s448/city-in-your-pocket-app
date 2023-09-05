@@ -28,7 +28,7 @@ class ProductDetails extends StatelessWidget {
             Container(
               decoration: StyleManager.roundedBoxDecoration,
               height: Get.height * .35,
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(1.0),
               width: double.infinity,
               child: CarouselSlider(
                 images: productController.product.images as List<String>,
@@ -52,9 +52,12 @@ class ProductDetails extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 15.0),
               decoration: StyleManager.borderedRoundedBoxDecoration,
-              child: const ListTile(
-                title: Text("350 جنيه مصري"),
-                subtitle: Text("السعر"),
+              child: ListTile(
+                title: Text(
+                  "${productController.product.price ?? '0.0'} جنيه",
+                  style: StyleManager.priceStyle,
+                ),
+                subtitle: const Text("السعر"),
               ),
             ),
             const SizedBox(
