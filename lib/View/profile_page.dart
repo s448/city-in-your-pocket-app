@@ -106,22 +106,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    decoration: StyleManager.gradientBoxDecoration,
-                    child: const ListTile(
-                      dense: false,
-                      titleTextStyle: StyleManager.headlineWhite,
-                      title: Text("تعديل الحساب"),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   decoration: StyleManager.gradientBoxDecoration,
+                  //   child: const ListTile(
+                  //     dense: false,
+                  //     titleTextStyle: StyleManager.headlineWhite,
+                  //     title: Text("تعديل الحساب"),
+                  //     trailing: Icon(
+                  //       Icons.edit,
+                  //       color: Colors.white,
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 15,
                   ),
-
                   InkWell(
                     onTap: () {
                       showDialog<void>(
@@ -173,15 +172,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-                  // const SizedBox(height: 35,),
-                  // Container(
-                  //   child: ListTile(
-                  //     dense: false,
-                  //     titleTextStyle: StyleManager.bodyText1,
-                  //     title: Text(user.name.toString()),
-                  //     trailing: const Icon(Icons.logout,color: Colors.red,),
-                  //   ),
-                  // ),
                 ],
               ),
             ),

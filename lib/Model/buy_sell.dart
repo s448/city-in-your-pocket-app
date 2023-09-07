@@ -5,6 +5,7 @@ class BuySell {
   String? title;
   String? description;
   String? id;
+  String? docId;
   String? price;
   UserModel? user;
   List<dynamic>? images;
@@ -13,6 +14,7 @@ class BuySell {
       {this.type,
       this.title,
       this.id,
+      this.docId,
       this.description,
       this.user,
       this.price,
@@ -22,6 +24,7 @@ class BuySell {
     type = json['type'];
     title = json['title'];
     id = json['id'];
+    docId = json['docid'];
     price = json['price'];
     description = json['description'];
     user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
@@ -33,6 +36,7 @@ class BuySell {
     data['type'] = type;
     data['title'] = title;
     data['id'] = id;
+    data['docid'] = docId;
     data['price'] = price;
     data['description'] = description;
     if (user != null) {

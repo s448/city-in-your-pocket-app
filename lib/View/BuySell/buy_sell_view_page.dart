@@ -1,7 +1,7 @@
 import 'package:cityinpocket/Constant/colors.dart';
-import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/buy_sell_controller.dart';
 import 'package:cityinpocket/Model/buy_sell.dart';
+import 'package:cityinpocket/Widget/product_item.dart';
 import 'package:cityinpocket/Widget/reusable_streambuilder.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,68 +42,7 @@ class _BuySellPageState extends State<BuySellPage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final List<BuySell> marketItems = snapshot.data!;
-                return ListView.builder(
-                  itemCount: marketItems.length,
-                  itemBuilder: (context, index) {
-                    final item = marketItems[index];
-                    return InkWell(
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.productDetails,
-                          arguments: {"product": item},
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: StyleManager.listTileStyle,
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: Get.width * 0.7,
-                                  // decoration: StyleManager.listTileStyle,
-                                  child: ListTile(
-                                    isThreeLine: true,
-                                    title: Text(
-                                      item.title!,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    subtitle: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          item.description!,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          "${item.price} جنيه",
-                                          style: StyleManager.priceStyle,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: Get.width * 0.25,
-                                  child: Image.network(
-                                    item.images![0],
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 6.0,
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                );
+                return ProductItem(marketItems: marketItems);
               } else if (snapshot.hasError) {
                 return Text('خطأ: ${snapshot.error}');
               } else {

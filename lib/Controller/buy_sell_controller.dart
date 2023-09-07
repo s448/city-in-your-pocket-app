@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:uuid/uuid.dart';
 
 class BuySellController extends GetxController {
   final CollectionReference buySellRef =
@@ -15,6 +16,7 @@ class BuySellController extends GetxController {
   final addItemKey = GlobalKey<FormState>();
 
   final product = Get.arguments['element'] ?? "البيع والشراء";
+  var uuid = const Uuid();
 
   RxString title = ''.obs;
   RxString price = ''.obs;
@@ -35,18 +37,21 @@ class BuySellController extends GetxController {
   }
 
   Future<void> createItem() async {
+    var docId = uuid.v1();
+    print(docId);
     try {
       print(Get.arguments['id']);
       BuySell model = BuySell(
         title: title.value,
         id: product['id'],
+        docId: docId,
         price: price.value,
         description: description.value,
         user: userController.userModel,
         images: imageUrls,
       );
       userController.loadUserData();
-      await buySellRef.add(model.toJson());
+      await buySellRef.doc(docId).set(model.toJson());
       print("Post created successfully");
     } catch (e) {
       print('Error creating post: $e');

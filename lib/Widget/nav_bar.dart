@@ -1,13 +1,16 @@
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/auth_controller.dart';
+import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/messaging_page.dart';
 import 'package:cityinpocket/View/home_page.dart';
 import 'package:cityinpocket/View/profile_page.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 
 class SnakeNavigationBarExampleScreen extends StatefulWidget {
   const SnakeNavigationBarExampleScreen({Key? key}) : super(key: key);
@@ -23,13 +26,12 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
     borderRadius: BorderRadius.all(Radius.circular(25)),
   );
   SnakeBarBehaviour snakeBarStyle = SnakeBarBehaviour.floating;
-  EdgeInsets padding = const EdgeInsets.all(12);
+  EdgeInsets padding = const EdgeInsets.fromLTRB(12, 2, 12, 10);
 
-  int _selectedItemPosition = 1;
+  int _selectedItemPosition = 0;
   bool showSelectedLabels = false;
   bool showUnselectedLabels = false;
   SnakeShape snakeShape = SnakeShape.circle;
-
 
   Color selectedColor = ColorManager.primaryColor;
   Color unselectedColor = ColorManager.navBarUnselectedColor;
@@ -40,7 +42,7 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
       backgroundColor: ColorManager.secondaryColor,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        leading: _selectedItemPosition == 2
+        leading: _selectedItemPosition == 3
             ? IconButton(
                 icon: const Icon(Icons.logout),
                 onPressed: (() {
@@ -111,10 +113,15 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
         currentIndex: _selectedItemPosition,
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.mark_unread_chat_alt_outlined),
               label: 'My chats'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Ionicons.heart_outline,
+              ),
+              label: 'Favourites'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         selectedLabelStyle: const TextStyle(fontSize: 14),
@@ -124,8 +131,9 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
   }
 }
 
-const List<Widget> _pages = <Widget>[
-  FavouritesPage(),
-  HomePage(),
-  ProfilePage(),
+List<Widget> _pages = <Widget>[
+  const HomePage(),
+  const MessagingPage(),
+  FavoritesPage(),
+  const ProfilePage(),
 ];

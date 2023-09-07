@@ -48,6 +48,8 @@ dependencies:
   image_picker: ^1.0.4
   firebase_storage: ^11.2.6
   ionicons: ^0.2.2
+  uuid: ^3.0.7
+  url_launcher: ^6.1.14
 
   #we_slide >>>>>>>>>>
 

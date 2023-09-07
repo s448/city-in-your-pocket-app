@@ -1,6 +1,9 @@
+import 'package:cityinpocket/Constant/app_details.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/Controller/favorites_controller.dart';
 import 'package:cityinpocket/Controller/product_details_controller.dart';
+import 'package:cityinpocket/Services/url_launcher.dart';
 import 'package:cityinpocket/Widget/ad_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +12,7 @@ import 'package:ionicons/ionicons.dart';
 
 class ProductDetails extends StatelessWidget {
   ProductDetails({Key? key}) : super(key: key);
+  final favoritesController = Get.find<FavoritesController>();
 
   final productController = Get.put(ProductDetailsController());
 
@@ -89,24 +93,31 @@ class ProductDetails extends StatelessWidget {
         color: Colors.white,
         padding: const EdgeInsets.all(8.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              alignment: Alignment.center,
-              decoration: StyleManager.roundedBoxDecoration,
-              child: const Icon(
-                Ionicons.heart_outline,
-                size: 30,
-                color: Colors.grey,
-              ),
-            ),
             const SizedBox(width: 20),
+            InkWell(
+                onTap: () {
+                  UrlLauncherService.launch(
+                      'https://api.whatsapp.com/send?phone=${productController.product.user?.phone}&text=${Uri.encodeComponent("مرحبا أ/${productController.product.user?.name}, انا مهتم بشراء العنصر ${productController.product.title} المعروض في تطبيق $appName")}');
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: StyleManager.roundedBoxDecoration,
+                  child: const Icon(
+                    Ionicons.logo_whatsapp,
+                    size: 30,
+                    color: ColorManager.primaryColorDark,
+                  ),
+                )),
+            const SizedBox(width: 6),
             Expanded(
               child: InkWell(
                 onTap: () {
-                  //  productController.addToCart();
+                  UrlLauncherService.launch(
+                      'tel:${productController.product.user?.phone}');
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -125,14 +136,14 @@ class ProductDetails extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'تواصل مع البائع',
+                                'أتصل بالبائع',
                                 style: StyleManager.headlineWhite,
                               ),
                               SizedBox(
                                 width: 6.0,
                               ),
                               Icon(
-                                CupertinoIcons.chat_bubble_2_fill,
+                                CupertinoIcons.phone_arrow_up_right,
                                 color: Colors.white,
                               )
                             ],
@@ -144,6 +155,30 @@ class ProductDetails extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.transparent,
+        child: InkWell(
+          onTap: () => favoritesController
+              .addRemoveFavItem(productController.product.docId),
+          child: Container(
+              width: 50,
+              height: 50,
+              alignment: Alignment.center,
+              decoration: StyleManager.roundedBoxDecoration,
+              child: Obx(
+                () => Icon(
+                  favoritesController.favorites
+                          .contains(productController.product.docId)
+                      ? Ionicons.heart_sharp
+                      : Ionicons.heart_outline,
+                  size: 30,
+                  color: ColorManager.primaryColorDark,
+                ),
+              )),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }

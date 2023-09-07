@@ -1,19 +1,19 @@
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:flutter/material.dart';
 
-class FavouritesPage extends StatefulWidget {
-  const FavouritesPage({Key? key}) : super(key: key);
+class MessagingPage extends StatefulWidget {
+  const MessagingPage({Key? key}) : super(key: key);
 
   @override
-  State<FavouritesPage> createState() => _FavouritesPageState();
+  State<MessagingPage> createState() => _MessagingPageState();
 }
 
-class _FavouritesPageState extends State<FavouritesPage> {
+class _MessagingPageState extends State<MessagingPage> {
   @override
   Widget build(BuildContext context) {
     return const Column(
       children: [
-         Center(
+        Center(
           child: Text(
             "لا يوجد مراسلات",
             style: StyleManager.headline1,

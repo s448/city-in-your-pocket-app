@@ -3,6 +3,7 @@ import 'package:cityinpocket/View/Auth/signup_page.dart';
 import 'package:cityinpocket/View/BuySell/add_item_page.dart';
 import 'package:cityinpocket/View/BuySell/buy_sell_view_page.dart';
 import 'package:cityinpocket/View/BuySell/item_details.dart';
+import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import 'Widget/nav_bar.dart';
@@ -14,6 +15,7 @@ class Routes {
   static String buySell = '/buy_sell';
   static String addItem = '/add_item';
   static String productDetails = '/product_details';
+  static String favorites = '/favorites';
 }
 
 final getPages = [
@@ -31,7 +33,7 @@ final getPages = [
   ),
   GetPage(
     name: Routes.buySell,
-    page: () => BuySellPage(),
+    page: () => const BuySellPage(),
   ),
   GetPage(
     name: Routes.addItem,
@@ -40,5 +42,9 @@ final getPages = [
   GetPage(
     name: Routes.productDetails,
     page: () => ProductDetails(),
+  ),
+  GetPage(
+    name: Routes.favorites,
+    page: () => FavoritesPage(),
   ),
 ];
