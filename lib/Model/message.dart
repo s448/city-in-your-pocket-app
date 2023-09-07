@@ -1,8 +1,9 @@
 import 'package:cityinpocket/Model/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Message {
   String? message;
-  String? date;
+  Timestamp? date;
   UserModel? user;
 
   Message({this.message, this.date, this.user});

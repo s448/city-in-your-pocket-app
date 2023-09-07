@@ -5,7 +5,6 @@ import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/messaging_page.dart';
 import 'package:cityinpocket/View/home_page.dart';
 import 'package:cityinpocket/View/profile_page.dart';
-import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
@@ -133,7 +132,7 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
 
 List<Widget> _pages = <Widget>[
   const HomePage(),
-  const MessagingPage(),
+  MessagingPage(),
   FavoritesPage(),
   const ProfilePage(),
 ];
