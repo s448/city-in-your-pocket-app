@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +39,7 @@ class FeaturedCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Add your button's functionality here
+                    Get.toNamed(Routes.jobs);
                   },
                   style: StyleManager.primaryButtonStyle,
                   child: const Text(

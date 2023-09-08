@@ -76,7 +76,7 @@ class BuySellController extends GetxController {
         await createItem().then((value) {
           isUploading.value = false;
           Get.back();
-          Get.snackbar("تم النشر", "يمكنك تلقي العروض في قسم الرسائل");
+          Get.snackbar("تم النشر", "يمكنك الان تلقي العروض");
         });
         print(imageUrls);
       } catch (e) {
@@ -90,39 +90,6 @@ class BuySellController extends GetxController {
   }
 
   Stream<List<BuySell>> fetchMarketItems() {
-    //   final List<BuySell> market = [
-    //     BuySell(
-    //         user: userController.userModel,
-    //         title: "Title 1",
-    //         description: "description description description description 1",
-    //         images: [
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //         ],
-    //         type: "Electronics"),
-    //     BuySell(
-    //         user: userController.userModel,
-    //         title: "Title 1",
-    //         description: "description description description description 1",
-    //         images: [
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //         ],
-    //         type: "Electronics"),
-    //     BuySell(
-    //         user: userController.userModel,
-    //         title: "Title 1",
-    //         description: "description description description description 1",
-    //         images: [
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //           "https://m.media-amazon.com/images/I/51UhkQTNxmL.__AC_SX300_SY300_QL70_ML2_.jpg",
-    //         ],
-    //         type: "Electronics"),
-    //   ];
-    //   return Stream<List<BuySell>>.fromIterable([market]);
     return buySellRef.snapshots().map((snapshot) {
       return snapshot.docs.where((e) => e['id'] == product['id']).map((doc) {
         Map<String, dynamic> data = (doc.data() as Map<String, dynamic>);

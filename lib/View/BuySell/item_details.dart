@@ -106,10 +106,10 @@ class ProductDetails extends StatelessWidget {
                   height: 50,
                   alignment: Alignment.center,
                   decoration: StyleManager.roundedBoxDecoration,
-                  child: const Icon(
+                  child: Icon(
                     Ionicons.logo_whatsapp,
                     size: 30,
-                    color: ColorManager.primaryColorDark,
+                    color: Colors.greenAccent.shade700,
                   ),
                 )),
             const SizedBox(width: 6),

@@ -3,6 +3,9 @@ import 'package:cityinpocket/View/Auth/signup_page.dart';
 import 'package:cityinpocket/View/BuySell/add_item_page.dart';
 import 'package:cityinpocket/View/BuySell/buy_sell_view_page.dart';
 import 'package:cityinpocket/View/BuySell/item_details.dart';
+import 'package:cityinpocket/View/Jobs/add_job.dart';
+import 'package:cityinpocket/View/Jobs/job_details.dart';
+import 'package:cityinpocket/View/Jobs/jobs_view_page.dart';
 import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -16,6 +19,9 @@ class Routes {
   static String addItem = '/add_item';
   static String productDetails = '/product_details';
   static String favorites = '/favorites';
+  static String jobs = '/jobs';
+  static String addJob = '/add_job';
+  static String jobDetails = '/job_details';
 }
 
 final getPages = [
@@ -46,5 +52,17 @@ final getPages = [
   GetPage(
     name: Routes.favorites,
     page: () => FavoritesPage(),
+  ),
+  GetPage(
+    name: Routes.jobs,
+    page: () => JobPage(),
+  ),
+  GetPage(
+    name: Routes.addJob,
+    page: () => AddJob(),
+  ),
+  GetPage(
+    name: Routes.jobDetails,
+    page: () => JobDetails(),
   ),
 ];

@@ -8,4 +8,23 @@ class UrlLauncherService {
       throw 'Could not launch WhatsApp.';
     }
   }
+
+  static void sendEmail(String? recipe, String? subject, String? body) async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: recipe,
+      queryParameters: {
+        'subject': subject,
+        'body': body,
+      },
+    );
+
+    final String emailUri = emailLaunchUri.toString();
+
+    if (await canLaunchUrl(Uri.parse(emailUri))) {
+      await launchUrl(Uri.parse(emailUri));
+    } else {
+      throw 'Could not launch email';
+    }
+  }
 }
