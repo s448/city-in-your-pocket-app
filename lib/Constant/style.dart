@@ -9,7 +9,7 @@ class StyleManager {
 
   //text style
   static const TextStyle headline1 = TextStyle(
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
@@ -17,7 +17,7 @@ class StyleManager {
   );
 
   static const TextStyle priceStyle = TextStyle(
-    fontSize: 17,
+    fontSize: 15,
     fontFamily: font,
     fontWeight: FontWeight.w700,
     color: Colors.green,
@@ -25,7 +25,7 @@ class StyleManager {
   );
 
   static const TextStyle title = TextStyle(
-    fontSize: 15,
+    fontSize: 13,
     fontFamily: font,
     fontWeight: FontWeight.w500,
     color: Colors.black,
@@ -41,14 +41,14 @@ class StyleManager {
   );
 
   static const TextStyle headlineWhite = TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       fontFamily: font,
       fontWeight: FontWeight.bold,
       color: Colors.white,
       height: 1.2);
 
   static const TextStyle bodyText1 = TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: font,
     color: Colors.black,
     height: 1,
@@ -56,7 +56,7 @@ class StyleManager {
   );
 
   static const TextStyle bodyWithPrimaryColor = TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: font,
     color: ColorManager.primaryColorDark,
     fontWeight: FontWeight.w100,
@@ -64,7 +64,7 @@ class StyleManager {
   );
 
   static const TextStyle bodyWhiteText = TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: font,
     height: 1.2,
     fontWeight: FontWeight.w100,

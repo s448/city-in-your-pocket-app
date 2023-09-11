@@ -59,6 +59,14 @@ List shoppingCategories = [
       "كتب",
     ]
   },
+  {
+    "icon": Ionicons.arrow_back_circle,
+    "title": "الكل",
+    "id": "all",
+    "meta_data": [
+      "الكل",
+    ]
+  },
 ];
 
 List freelanceCategories = [

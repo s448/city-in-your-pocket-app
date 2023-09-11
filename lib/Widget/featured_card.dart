@@ -10,7 +10,7 @@ class FeaturedCard extends StatelessWidget {
     return Container(
       decoration: StyleManager.gradientBoxDecoration,
       width: Get.width,
-      height: Get.height * 0.35,
+      // height: Get.height * 0.35,
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -19,23 +19,26 @@ class FeaturedCard extends StatelessWidget {
             width: Get.width * 0.4,
             child: Column(
               children: [
-                const ListTile(
-                  title: Padding(
-                    padding: EdgeInsets.only(bottom: 15.0),
-                    child: Text(
-                      'أعلانات الوظائف',
-                      style: StyleManager.headlineWhite,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                InkWell(
+                  onTap: () => Get.toNamed(Routes.jobs),
+                  child: const ListTile(
+                    title: Padding(
+                      padding: EdgeInsets.only(bottom: 15.0),
+                      child: Text(
+                        'أعلانات الوظائف',
+                        style: StyleManager.headlineWhite,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
                     ),
+                    subtitle: Text(
+                      'هنا يمكنك تصفح الوظائف المتاحة أو حتى أضافة أعلان سواء كنت تبحث عن وظيفة أو تحتاج موظفين في جميع التخصصات',
+                      style: StyleManager.bodyWhiteText,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 6,
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 6.0),
                   ),
-                  subtitle: Text(
-                    'هنا يمكنك تصفح الوظائف المتاحة أو حتى أضافة أعلان سواء كنت تبحث عن وظيفة أو تحتاج موظفين في جميع التخصصات',
-                    style: StyleManager.bodyWhiteText,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 5,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(vertical: 6.0),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -51,7 +54,7 @@ class FeaturedCard extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(8.0),
-            height: double.infinity,
+            // height: double.infinity,
             child: Image.asset(
               'assets/images/jobs.png',
               fit: BoxFit.contain,
