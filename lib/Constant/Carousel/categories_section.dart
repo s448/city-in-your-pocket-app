@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 List shoppingCategories = [
   {
-    "icon": Icons.car_rental,
+    "icon": CupertinoIcons.car_detailed,
     "title": "مركبات",
     "id": "vehicles",
     "meta_data": [
@@ -12,7 +14,7 @@ List shoppingCategories = [
     ]
   },
   {
-    "icon": Icons.real_estate_agent,
+    "icon": Icons.real_estate_agent_outlined,
     "title": "عقارات",
     "id": "real_estates",
     "meta_data": [
@@ -22,8 +24,8 @@ List shoppingCategories = [
     ]
   },
   {
-    "icon": Icons.mobile_friendly_outlined,
-    "title": "الكترونيات",
+    "icon": Icons.tablet_android,
+    "title": "أجهزة والكترونيات",
     "id": "electronics",
     "meta_data": [
       "تليفون",
@@ -50,7 +52,7 @@ List shoppingCategories = [
     ]
   },
   {
-    "icon": Icons.book_sharp,
+    "icon": Ionicons.book_sharp,
     "title": "كتب",
     "id": "books",
     "meta_data": [

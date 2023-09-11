@@ -4,9 +4,9 @@ import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/favorites_controller.dart';
 import 'package:cityinpocket/Controller/product_details_controller.dart';
 import 'package:cityinpocket/Services/url_launcher.dart';
-import 'package:cityinpocket/Widget/ad_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slider/carousel.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -34,8 +34,27 @@ class ProductDetails extends StatelessWidget {
               height: Get.height * .35,
               padding: const EdgeInsets.all(1.0),
               width: double.infinity,
-              child: CarouselSlider(
-                images: productController.product.images as List<String>,
+              child: Carousel(
+                autoScroll: true,
+                height: Get.height * 0.3,
+                width: Get.width,
+                autoScrollDuration: const Duration(seconds: 4),
+                activateIndicatorColor: ColorManager.primaryColor,
+                indicatorBarColor: ColorManager.secondaryColor,
+                unActivatedIndicatorColor: ColorManager.navBarUnselectedColor,
+                isCircle: true,
+                items: [
+                  for (var image
+                      in productController.product.images as List<String>)
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: StyleManager.roundedBoxDecoration,
+                      child: Image.network(
+                        image,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                ],
               ),
             ),
             const Divider(

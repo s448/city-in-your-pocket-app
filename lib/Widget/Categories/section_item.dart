@@ -17,13 +17,23 @@ class SectionItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: Get.width * 0.08,
-            backgroundColor: Colors.white,
-            child: Icon(
-              icon,
-              color: ColorManager.primaryColorLight,
-              size: Get.width * 0.09,
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: ColorManager
+                    .primaryColorLight, // Customize the border color
+                width: 2, // Customize the border width
+              ),
+            ),
+            child: CircleAvatar(
+              radius: Get.width * 0.08,
+              backgroundColor: Colors.white,
+              child: Icon(
+                icon,
+                color: ColorManager.primaryColorLight,
+                size: Get.width * 0.09,
+              ),
             ),
           ),
           Expanded(

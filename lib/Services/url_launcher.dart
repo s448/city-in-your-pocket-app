@@ -5,7 +5,7 @@ class UrlLauncherService {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {
-      throw 'Could not launch WhatsApp.';
+      throw 'Could not launch';
     }
   }
 

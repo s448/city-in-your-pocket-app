@@ -1,18 +1,20 @@
-class Banner {
-  String? routeUrl;
+class BannerAd {
+  String? details;
   String? imgUrl;
+  String? contactUrl;
+  BannerAd({this.details, this.imgUrl, this.contactUrl});
 
-  Banner({this.routeUrl, this.imgUrl});
-
-  Banner.fromJson(Map<String, dynamic> json) {
-    routeUrl = json['routeUrl'];
+  BannerAd.fromJson(Map<String, dynamic> json) {
+    details = json['details'];
     imgUrl = json['imgUrl'];
+    contactUrl = json['contact'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['routeUrl'] = routeUrl;
+    data['details'] = details;
     data['imgUrl'] = imgUrl;
+    data['contact'] = contactUrl;
     return data;
   }
 }

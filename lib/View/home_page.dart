@@ -1,6 +1,7 @@
 import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
+import 'package:cityinpocket/Controller/banner_ads_controller.dart';
 import 'package:cityinpocket/Widget/Features/feature_container.dart';
-import 'package:cityinpocket/Widget/ad_slider.dart';
+import 'package:cityinpocket/Widget/adSlider/ad_slider.dart';
 import 'package:cityinpocket/Widget/featured_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final bannerController = Get.put(BannerAdsController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,24 +27,7 @@ class _HomePageState extends State<HomePage> {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
-            const CarouselSlider(
-              images: [
-                "https://cdnb.artstation.com/p/assets/images/images/019/250/843/large/ali-nouman-pocket-t-shirt-add-banner.jpg?1562679888",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5XALJfHrrKrnjfsnfothd0VxTWifzDFrSuw&usqp=CAU"
-              ],
-            ),
-            // GridView.count(
-            //     scrollDirection: Axis.vertical,
-            //     shrinkWrap: true,
-            //     crossAxisCount: 4,
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     children: const [
-            //       VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
-            //       VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
-            //       VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
-            //       VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
-            //     ]),
-            // VGItem(route: "route", title: "title", imagePath: 'assets/images/coffee_shop.png'),
+            const CarouselSlider(),
             SectionContainer(
               listOfElements: shoppingCategories,
               heading: 'بيع وشراء',

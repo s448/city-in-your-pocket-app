@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/Controller/banner_ads_controller.dart';
 import 'package:cityinpocket/Controller/favorites_controller.dart';
 import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/routes.dart';
@@ -17,6 +18,8 @@ void main() async {
 
 class App extends StatelessWidget {
   App({Key? key}) : super(key: key);
+  final bannerController = Get.put(BannerAdsController(), permanent: true);
+
   final _sharedPrefController =
       Get.put(SharedPrefsController(), permanent: true);
   final userController = Get.put(UserController(), permanent: true);
