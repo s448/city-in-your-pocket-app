@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../Constant/colors.dart';
 import '../../routes.dart';
-import 'login_page.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({Key? key}) : super(key: key);

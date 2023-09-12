@@ -1,6 +1,5 @@
 import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
 import 'package:cityinpocket/Controller/banner_ads_controller.dart';
-import 'package:cityinpocket/Widget/Features/feature_container.dart';
 import 'package:cityinpocket/Widget/adSlider/ad_slider.dart';
 import 'package:cityinpocket/Widget/featured_card.dart';
 import 'package:flutter/material.dart';

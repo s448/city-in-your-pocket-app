@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/user.dart';
+import 'package:cityinpocket/Services/fcm_services.dart';
 import 'package:cityinpocket/Widget/nav_bar.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,52 +17,10 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  loginWithGoogle() async {
-    try {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
-
-      final GoogleSignInAuthentication? googleSignInAuth =
-          await googleSignInAccount?.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuth?.accessToken,
-        idToken: googleSignInAuth?.idToken,
-      );
-
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-
-      User? user = userCredential.user;
-
-      if (user != null) {
-        if (userCredential.additionalUserInfo!.isNewUser) {
-          //add user to firestore
-          _firestore.collection('users').doc(user.uid).set({
-            'name': user.displayName,
-            'id': user.uid,
-            'email': user.email,
-            'phone': user.phoneNumber,
-          });
-        }
-      }
-      return true;
-    } catch (e) {
-      Get.snackbar("Error", "cannot login");
-      return false;
-    }
-  }
-
   logout() async {
     await _auth.signOut();
     _sharedPrefController.clearUserCredentials();
     Get.offAllNamed(Routes.login);
-  }
-
-  Future<void> logoutGoogle() async {
-    await googleSignIn.signOut();
-    Get.back(); // navigate to your wanted page after logout.
   }
 
   Future<bool> saveUserData() async {
@@ -72,18 +31,13 @@ class AuthController extends GetxController {
         email: email.value,
         imgUrl: "",
         phone: phoneNo.value,
+        token: FcmServices().getToken(),
       );
 
       await _firestore
           .collection('users')
           .doc(phoneNo.value)
           .set(user.toJson());
-      // await _firestore.collection('users').doc(phoneNo.value).set({
-      //   'username': username.value,
-      //   'uid': phoneNo.value,
-      //   'phoneNumber': phoneNo.value,
-      //   'email': email.value,
-      // });
       return true;
     } catch (e) {
       return false;
@@ -213,96 +167,3 @@ class AuthController extends GetxController {
     });
   }
 }
-
-// import 'dart:async';
-//
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-//
-// import '../View/home_page.dart';
-//
-// class AuthController extends GetxController{
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-//
-//   Future<bool> signInWithGoogle() async {
-//
-//   }
-// }
-// //     with GetSingleTickerProviderStateMixin {
-//   var showPrefix = false.obs;
-//   var isLogin = true;
-//   var phoneNo = "".obs;
-//   var otp = "".obs;
-//   var isOtpSent = false.obs;
-//   var resendAfter = 30.obs;
-//   var resendOTP = false.obs;
-//   var firebaseVerificationId = "";
-//   var statusMessage = "".obs;
-//   var statusMessageColor = Colors.black.obs;
-
-//   var timer;
-
-//   AuthController();
-
-//   getOtp() async {
-//     FirebaseAuth.instance.verifyPhoneNumber(
-//       phoneNumber: '+2${phoneNo.value}',
-//       verificationCompleted: (PhoneAuthCredential credential) {},
-//       verificationFailed: (FirebaseAuthException e) {},
-//       codeSent: (String verificationId, int? resendToken) {
-//         firebaseVerificationId = verificationId;
-//         isOtpSent.value = true;
-//         statusMessage.value = "OTP sent to +2${phoneNo.value}";
-//         startResendOtpTimer();
-//       },
-//       codeAutoRetrievalTimeout: (String verificationId) {},
-//     );
-//   }
-
-//   resendOtp() async {
-//     resendOTP.value = false;
-//     FirebaseAuth.instance.verifyPhoneNumber(
-//       phoneNumber: '+2${phoneNo.value}',
-//       verificationCompleted: (PhoneAuthCredential credential) {},
-//       verificationFailed: (FirebaseAuthException e) {},
-//       codeSent: (String verificationId, int? resendToken) {
-//         firebaseVerificationId = verificationId;
-//         isOtpSent.value = true;
-//         statusMessage.value = "OTP re-sent to +2${phoneNo.value}";
-//         startResendOtpTimer();
-//       },
-//       codeAutoRetrievalTimeout: (String verificationId) {},
-//     );
-//   }
-
-//   verifyOTP() async {
-//     FirebaseAuth auth = FirebaseAuth.instance;
-//     try {
-//       statusMessage.value = "Verifying... ${otp.value}";
-//       // Create a PhoneAuthCredential with the code
-//       PhoneAuthCredential credential = PhoneAuthProvider.credential(
-//           verificationId: firebaseVerificationId, smsCode: otp.value);
-//       // Sign the user in (or link) with the credential
-//       await auth.signInWithCredential(credential);
-//       Get.off('/home');
-//     } catch (e) {
-//       statusMessage.value = "Invalid  OTP";
-//       statusMessageColor = Colors.red.obs;
-//     }
-//   }
-
-//   startResendOtpTimer() {
-//     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-//       if (resendAfter.value != 0) {
-//         resendAfter.value--;
-//       } else {
-//         resendAfter.value = 30;
-//         resendOTP.value = true;
-//         timer.cancel();
-//       }
-//       update();
-//     });
-//   }
-
-// // // }

@@ -5,7 +5,6 @@ import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slider/carousel.dart';
 import 'package:get/get.dart';
-import '../../Constant/style.dart';
 
 class CarouselSlider extends StatefulWidget {
   const CarouselSlider({Key? key}) : super(key: key);
