@@ -1,3 +1,4 @@
+// import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/banner.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +13,8 @@ handleBackgroundMessage(RemoteMessage msg) async {
 }
 
 class FcmServices {
+  //final _prefs = Get.put(SharedPrefsController());
+
   final _fcm = FirebaseMessaging.instance;
   static var _token = '';
 
@@ -49,8 +52,11 @@ class FcmServices {
         'ad': adDetails,
       });
     });
-    await FirebaseMessaging.instance.subscribeToTopic('buy-sell');
+    // await FirebaseMessaging.instance.subscribeToTopic('buy-sell');
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      //save the notification to the local storage
+      // _prefs.saveNotificationToLocal(
+      //     message.notification?.title, message.notification?.body);
       // Handle the notification when the app is in the foreground
       print(
           'Received a notification: ${message.notification?.title} - ${message.notification?.body}');

@@ -7,6 +7,7 @@ import 'package:cityinpocket/View/Jobs/add_job.dart';
 import 'package:cityinpocket/View/Jobs/job_details.dart';
 import 'package:cityinpocket/View/Jobs/jobs_view_page.dart';
 import 'package:cityinpocket/View/favorites_page.dart';
+// import 'package:cityinpocket/View/notifications.dart';
 import 'package:cityinpocket/Widget/adSlider/ad_details.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -24,6 +25,7 @@ class Routes {
   static String addJob = '/add_job';
   static String jobDetails = '/job_details';
   static String adDetails = '/ad_details';
+  // static String notifications = '/notifications';
 }
 
 final getPages = [
@@ -71,4 +73,8 @@ final getPages = [
     name: Routes.adDetails,
     page: () => AdDetails(),
   ),
+  // GetPage(
+  //   name: Routes.notifications,
+  //   page: () => NotificationsPage(),
+  // ),
 ];

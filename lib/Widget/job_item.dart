@@ -23,7 +23,6 @@ class JobItem extends StatelessWidget {
         final item = jobItems[index];
         return InkWell(
           onTap: () {
-            print(item.description);
             Get.toNamed(
               Routes.jobDetails,
               arguments: {"job": item},
@@ -77,7 +76,8 @@ class JobItem extends StatelessWidget {
                                   SizedBox(
                                     width: Get.width * 0.25,
                                     child: Text(
-                                      "منذ  ${TimeManager.displayPeriod(item.date!)}",
+                                      TimeManager.formatDateTimeOfMessage(
+                                          item.date!.toDate()),
                                     ),
                                   ),
                                 ],

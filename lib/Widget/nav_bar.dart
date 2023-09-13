@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/app_details.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/auth_controller.dart';
@@ -5,7 +6,8 @@ import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/messaging_page.dart';
 import 'package:cityinpocket/View/home_page.dart';
 import 'package:cityinpocket/View/profile_page.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:cityinpocket/routes.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:get/get.dart';
@@ -81,13 +83,10 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
                   );
                 }),
               )
-            : IconButton(
-                icon: const Icon(CupertinoIcons.bell),
-                onPressed: (() {}),
-              ),
+            : null,
         centerTitle: true,
         title: const Text(
-          "أسم التطبيق",
+          appName,
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),

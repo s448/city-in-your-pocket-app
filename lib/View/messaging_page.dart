@@ -1,13 +1,12 @@
-import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
+import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/Widget/message_bubble.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cityinpocket/Constant/colors.dart';
-import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/messaging_controller.dart';
 import 'package:cityinpocket/Model/message.dart';
 import 'package:cityinpocket/Widget/reusable_streambuilder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class MessagingPage extends StatelessWidget {
   MessagingPage({Key? key}) : super(key: key);
@@ -22,7 +21,6 @@ class MessagingPage extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final List<Message> messages = snapshot.data!;
-              print(messages.length);
               return ListView.builder(
                 itemCount: messages.length,
                 reverse: true,
@@ -30,32 +28,43 @@ class MessagingPage extends StatelessWidget {
                   final message = messages[index];
                   bool isSender = message.user!.id ==
                       controller.userController.userModel.id;
-                  String formattedTime =
-                      DateFormat.jm().format(message.date!.toDate());
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BubbleSpecialThree(
-                        text: message.message.toString(),
-                        tail: false,
+                  return InkWell(
+                    onLongPress: () => isSender
+                        ? showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('حذف الرسالة ؟'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('لا'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text(
+                                      'نعم',
+                                      style: StyleManager.warningTextStyle,
+                                    ),
+                                    onPressed: () {
+                                      controller.deleteMessage(message.id);
+                                      Get.back();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          )
+                        : null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: MessageBubble(
                         isSender: isSender,
-                        color: isSender
-                            ? ColorManager.primaryColorDark
-                            : ColorManager.navBarUnselectedColor,
-                        textStyle: StyleManager.bodyWhiteText,
-                        // delivered: true,
-                        sent: isSender,
+                        message: message.message!,
+                        timeStamp: message.date!,
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: Get.width * 0.06),
-                        child: Text(formattedTime),
-                      ),
-                      const SizedBox(
-                        height: 6.0,
-                      )
-                    ],
+                    ),
                   );
                 },
               );

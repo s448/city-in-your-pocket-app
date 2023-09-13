@@ -3,11 +3,13 @@ import 'package:cityinpocket/Model/message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 class MessagingController extends GetxController {
   TextEditingController sendMessageController = TextEditingController();
   final CollectionReference messageRef =
       FirebaseFirestore.instance.collection('messages');
+  var uuid = const Uuid();
 
   final userController = Get.find<UserController>();
   Timestamp timestamp = Timestamp.now();
@@ -25,16 +27,23 @@ class MessagingController extends GetxController {
   }
 
   sendMessage() async {
+    var docId = uuid.v1();
+
     try {
       Message message = Message(
         date: timestamp,
         message: sendMessageController.text.toString(),
         user: userController.userModel,
+        id: docId,
       );
       userController.loadUserData();
-      await messageRef.add(message.toJson());
+      await messageRef.doc(docId).set(message.toJson());
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  deleteMessage(String? docId) async {
+    await messageRef.doc(docId).delete();
   }
 }

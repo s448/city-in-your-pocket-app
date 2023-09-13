@@ -5,8 +5,8 @@ import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/Services/fcm_services.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Controller/shared_prefs_controller.dart';
 import 'package:get/get.dart';
@@ -15,10 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await Get.putAsync(() => SharedPreferences.getInstance());
-  await FcmServices().initNotification();
-  await FirebaseMessaging.instance.subscribeToTopic('buy-sell');
-
   runApp(App());
+  await FcmServices().initNotification();
 }
 
 class App extends StatelessWidget {

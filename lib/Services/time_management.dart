@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class TimeManager {
 // Define a function to display the period based on your condition
-  static String displayPeriod(Timestamp timestamp) {
+  static String displayPesriod(Timestamp timestamp) {
     DateTime currentTime = DateTime.now();
 
     Duration timeDifference = currentTime.difference(timestamp.toDate());
@@ -29,6 +30,20 @@ class TimeManager {
       } else {
         return "${timeDifference.inHours} يوم";
       }
+    }
+  }
+
+  static String formatDateTimeOfMessage(DateTime dateTime) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    if (dateTime.isAfter(today)) {
+      // Message was sent today, so show the time
+      return DateFormat.jm().format(dateTime); // Format as 12:00 AM/PM
+    } else {
+      // Message was sent on a different day, so show the date
+      return DateFormat('dd-M-yyyy')
+          .format(dateTime); // Format as 01 September 2023
     }
   }
 }

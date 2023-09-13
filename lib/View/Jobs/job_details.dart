@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/app_details.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/jobs_controller.dart';
@@ -72,7 +73,8 @@ class JobDetails extends StatelessWidget {
                       SizedBox(
                         width: Get.width * 0.25,
                         child: Text(
-                          "منذ  ${TimeManager.displayPeriod(_job.date!)}",
+                          TimeManager.formatDateTimeOfMessage(
+                              _job.date!.toDate()),
                         ),
                       ),
                     ],
@@ -117,7 +119,8 @@ class JobDetails extends StatelessWidget {
             const SizedBox(width: 20),
             InkWell(
                 onTap: () {
-                  //TODO finish whatsapp apply
+                  UrlLauncherService.launch(
+                      'https://wa.me/+20${_job.user?.phone}/?text=${Uri.encodeQueryComponent('رأيت اعلانك علي تطبيق $appName')}');
                 },
                 child: Container(
                   width: 50,

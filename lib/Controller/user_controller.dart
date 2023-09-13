@@ -27,7 +27,7 @@ class UserController extends GetxController {
   }
 
   Future<DocumentSnapshot<Map<String, dynamic>>> fetchUserData() async {
-    String userId = _sharedPrefController.getPhoneNumber();
+    String userId = _sharedPrefController.getItem('phoneNumber');
     var result = await _firestore.collection("users").doc(userId).get();
     if (kDebugMode) {
       print(result.data().toString());
@@ -45,7 +45,9 @@ class UserController extends GetxController {
       for (DocumentSnapshot docSnapshot in querySnapshot.docs) {
         await docSnapshot.reference.delete();
       }
-    } catch (e) {}
+    } catch (e) {
+      Get.snackbar('error', e.toString());
+    }
   }
 
   deleteAccount(String? userPhone) async {

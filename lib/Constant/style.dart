@@ -103,6 +103,16 @@ class StyleManager {
     color: ColorManager.primaryColor,
   );
 
+  static BoxDecoration senderBoxDecoration = BoxDecoration(
+    borderRadius: BorderRadius.circular(8),
+    color: ColorManager.primaryColorDark,
+  );
+
+  static BoxDecoration recieverBoxDecoration = BoxDecoration(
+    borderRadius: BorderRadius.circular(8),
+    color: Colors.grey,
+  );
+
   static BoxDecoration listTileStyle = BoxDecoration(
     border: Border.all(
       color: const Color.fromARGB(31, 39, 36, 36),
