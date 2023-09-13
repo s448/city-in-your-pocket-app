@@ -3,6 +3,7 @@ import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/favorites_controller.dart';
 import 'package:cityinpocket/Controller/product_details_controller.dart';
+import 'package:cityinpocket/Services/time_management.dart';
 import 'package:cityinpocket/Services/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,19 +70,40 @@ class ProductDetails extends StatelessWidget {
                 color: ColorManager.primaryColorLight,
               ),
             ),
-            // const Divider(
-            //   thickness: 1.2,
-            // ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15.0),
-              decoration: StyleManager.borderedRoundedBoxDecoration,
-              child: ListTile(
-                title: Text(
-                  "${productController.product.price ?? '0.0'} جنيه",
-                  style: StyleManager.priceStyle,
-                ),
-                subtitle: const Text("السعر"),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text("السعر"),
+                  Text(
+                    "${productController.product.price ?? '0.0'} جنيه",
+                    style: StyleManager.priceStyle,
+                  ),
+                ],
               ),
+            ),
+            Row(
+              children: [
+                Icon(
+                  CupertinoIcons.time,
+                  color: Colors.redAccent[400],
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                SizedBox(
+                  width: Get.width * 0.25,
+                  child: Text(
+                    TimeManager.formatDateTimeOfMessage(DateTime.now()),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 8.0,
             ),
             const SizedBox(
               height: 12,

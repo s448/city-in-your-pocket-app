@@ -49,6 +49,7 @@ class BuySellController extends GetxController {
         description: description.value,
         user: userController.userModel,
         images: imageUrls,
+        date: Timestamp.now(),
       );
       userController.loadUserData();
       await buySellRef.doc(docId).set(model.toJson());

@@ -17,7 +17,7 @@ class StyleManager {
   );
 
   static const TextStyle priceStyle = TextStyle(
-    fontSize: 15,
+    fontSize: 17,
     fontFamily: font,
     fontWeight: FontWeight.w700,
     color: Colors.green,
