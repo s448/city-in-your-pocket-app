@@ -276,7 +276,7 @@ class SignUpPage extends StatelessWidget {
                         padding: EdgeInsets.all(14.0),
                         child: Text(
                           'التحقق',
-                          style: TextStyle(fontSize: 16),
+                          style: StyleManager.headlineWhite,
                         ),
                       ),
                     ),

@@ -57,7 +57,7 @@ class UserController extends GetxController {
       await _firestore.collection('users').doc(userPhone).delete();
       _sharedPrefController.clearUserCredentials();
       await user!.delete();
-      Get.offAllNamed(Routes.login);
+      Get.offAllNamed(Routes.navbar);
       Get.snackbar("تم حذف حسابك نهائيا", "بما في ذلك كل منشوراتك على التطبيق");
     } catch (e) {
       Get.snackbar(

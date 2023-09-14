@@ -6,7 +6,6 @@ import 'package:cityinpocket/Services/fcm_services.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Controller/shared_prefs_controller.dart';
 import 'package:get/get.dart';
@@ -31,13 +30,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        textDirection: TextDirection.rtl,
-        debugShowCheckedModeBanner: false,
-        theme: StyleManager.themeManager,
-        // initialRoute: Routes.navbar,
-        initialRoute: _sharedPrefController.userAuthenticated()
-            ? Routes.navbar
-            : Routes.login,
-        getPages: getPages);
+      textDirection: TextDirection.rtl,
+      debugShowCheckedModeBanner: false,
+      theme: StyleManager.themeManager,
+      initialRoute: Routes.navbar,
+      getPages: getPages,
+    );
   }
 }

@@ -8,6 +8,7 @@ import 'package:cityinpocket/Services/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slider/carousel.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -70,21 +71,6 @@ class ProductDetails extends StatelessWidget {
                 color: ColorManager.primaryColorLight,
               ),
             ),
-            const SizedBox(
-              height: 8.0,
-            ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text("السعر"),
-                  Text(
-                    "${productController.product.price ?? '0.0'} جنيه",
-                    style: StyleManager.priceStyle,
-                  ),
-                ],
-              ),
-            ),
             Row(
               children: [
                 Icon(
@@ -101,6 +87,62 @@ class ProductDetails extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            //START BUTTON GROUP
+            const Divider(),
+            IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () => favoritesController
+                        .addRemoveFavItem(productController.product.docId),
+                    child: Container(
+                        width: 50,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: StyleManager.roundedBoxDecoration,
+                        child: Obx(
+                          () => Icon(
+                            favoritesController.favorites
+                                    .contains(productController.product.docId)
+                                ? Ionicons.heart_sharp
+                                : Ionicons.heart_outline,
+                            size: 30,
+                            color: ColorManager.primaryColorDark,
+                          ),
+                        )),
+                  ),
+                  const VerticalDivider(
+                    thickness: 1.5,
+                  ),
+                  IconButton(
+                      onPressed: (() => FlutterShare.share(
+                          title:
+                              'مشاركة العنصر: ${productController.product.title} & حمل تطبيق $appName من خلال الرابط $appUrl')),
+                      icon: const Icon(Ionicons.share_social_outline))
+                ],
+              ),
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 12,
+            ),
+            //END BUTTON GROUP
+            const SizedBox(
+              height: 8.0,
+            ),
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text("السعر"),
+                  Text(
+                    "${productController.product.price ?? '0.0'} جنيه",
+                    style: StyleManager.priceStyle,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 8.0,
@@ -196,30 +238,30 @@ class ProductDetails extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.transparent,
-        child: InkWell(
-          onTap: () => favoritesController
-              .addRemoveFavItem(productController.product.docId),
-          child: Container(
-              width: 50,
-              height: 50,
-              alignment: Alignment.center,
-              decoration: StyleManager.roundedBoxDecoration,
-              child: Obx(
-                () => Icon(
-                  favoritesController.favorites
-                          .contains(productController.product.docId)
-                      ? Ionicons.heart_sharp
-                      : Ionicons.heart_outline,
-                  size: 30,
-                  color: ColorManager.primaryColorDark,
-                ),
-              )),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
+      //   child: InkWell(
+      //     onTap: () => favoritesController
+      //         .addRemoveFavItem(productController.product.docId),
+      //     child: Container(
+      //         width: 50,
+      //         height: 50,
+      //         alignment: Alignment.center,
+      //         decoration: StyleManager.roundedBoxDecoration,
+      //         child: Obx(
+      //           () => Icon(
+      //             favoritesController.favorites
+      //                     .contains(productController.product.docId)
+      //                 ? Ionicons.heart_sharp
+      //                 : Ionicons.heart_outline,
+      //             size: 30,
+      //             color: ColorManager.primaryColorDark,
+      //           ),
+      //         )),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }

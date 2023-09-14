@@ -1,5 +1,6 @@
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Controller/buy_sell_controller.dart';
+import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/buy_sell.dart';
 import 'package:cityinpocket/Widget/product_item.dart';
 import 'package:cityinpocket/Widget/reusable_streambuilder.dart';
@@ -17,6 +18,7 @@ class BuySellPage extends StatefulWidget {
 
 class _BuySellPageState extends State<BuySellPage> {
   final marketController = Get.put(BuySellController(), permanent: false);
+  final _prefs = Get.find<SharedPrefsController>();
   @override
   void dispose() {
     Get.delete<BuySellController>();
@@ -55,13 +57,15 @@ class _BuySellPageState extends State<BuySellPage> {
           backgroundColor: ColorManager.primaryColor,
           foregroundColor: Colors.white,
           onPressed: () {
-            Get.toNamed(
-              Routes.addItem,
-              arguments: {
-                "title": marketController.product['title'],
-                "id": marketController.product['id'],
-              },
-            );
+            _prefs.userAuthenticated()
+                ? Get.toNamed(
+                    Routes.addItem,
+                    arguments: {
+                      "title": marketController.product['title'],
+                      "id": marketController.product['id'],
+                    },
+                  )
+                : Get.snackbar("يجب تسجيل حساب اولا", '');
           },
           // tooltip: "أضف $title للبيع ",
           child: const Icon(CupertinoIcons.add),

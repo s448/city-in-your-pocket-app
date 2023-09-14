@@ -20,7 +20,8 @@ class AuthController extends GetxController {
   logout() async {
     await _auth.signOut();
     _sharedPrefController.clearUserCredentials();
-    Get.offAllNamed(Routes.login);
+    Get.offAllNamed(Routes.navbar);
+    Get.snackbar("تم تسجيل الخروج", '');
   }
 
   Future<bool> saveUserData() async {
@@ -108,7 +109,7 @@ class AuthController extends GetxController {
         codeSent: (String verificationId, int? resendToken) {
           firebaseVerificationId = verificationId;
           isOtpSent.value = true;
-          statusMessage.value = "OTP sent to +2${phoneNo.value}";
+          statusMessage.value = "تم الارسال الى ${phoneNo.value}";
           startResendOtpTimer();
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
@@ -125,7 +126,7 @@ class AuthController extends GetxController {
       codeSent: (String verificationId, int? resendToken) {
         firebaseVerificationId = verificationId;
         isOtpSent.value = true;
-        statusMessage.value = "OTP re-sent to +2${phoneNo.value}";
+        statusMessage.value = "اعادة الارسال الى ${phoneNo.value}";
         startResendOtpTimer();
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
@@ -149,7 +150,7 @@ class AuthController extends GetxController {
       }
       Get.off(const SnakeNavigationBarExampleScreen());
     } catch (e) {
-      statusMessage.value = "Invalid  OTP";
+      statusMessage.value = "رقم OTP غير صحيح";
       statusMessageColor = Colors.red.obs;
     }
   }

@@ -1,5 +1,6 @@
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Controller/jobs_controller.dart';
+import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/job.dart';
 import 'package:cityinpocket/Widget/job_item.dart';
 import 'package:cityinpocket/Widget/reusable_streambuilder.dart';
@@ -12,6 +13,7 @@ class JobPage extends StatelessWidget {
   JobPage({Key? key}) : super(key: key);
 
   final jobsController = Get.put(JobsController(), permanent: true);
+  final _prefs = Get.find<SharedPrefsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +46,11 @@ class JobPage extends StatelessWidget {
           backgroundColor: ColorManager.primaryColor,
           foregroundColor: Colors.white,
           onPressed: () {
-            Get.toNamed(
-              Routes.addJob,
-              //TODO
-            );
+            _prefs.userAuthenticated()
+                ? Get.toNamed(
+                    Routes.addJob,
+                  )
+                : Get.snackbar("يجب تسجيل حساب اولا", '');
           },
           // tooltip: "أضف $title للبيع ",
           child: const Icon(CupertinoIcons.add),

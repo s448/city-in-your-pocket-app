@@ -2,6 +2,7 @@ import 'package:cityinpocket/Constant/app_details.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/auth_controller.dart';
+import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/messaging_page.dart';
 import 'package:cityinpocket/View/home_page.dart';
@@ -22,7 +23,7 @@ class SnakeNavigationBarExampleScreen extends StatefulWidget {
 
 class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
   final _authController = Get.put(AuthController());
-
+  final _sharedPrefsController = Get.find<SharedPrefsController>();
   ShapeBorder? bottomBarShape = const RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(25)),
   );
@@ -43,7 +44,8 @@ class _SnakeNavigationBarState extends State<SnakeNavigationBarExampleScreen> {
       backgroundColor: ColorManager.secondaryColor,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        leading: _selectedItemPosition == 3
+        leading: _selectedItemPosition == 3 &&
+                _sharedPrefsController.userAuthenticated()
             ? IconButton(
                 icon: const Icon(Icons.logout),
                 onPressed: (() {

@@ -1,10 +1,14 @@
 import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
+import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Controller/banner_ads_controller.dart';
+import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Widget/adSlider/ad_slider.dart';
 import 'package:cityinpocket/Widget/featured_card.dart';
+import 'package:cityinpocket/Widget/login_sign.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter/cupertino.dart';
 import '../Widget/Categories/section_container.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final bannerController = Get.put(BannerAdsController());
 
+  final _sharedPrefController = Get.find<SharedPrefsController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,11 +31,28 @@ class _HomePageState extends State<HomePage> {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
+            SearchBar(
+              hintText: "بحث ...",
+              leading: const Icon(
+                CupertinoIcons.search,
+                color: ColorManager.primaryColor,
+              ),
+              onTap: () => Get.toNamed(Routes.search),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
             const CarouselSlider(),
             SectionContainer(
               listOfElements: shoppingCategories,
               heading: 'بيع وشراء',
             ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            _sharedPrefController.userAuthenticated()
+                ? const SizedBox()
+                : const LoginSign(),
             const SizedBox(height: 15),
             const FeaturedCard(),
             const SizedBox(height: 15),

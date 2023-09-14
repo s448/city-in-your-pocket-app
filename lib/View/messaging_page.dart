@@ -1,4 +1,6 @@
 import 'package:cityinpocket/Constant/style.dart';
+import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
+import 'package:cityinpocket/Widget/login_sign.dart';
 import 'package:cityinpocket/Widget/message_bubble.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cityinpocket/Constant/colors.dart';
@@ -11,6 +13,7 @@ import 'package:get/get.dart';
 class MessagingPage extends StatelessWidget {
   MessagingPage({Key? key}) : super(key: key);
   final controller = Get.put(MessagingController());
+  final _prefs = Get.find<SharedPrefsController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,70 +81,43 @@ class MessagingPage extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: TextField(
-          controller: controller.sendMessageController,
-          onSubmitted: (value) {
-            controller.sendMessage();
-            controller.sendMessageController.clear();
-          },
-          cursorColor: ColorManager.primaryColor,
-          decoration: InputDecoration(
-            filled: true,
-            border: InputBorder.none,
-            enabled: true,
-            hintText: 'أكتب رسالة..',
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.send, color: ColorManager.primaryColor),
-              onPressed: () {
-                if (controller.sendMessageController.text.isNotEmpty) {
+        child: _prefs.userAuthenticated()
+            ? TextField(
+                controller: controller.sendMessageController,
+                onSubmitted: (value) {
                   controller.sendMessage();
                   controller.sendMessageController.clear();
-                } else {
-                  Fluttertoast.showToast(
-                    msg: "لا يمكن ارسال رسالة فارغة",
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                    timeInSecForIosWeb: 1,
-                  );
-                }
-              },
-            ),
-          ),
-        ),
+                },
+                cursorColor: ColorManager.primaryColor,
+                decoration: InputDecoration(
+                  filled: true,
+                  border: InputBorder.none,
+                  enabled: true,
+                  hintText: 'أكتب رسالة..',
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.send,
+                        color: ColorManager.primaryColor),
+                    onPressed: () {
+                      if (controller.sendMessageController.text.isNotEmpty) {
+                        controller.sendMessage();
+                        controller.sendMessageController.clear();
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: "لا يمكن ارسال رسالة فارغة",
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.CENTER,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                          timeInSecForIosWeb: 1,
+                        );
+                      }
+                    },
+                  ),
+                ),
+              )
+            : const SizedBox(),
       ),
-      // bottomNavigationBar: MessageBar(
-      //   onSend: (_) {
-      //     if (controller.sendMessageController.text.isNotEmpty) {
-      //       controller.sendMessage();
-      //       controller.sendMessageController.clear();
-      //     }
-      //   },
-      //   messageBarHitText: 'أكتب رسالة..',
-      //   // actions: [
-      //   //   InkWell(
-      //   //     child: Icon(
-      //   //       Icons.add,
-      //   //       color: Colors.black,
-      //   //       size: 24,
-      //   //     ),
-      //   //     onTap: () {},
-      //   //   ),
-      //   //   Padding(
-      //   //     padding: EdgeInsets.only(left: 8, right: 8),
-      //   //     child: InkWell(
-      //   //       child: Icon(
-      //   //         Icons.camera_alt,
-      //   //         color: Colors.green,
-      //   //         size: 24,
-      //   //       ),
-      //   //       onTap: () {},
-      //   //     ),
-      //   //   ),
-      //   // ],
-      // ),
     );
   }
 }

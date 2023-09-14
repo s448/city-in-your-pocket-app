@@ -3,6 +3,7 @@ import 'package:cityinpocket/Services/time_management.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+// ignore: unused_import, depend_on_referenced_packages
 import 'package:timeago/timeago.dart' as timeago;
 
 class MessageBubble extends StatelessWidget {

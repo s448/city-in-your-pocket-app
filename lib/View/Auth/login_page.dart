@@ -176,13 +176,13 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Text('التحقق', style: StyleManager.headline1),
             const SizedBox(
               height: 10,
             ),
             const Text(
-              "أدخل الرقم المرسل اليك",
+              "أدخل الرقم المرسل اليك في رسالة نصية",
               textAlign: TextAlign.center,
+              style: StyleManager.title,
             ),
             const SizedBox(
               height: 28,
@@ -245,6 +245,9 @@ class LoginPage extends StatelessWidget {
                         authController.verifyOTP();
                       },
                       style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                          ColorManager.primaryColorDark,
+                        ),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         // backgroundColor:
@@ -260,7 +263,7 @@ class LoginPage extends StatelessWidget {
                         padding: EdgeInsets.all(14.0),
                         child: Text(
                           'التحقق',
-                          style: TextStyle(fontSize: 16),
+                          style: StyleManager.headlineWhite,
                         ),
                       ),
                     ),

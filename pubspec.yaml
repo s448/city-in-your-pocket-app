@@ -54,6 +54,7 @@ dependencies:
   fluttertoast: ^8.2.2
   firebase_messaging: ^14.6.7
   chat_bubble_tc: ^0.0.3
+  flutter_share: ^2.0.0
 
   #we_slide >>>>>>>>>>
 
