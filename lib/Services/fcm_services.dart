@@ -1,7 +1,6 @@
 // import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/banner.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 handleBackgroundMessage(RemoteMessage msg) async {

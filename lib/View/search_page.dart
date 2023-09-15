@@ -39,13 +39,13 @@ class SearchScreen extends StatelessWidget {
       ),
       body: Obx(
         () {
+          // ignore: invalid_use_of_protected_member
           if (searchController.filteredData.value.isEmpty) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          final results = searchController.filteredData;
           if (searchController.searchQuery.value.isEmpty) {
             return const SizedBox();
           } else {

@@ -22,6 +22,7 @@ class App extends StatelessWidget {
   App({Key? key}) : super(key: key);
   final bannerController = Get.put(BannerAdsController(), permanent: true);
 
+  // ignore: unused_field
   final _sharedPrefController =
       Get.put(SharedPrefsController(), permanent: true);
   final userController = Get.put(UserController(), permanent: true);

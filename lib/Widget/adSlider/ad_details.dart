@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class AdDetails extends StatelessWidget {
   AdDetails({super.key});
   BannerAd bannerAd = Get.arguments['ad'];
