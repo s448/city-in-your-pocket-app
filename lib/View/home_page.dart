@@ -1,5 +1,6 @@
 import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
 import 'package:cityinpocket/Constant/colors.dart';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/banner_ads_controller.dart';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Widget/adSlider/ad_slider.dart';
@@ -31,14 +32,24 @@ class _HomePageState extends State<HomePage> {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
-            SearchBar(
-              hintText: "بحث ...",
-              leading: const Icon(
-                CupertinoIcons.search,
-                color: ColorManager.primaryColor,
-              ),
-              onTap: () => Get.toNamed(Routes.search),
-            ),
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () => Get.toNamed(Routes.search),
+                  child: Container(
+                    padding: const EdgeInsets.all(6.0),
+                    decoration: StyleManager.listTileStyle,
+                    child: const Row(
+                      children: [
+                        Icon(Icons.search, color: ColorManager.primaryColor),
+                        Text(
+                          "بحث . .",
+                          style: TextStyle(color: ColorManager.primaryColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
             const SizedBox(
               height: 12,
             ),

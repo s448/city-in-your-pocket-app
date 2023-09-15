@@ -15,14 +15,25 @@ class AdDetails extends StatelessWidget {
         title: const Text("التفاصيل"),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(6.0),
-          width: Get.width,
-          child: Text(
-            bannerAd.details.toString(),
-            softWrap: true,
-            textAlign: TextAlign.right,
-          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.network(
+                bannerAd.imgUrl.toString(),
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(6.0),
+              width: Get.width,
+              child: Text(
+                bannerAd.details.toString(),
+                softWrap: true,
+                textAlign: TextAlign.right,
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: InkWell(
@@ -32,7 +43,7 @@ class AdDetails extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: Container(
-            height: Get.height * 0.1,
+            height: Get.height * 0.08,
             alignment: Alignment.center,
             decoration: StyleManager.shadowBoxDecoration,
             child: const Row(
@@ -46,7 +57,7 @@ class AdDetails extends StatelessWidget {
                   width: 6.0,
                 ),
                 Icon(
-                  CupertinoIcons.arrow_up_circle_fill,
+                  CupertinoIcons.arrow_up_left_square,
                   color: Colors.white,
                 )
               ],

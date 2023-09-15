@@ -5,6 +5,7 @@ import 'package:cityinpocket/Controller/favorites_controller.dart';
 import 'package:cityinpocket/Controller/product_details_controller.dart';
 import 'package:cityinpocket/Services/time_management.dart';
 import 'package:cityinpocket/Services/url_launcher.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slider/carousel.dart';
@@ -83,7 +84,8 @@ class ProductDetails extends StatelessWidget {
                 SizedBox(
                   width: Get.width * 0.25,
                   child: Text(
-                    TimeManager.formatDateTimeOfMessage(DateTime.now()),
+                    TimeManager.formatDateTimeOfMessage(
+                        productController.product.date!.toDate()),
                   ),
                 ),
               ],
@@ -100,14 +102,15 @@ class ProductDetails extends StatelessWidget {
                     child: Container(
                         width: 50,
                         height: 50,
+                        color: Colors.transparent,
                         alignment: Alignment.center,
-                        decoration: StyleManager.roundedBoxDecoration,
+                        // decoration: StyleManager.roundedBoxDecoration,
                         child: Obx(
                           () => Icon(
                             favoritesController.favorites
                                     .contains(productController.product.docId)
-                                ? Ionicons.heart_sharp
-                                : Ionicons.heart_outline,
+                                ? CupertinoIcons.heart_fill
+                                : CupertinoIcons.heart,
                             size: 30,
                             color: ColorManager.primaryColorDark,
                           ),
@@ -120,7 +123,10 @@ class ProductDetails extends StatelessWidget {
                       onPressed: (() => FlutterShare.share(
                           title:
                               'مشاركة العنصر: ${productController.product.title} & حمل تطبيق $appName من خلال الرابط $appUrl')),
-                      icon: const Icon(Ionicons.share_social_outline))
+                      icon: const Icon(
+                        Ionicons.share_social_outline,
+                        color: ColorManager.primaryColorDark,
+                      ))
                 ],
               ),
             ),
@@ -175,92 +181,120 @@ class ProductDetails extends StatelessWidget {
         height: Get.height * 0.1,
         color: Colors.white,
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const SizedBox(width: 20),
-            InkWell(
-                onTap: () {
-                  UrlLauncherService.launch(
-                      'https://api.whatsapp.com/send?phone=+20${productController.product.user?.phone}&text=${Uri.encodeComponent("مرحبا أ/${productController.product.user?.name}, انا مهتم بشراء العنصر ${productController.product.title} المعروض في تطبيق $appName")}');
-                },
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: StyleManager.roundedBoxDecoration,
-                  child: Icon(
-                    Ionicons.logo_whatsapp,
-                    size: 30,
-                    color: Colors.greenAccent.shade700,
-                  ),
-                )),
-            const SizedBox(width: 6),
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  UrlLauncherService.launch(
-                      'tel:${productController.product.user?.phone}');
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: StyleManager.shadowBoxDecoration,
-                  child: Obx(
-                    () => productController.isAddLoading.value
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 3,
-                            ),
-                          )
-                        : const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'أتصل بالبائع',
-                                style: StyleManager.headlineWhite,
+        child: productController.isPublisher()
+            ? Expanded(
+                child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('حذف العنصر ؟'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text('لا'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
                               ),
-                              SizedBox(
-                                width: 6.0,
+                              TextButton(
+                                child: const Text(
+                                  'نعم',
+                                  style: StyleManager.warningTextStyle,
+                                ),
+                                onPressed: () {
+                                  productController.deleteItem(
+                                      productController.product.docId);
+                                  Get.offAllNamed(Routes.navbar);
+                                },
                               ),
-                              Icon(
-                                CupertinoIcons.phone_arrow_up_right,
-                                color: Colors.white,
-                              )
                             ],
-                          ),
+                          );
+                        });
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 35,
+                    color: Colors.red,
                   ),
                 ),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const SizedBox(width: 20),
+                  InkWell(
+                      onTap: () {
+                        UrlLauncherService.launch(
+                            'https://api.whatsapp.com/send?phone=+20${productController.product.user?.phone}&text=${Uri.encodeComponent("مرحبا أ/${productController.product.user?.name}, انا مهتم بشراء العنصر ${productController.product.title} المعروض في تطبيق $appName")}');
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: StyleManager.roundedBoxDecoration,
+                        child: Icon(
+                          Ionicons.logo_whatsapp,
+                          size: 30,
+                          color: Colors.greenAccent.shade700,
+                        ),
+                      )),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        UrlLauncherService.launch(
+                            'tel:${productController.product.user?.phone}');
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: StyleManager.shadowBoxDecoration,
+                        child: Obx(
+                          () => productController.isAddLoading.value
+                              ? const SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 3,
+                                  ),
+                                )
+                              : const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'أتصل بالبائع',
+                                      style: StyleManager.headlineWhite,
+                                    ),
+                                    SizedBox(
+                                      width: 6.0,
+                                    ),
+                                    Icon(
+                                      CupertinoIcons.phone_arrow_up_right,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
       // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-      //   child: InkWell(
-      //     onTap: () => favoritesController
-      //         .addRemoveFavItem(productController.product.docId),
-      //     child: Container(
-      //         width: 50,
-      //         height: 50,
-      //         alignment: Alignment.center,
-      //         decoration: StyleManager.roundedBoxDecoration,
-      //         child: Obx(
-      //           () => Icon(
-      //             favoritesController.favorites
-      //                     .contains(productController.product.docId)
-      //                 ? Ionicons.heart_sharp
-      //                 : Ionicons.heart_outline,
-      //             size: 30,
-      //             color: ColorManager.primaryColorDark,
-      //           ),
-      //         )),
-      //   ),
-      // ),
+      //     onPressed: () {},
+      //     backgroundColor: Colors.white,
+      //     child: IconButton(
+      //       icon: const Icon(
+      //         Icons.delete,
+      //         size: 35,
+      //         color: Colors.red,
+      //       ),
+      //       onPressed: () {
+      //         productController.deleteItem(productController.product.docId);
+      //       },
+      //     )),
       // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }

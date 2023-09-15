@@ -2,7 +2,6 @@ import 'package:cityinpocket/Model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BuySell {
-  String? type;
   String? title;
   String? description;
   String? id;
@@ -13,7 +12,6 @@ class BuySell {
   Timestamp? date;
 
   BuySell({
-    this.type,
     this.title,
     this.id,
     this.docId,
@@ -25,7 +23,6 @@ class BuySell {
   });
 
   BuySell.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
     title = json['title'];
     id = json['id'];
     date = json['date'];
@@ -38,7 +35,6 @@ class BuySell {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['type'] = type;
     data['title'] = title;
     data['date'] = date;
     data['id'] = id;

@@ -34,13 +34,13 @@ class ProfileButton extends StatelessWidget {
               ),
               Text(
                 title,
-                style: StyleManager.title,
+                style: StyleManager.headline1,
               ),
             ],
           ),
         ),
         const SizedBox(
-          height: 15,
+          height: 25,
         ),
       ],
     );

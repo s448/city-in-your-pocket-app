@@ -31,6 +31,7 @@ class JobsController extends GetxController {
         salary: salary.value,
         user: userController.userModel,
         date: timestamp,
+        docId: docId,
       );
       userController.loadUserData();
       await jobsRef.doc(docId).set(model.toJson()).then((value) {
@@ -51,5 +52,14 @@ class JobsController extends GetxController {
         return Job.fromJson(data);
       }).toList();
     });
+  }
+
+  deleteJob(String? docId) async {
+    await jobsRef.doc(docId).delete();
+    Get.snackbar("تم حذف الاعلان", '');
+  }
+
+  isPublisher(Job job) {
+    return job.user!.id == userController.userModel.id;
   }
 }

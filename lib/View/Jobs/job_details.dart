@@ -5,6 +5,7 @@ import 'package:cityinpocket/Controller/jobs_controller.dart';
 import 'package:cityinpocket/Model/job.dart';
 import 'package:cityinpocket/Services/time_management.dart';
 import 'package:cityinpocket/Services/url_launcher.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -113,57 +114,94 @@ class JobDetails extends StatelessWidget {
         height: Get.height * 0.1,
         color: Colors.white,
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const SizedBox(width: 20),
-            InkWell(
-                onTap: () {
-                  UrlLauncherService.launch(
-                      'https://wa.me/+20${_job.user?.phone}/?text=${Uri.encodeQueryComponent('رأيت اعلانك علي تطبيق $appName')}');
-                },
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: StyleManager.roundedBoxDecoration,
-                  child: Icon(
-                    Ionicons.logo_whatsapp,
-                    size: 30,
-                    color: Colors.greenAccent.shade700,
-                  ),
-                )),
-            const SizedBox(width: 6),
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  //TODO finish mail parameters
-                  UrlLauncherService.sendEmail(_job.user!.email, "", "");
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: StyleManager.shadowBoxDecoration,
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'التقديم',
-                        style: StyleManager.headlineWhite,
-                      ),
-                      SizedBox(
-                        width: 6.0,
-                      ),
-                      Icon(
-                        CupertinoIcons.mail_solid,
-                        color: Colors.white,
-                      )
-                    ],
+        child: jobsController.isPublisher(_job)
+            ? Expanded(
+                child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('حذف الاعلان ؟'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text('لا'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: const Text(
+                                  'نعم',
+                                  style: StyleManager.warningTextStyle,
+                                ),
+                                onPressed: () {
+                                  jobsController.deleteJob(_job.docId);
+                                  Get.offAllNamed(Routes.navbar);
+                                },
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 35,
+                    color: Colors.red,
                   ),
                 ),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const SizedBox(width: 20),
+                  InkWell(
+                      onTap: () {
+                        UrlLauncherService.launch(
+                            'https://wa.me/+20${_job.user?.phone}/?text=${Uri.encodeQueryComponent('رأيت اعلانك علي تطبيق $appName')}');
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: StyleManager.roundedBoxDecoration,
+                        child: Icon(
+                          Ionicons.logo_whatsapp,
+                          size: 30,
+                          color: Colors.greenAccent.shade700,
+                        ),
+                      )),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        //TODO finish mail parameters
+                        UrlLauncherService.sendEmail(_job.user!.email, "", "");
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: StyleManager.shadowBoxDecoration,
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'التقديم',
+                              style: StyleManager.headlineWhite,
+                            ),
+                            SizedBox(
+                              width: 6.0,
+                            ),
+                            Icon(
+                              CupertinoIcons.mail_solid,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
