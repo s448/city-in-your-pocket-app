@@ -48,7 +48,7 @@ class AddJob extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         controller.title.value = value;
-                        print(controller.title.value);
+                        // print(controller.title.value);
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
@@ -76,7 +76,7 @@ class AddJob extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         controller.salary.value = value;
-                        print(controller.salary.value);
+                        // print(controller.salary.value);
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
@@ -86,7 +86,7 @@ class AddJob extends StatelessWidget {
                     TextFormField(
                       minLines: 1,
                       maxLines: 1,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText: 'أسم الشركة',
                         enabledBorder: OutlineInputBorder(
@@ -104,7 +104,7 @@ class AddJob extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         controller.company.value = value;
-                        print(controller.company.value);
+                        // print(controller.company.value);
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
@@ -141,11 +141,12 @@ class AddJob extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 16.0),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 32.0),
               Obx(
                 () => ElevatedButton(
-                  onPressed: () => controller.createJobItem(),
+                  onPressed: () => controller.isUploading.value
+                      ? null
+                      : controller.createJobItem(),
                   style: StyleManager.primaryButtonStyle,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

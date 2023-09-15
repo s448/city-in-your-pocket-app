@@ -25,7 +25,7 @@ class FavoritesPage extends StatelessWidget {
                   final List<BuySell> marketItems = snapshot.data!;
                   return ProductItem(marketItems: marketItems);
                 } else if (snapshot.hasError) {
-                  print(snapshot.error.toString());
+                  // print(snapshot.error.toString());
                   return Text('خطأ: ${snapshot.error}');
                 } else {
                   return const Center(child: CircularProgressIndicator());

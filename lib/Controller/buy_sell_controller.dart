@@ -38,9 +38,9 @@ class BuySellController extends GetxController {
 
   Future<void> createItem() async {
     var docId = uuid.v1();
-    print(docId);
+    // print(docId);
     try {
-      print(Get.arguments['id']);
+      // print(Get.arguments['id']);
       BuySell model = BuySell(
         title: title.value,
         id: product['id'],
@@ -53,9 +53,10 @@ class BuySellController extends GetxController {
       );
       userController.loadUserData();
       await buySellRef.doc(docId).set(model.toJson());
-      print("Post created successfully");
+      // print("Post created successfully");
     } catch (e) {
-      print('Error creating post: $e');
+      Get.snackbar("خطأ", e.toString());
+      // print('Error creating post: $e');
     }
   }
 
@@ -79,9 +80,11 @@ class BuySellController extends GetxController {
           Get.back();
           Get.snackbar("تم النشر", "يمكنك الان تلقي العروض");
         });
-        print(imageUrls);
+        // print(imageUrls);
       } catch (e) {
-        print('Error uploading images: $e');
+        Get.snackbar("خطأ", e.toString());
+
+        // print('Error uploading images: $e');
       }
     } else if (selectedImages.isEmpty || selectedImages.length > 6) {
       Get.snackbar("يشترط أن يكون عدد الصور بين 1 و6", "");

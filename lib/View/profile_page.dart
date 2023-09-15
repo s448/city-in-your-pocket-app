@@ -46,9 +46,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     imgUrl: data['imgUrl'],
                     phone: data['phone'],
                   );
-                  if (kDebugMode) {
-                    print("${user.name}>>>>>>>>>>>");
-                  }
+                  // if (kDebugMode) {
+                  //   print("${user.name}>>>>>>>>>>>");
+                  // }
                   return Column(
                     children: [
                       //user information

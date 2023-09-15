@@ -57,7 +57,6 @@ class SearchScreen extends StatelessWidget {
                 itemCount: searchController.filteredData.length,
                 itemBuilder: (context, index) {
                   final BuySell item = searchController.filteredData[index];
-                  print(item.toJson());
                   return InkWell(
                     onTap: () {
                       Get.toNamed(

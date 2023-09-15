@@ -1,6 +1,5 @@
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
-import 'package:cityinpocket/Widget/login_sign.dart';
 import 'package:cityinpocket/Widget/message_bubble.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cityinpocket/Constant/colors.dart';
@@ -64,6 +63,8 @@ class MessagingPage extends StatelessWidget {
                       padding: const EdgeInsets.all(3.0),
                       child: MessageBubble(
                         isSender: isSender,
+                        senderName: message.user!.name,
+                        senderPhone: message.user!.phone,
                         message: message.message!,
                         timeStamp: message.date!,
                       ),

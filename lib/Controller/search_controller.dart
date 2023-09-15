@@ -43,21 +43,10 @@ class FirestoreSearchController extends GetxController {
       if (title.contains(searchQuery) || description.contains(searchQuery)) {
         final BuySell item =
             BuySell.fromJson(document.data() as Map<String, dynamic>);
-
-        // final item = BuySell(
-        //   date: document['date'],
-        //   description: document['description'],
-        //   docId: document['docid'],
-        //   id: document['id'],
-        //   images: document['images'],
-        //   price: document['price'],
-        //   title: document['title'],
-        //   user: UserModel.fromJson(document['user']),
-        // );
         filteredData.add(item);
       }
     }
-    print(filteredData.length);
+    // print(filteredData.length);
     return filteredData;
   }
 }

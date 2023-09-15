@@ -23,7 +23,11 @@ class ProfileButton extends StatelessWidget {
           onTap: () {
             isShare
                 ? FlutterShare.share(
-                    title: 'حمل تطبيق $appName من خلال الرابط $url')
+                    title: appName,
+                    text: "حمل تطبيق $appName من خلال الرابط $url",
+                    chooserTitle: ' ',
+                    linkUrl: ' ',
+                  )
                 : UrlLauncherService.launch(url);
           },
           child: Row(

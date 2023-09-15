@@ -115,40 +115,38 @@ class JobDetails extends StatelessWidget {
         color: Colors.white,
         padding: const EdgeInsets.all(8.0),
         child: jobsController.isPublisher(_job)
-            ? Expanded(
-                child: IconButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('حذف الاعلان ؟'),
-                            actions: <Widget>[
-                              TextButton(
-                                child: const Text('لا'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+            ? IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('حذف الاعلان ؟'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('لا'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: const Text(
+                                'نعم',
+                                style: StyleManager.warningTextStyle,
                               ),
-                              TextButton(
-                                child: const Text(
-                                  'نعم',
-                                  style: StyleManager.warningTextStyle,
-                                ),
-                                onPressed: () {
-                                  jobsController.deleteJob(_job.docId);
-                                  Get.offAllNamed(Routes.navbar);
-                                },
-                              ),
-                            ],
-                          );
-                        });
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 35,
-                    color: Colors.red,
-                  ),
+                              onPressed: () {
+                                jobsController.deleteJob(_job.docId);
+                                Get.offAllNamed(Routes.navbar);
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                },
+                icon: const Icon(
+                  Icons.delete,
+                  size: 35,
+                  color: Colors.red,
                 ),
               )
             : Row(

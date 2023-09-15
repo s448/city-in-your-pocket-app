@@ -137,7 +137,7 @@ class SignUpPage extends StatelessWidget {
                   ? const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
-                        '(+2)',
+                        '+2',
                       ),
                     )
                   : null,
@@ -149,14 +149,18 @@ class SignUpPage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               if (authController.signupFormKey.currentState!.validate()) {
-                print("username >>>>>>>>" + authController.username.value);
-                print("email >>>>>>>>" + authController.email.value);
-                print("phone ??????" + authController.phoneNo.value);
                 authController.getOtp(false);
               }
             },
             style: StyleManager.primaryButtonStyle,
-            child: const Text('تسجيل'),
+            child: authController.isLoading.value
+                ? const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                : const Text('تسجيل'),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -260,18 +264,7 @@ class SignUpPage extends StatelessWidget {
                         }
                         authController.verifyOTP();
                       },
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        // backgroundColor:
-                        //     MaterialStateProperty.all<Color>(kPrimaryColor),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                        ),
-                      ),
+                      style: StyleManager.primaryButtonStyle,
                       child: const Padding(
                         padding: EdgeInsets.all(14.0),
                         child: Text(

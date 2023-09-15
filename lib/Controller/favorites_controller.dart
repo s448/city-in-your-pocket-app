@@ -25,7 +25,7 @@ class FavoritesController extends GetxController {
     }
     saveFavorites();
     update();
-    print(favorites);
+    // print(favorites);
   }
 
   Future<void> saveFavorites() async {

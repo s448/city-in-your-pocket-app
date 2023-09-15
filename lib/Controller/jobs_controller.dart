@@ -21,27 +21,30 @@ class JobsController extends GetxController {
 
   Future<void> createJobItem() async {
     var docId = uuid.v1();
-    try {
-      isUploading.value = true;
+    if (addJobKey.currentState!.validate()) {
+      try {
+        isUploading.value = true;
 
-      Job model = Job(
-        title: title.value,
-        company: company.value,
-        description: description.value,
-        salary: salary.value,
-        user: userController.userModel,
-        date: timestamp,
-        docId: docId,
-      );
-      userController.loadUserData();
-      await jobsRef.doc(docId).set(model.toJson()).then((value) {
-        isUploading.value = false;
-        Get.back();
-        Get.snackbar("تم النشر", "يمكنك الان تلقي طلبات التقديم");
-      });
-      print("Post created successfully");
-    } catch (e) {
-      print('Error creating post: $e');
+        Job model = Job(
+          title: title.value,
+          company: company.value,
+          description: description.value,
+          salary: salary.value,
+          user: userController.userModel,
+          date: timestamp,
+          docId: docId,
+        );
+        userController.loadUserData();
+        await jobsRef.doc(docId).set(model.toJson()).then((value) {
+          isUploading.value = false;
+          Get.back();
+          Get.snackbar("تم النشر", "يمكنك الان تلقي طلبات التقديم");
+        });
+      } catch (e) {
+        Get.snackbar("خطأ", e.toString());
+      }
+    } else {
+      return;
     }
   }
 

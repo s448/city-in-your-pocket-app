@@ -5,11 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 handleBackgroundMessage(RemoteMessage msg) async {
-  if (kDebugMode) {
-    print("payload ==> ${msg.data}");
-    print("Title ==> ${msg.notification?.title}");
-    print("body ==> ${msg.notification?.body}");
-  }
+  // if (kDebugMode) {
+  //   print("payload ==> ${msg.data}");
+  //   print("Title ==> ${msg.notification?.title}");
+  //   print("body ==> ${msg.notification?.body}");
+  // }
 }
 
 class FcmServices {
@@ -31,9 +31,9 @@ class FcmServices {
       sound: true,
     );
     final fcmToken = await _fcm.getToken();
-    if (kDebugMode) {
-      print(fcmToken);
-    }
+    // if (kDebugMode) {
+    //   print(fcmToken);
+    // }
     _token = fcmToken ?? 'unknown';
     FirebaseMessaging.onBackgroundMessage(
         (message) => handleBackgroundMessage(message));
@@ -45,9 +45,9 @@ class FcmServices {
         details: data['details'] ?? '',
         imgUrl: data['imgUrl'] ?? '',
       );
-      if (kDebugMode) {
-        print(data);
-      }
+      // if (kDebugMode) {
+      //   print(data);
+      // }
       Get.toNamed(data['route'], arguments: {
         'ad': adDetails,
       });
@@ -58,8 +58,8 @@ class FcmServices {
       // _prefs.saveNotificationToLocal(
       //     message.notification?.title, message.notification?.body);
       // Handle the notification when the app is in the foreground
-      print(
-          'Received a notification: ${message.notification?.title} - ${message.notification?.body}');
+      // print(
+      //     'Received a notification: ${message.notification?.title} - ${message.notification?.body}');
     });
   }
 }

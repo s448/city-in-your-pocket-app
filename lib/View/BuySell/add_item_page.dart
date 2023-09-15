@@ -63,7 +63,7 @@ class AddItem extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         controller.title.value = value;
-                        print(controller.title.value);
+                        // print(controller.title.value);
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
@@ -144,6 +144,11 @@ class AddItem extends StatelessWidget {
                   );
                 }),
               ),
+              const Center(
+                child: Text(
+                  "اضغط ضغط مطول علي الصور لاختيار أكثر من صورة",
+                ),
+              ),
               const SizedBox(height: 16.0),
               Obx(
                 () => SizedBox(
@@ -174,7 +179,9 @@ class AddItem extends StatelessWidget {
                 () => controller.selectedImages.isEmpty
                     ? const SizedBox()
                     : ElevatedButton(
-                        onPressed: controller.submitPost,
+                        onPressed: controller.isUploading.value
+                            ? null
+                            : controller.submitPost,
                         style: StyleManager.primaryButtonStyle,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/colors.dart';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Services/time_management.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +8,19 @@ import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble(
-      {super.key,
-      required this.isSender,
-      required this.message,
-      required this.timeStamp});
+  MessageBubble({
+    super.key,
+    required this.isSender,
+    required this.message,
+    required this.timeStamp,
+    required this.senderName,
+    required this.senderPhone,
+  });
   final bool isSender;
   final String message;
   final Timestamp timeStamp;
+  final String? senderName;
+  final String? senderPhone;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -52,10 +58,14 @@ class MessageBubble extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
+                          "$senderName ~$senderPhone",
+                          style: StyleManager.bodyWhiteText,
+                        ),
+                        Text(
                           message,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
+                            fontSize: 15,
                             fontWeight: FontWeight.w200,
                           ),
                           textAlign: TextAlign.start,

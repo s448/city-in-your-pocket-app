@@ -81,6 +81,7 @@ class AuthController extends GetxController {
   var statusMessageColor = Colors.black.obs;
   var timer;
   final loginFormKey = GlobalKey<FormState>();
+  RxBool isLoading = false.obs;
 
   //sign up controllers
   var username = "".obs;
@@ -92,12 +93,19 @@ class AuthController extends GetxController {
   AuthController();
 
   getOtp(bool login) async {
+    isLoading.value = true;
     bool exist = await userExist(phoneNo.value);
     print(exist);
+
     if (exist == false && login == true) {
-      print("phone number does not exist");
+      // print("phone number does not exist");
       Get.snackbar(
           "الرقم ${phoneNo.value}غير مسجل لدينا", "قم بتسجيل حساب أولا");
+      isLoading.value = false;
+    } else if (exist == true && login == false) {
+      Get.snackbar(
+          "الرقم ${phoneNo.value} مسجل بالفعل", "قم بتسجيل الدخول بدلا من ذلك");
+      isLoading.value = false;
     } else {
       //continue auth process
       FirebaseAuth.instance.verifyPhoneNumber(
@@ -111,9 +119,11 @@ class AuthController extends GetxController {
           isOtpSent.value = true;
           statusMessage.value = "تم الارسال الى ${phoneNo.value}";
           startResendOtpTimer();
+          isLoading.value = false;
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
       );
+      isLoading.value = false;
     }
   }
 

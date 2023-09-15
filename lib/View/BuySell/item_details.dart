@@ -121,8 +121,10 @@ class ProductDetails extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: (() => FlutterShare.share(
-                          title:
-                              'مشاركة العنصر: ${productController.product.title} & حمل تطبيق $appName من خلال الرابط $appUrl')),
+                            title: appName,
+                            text:
+                                'مشاركة العنصر: ${productController.product.title} & حمل تطبيق $appName من خلال الرابط $appUrl',
+                          )),
                       icon: const Icon(
                         Ionicons.share_social_outline,
                         color: ColorManager.primaryColorDark,
@@ -182,41 +184,39 @@ class ProductDetails extends StatelessWidget {
         color: Colors.white,
         padding: const EdgeInsets.all(8.0),
         child: productController.isPublisher()
-            ? Expanded(
-                child: IconButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('حذف العنصر ؟'),
-                            actions: <Widget>[
-                              TextButton(
-                                child: const Text('لا'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+            ? IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('حذف العنصر ؟'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('لا'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: const Text(
+                                'نعم',
+                                style: StyleManager.warningTextStyle,
                               ),
-                              TextButton(
-                                child: const Text(
-                                  'نعم',
-                                  style: StyleManager.warningTextStyle,
-                                ),
-                                onPressed: () {
-                                  productController.deleteItem(
-                                      productController.product.docId);
-                                  Get.offAllNamed(Routes.navbar);
-                                },
-                              ),
-                            ],
-                          );
-                        });
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 35,
-                    color: Colors.red,
-                  ),
+                              onPressed: () {
+                                productController.deleteItem(
+                                    productController.product.docId);
+                                Get.offAllNamed(Routes.navbar);
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                },
+                icon: const Icon(
+                  Icons.delete,
+                  size: 35,
+                  color: Colors.red,
                 ),
               )
             : Row(

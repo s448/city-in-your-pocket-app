@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 8),
                                     child: Text(
-                                      '(+2)',
+                                      '+2',
                                     ),
                                   )
                                 : null,
@@ -114,13 +114,20 @@ class LoginPage extends StatelessWidget {
                               }
                             },
                             style: StyleManager.primaryButtonStyle,
-                            child: const Padding(
-                              padding: EdgeInsets.all(14.0),
-                              child: Text(
-                                'موافق',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
+                            child: authController.isLoading.value
+                                ? const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : const Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Text(
+                                      'موافق',
+                                      style: StyleManager.headlineWhite,
+                                    ),
+                                  ),
                           ),
                         )
                       ],
@@ -250,8 +257,6 @@ class LoginPage extends StatelessWidget {
                         ),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        // backgroundColor:
-                        //     MaterialStateProperty.all<Color>(kPrimaryColor),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(

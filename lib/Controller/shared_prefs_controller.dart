@@ -9,10 +9,10 @@ class SharedPrefsController extends GetxController {
       String phoneNumber, String verificationId) async {
     await prefs.setString('phoneNumber', phoneNumber);
     await prefs.setString('verificationId', verificationId);
-    if (kDebugMode) {
-      print(
-          "<<..shared prefs..>>credentials $phoneNumber -- $verificationId  was saved successfully");
-    }
+    // if (kDebugMode) {
+    //   print(
+    //       "<<..shared prefs..>>credentials $phoneNumber -- $verificationId  was saved successfully");
+    // }
   }
 
   String getItem(String id) {
@@ -30,14 +30,14 @@ class SharedPrefsController extends GetxController {
     String verificationId = getItem('verificationId');
 
     if (phone == '' || verificationId == '') {
-      if (kDebugMode) {
-        print(false);
-      }
+      // if (kDebugMode) {
+      //    print(false);
+      // }
       return false;
     } else {
-      if (kDebugMode) {
-        print(true);
-      }
+      // if (kDebugMode) {
+      //   print(true);
+      // }
       return true;
     }
   }

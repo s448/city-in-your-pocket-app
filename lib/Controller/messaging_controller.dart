@@ -39,7 +39,7 @@ class MessagingController extends GetxController {
       userController.loadUserData();
       await messageRef.doc(docId).set(message.toJson());
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 

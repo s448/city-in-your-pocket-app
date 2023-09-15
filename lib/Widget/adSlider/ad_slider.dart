@@ -40,7 +40,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
   Widget carouselItem(BannerAd bannerAd) {
     return InkWell(
       onTap: () {
-        print(bannerAd.contactUrl);
+        // print(bannerAd.contactUrl);
         Get.toNamed(Routes.adDetails, arguments: {
           'ad': bannerAd,
         });
