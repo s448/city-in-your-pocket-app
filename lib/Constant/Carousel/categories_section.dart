@@ -7,65 +7,65 @@ List shoppingCategories = [
     "icon": CupertinoIcons.car_detailed,
     "title": "مركبات",
     "id": "vehicles",
-    "meta_data": [
-      "سيارات",
-      "موتوسيكل",
-      "عجلة",
-    ]
+    // "meta_data": [
+    //   "سيارات",
+    //   "موتوسيكل",
+    //   "عجلة",
+    // ]
   },
   {
     "icon": Icons.real_estate_agent_outlined,
-    "title": "عقارات",
+    "title": "عقارات وأراضي",
     "id": "real_estates",
-    "meta_data": [
-      "منازل",
-      "أراضي",
-      "محلات تجارية",
-    ]
-  },
-  {
-    "icon": Icons.tablet_android,
-    "title": "أجهزة والكترونيات",
-    "id": "electronics",
-    "meta_data": [
-      "تليفون",
-      "لابتوب",
-      "شاشات",
-      "ساعات",
-    ]
+    // "meta_data": [
+    //   "منازل",
+    //   "أراضي",
+    //   "محلات تجارية",
+    // ]
   },
   {
     "icon": Icons.home,
-    "title": "أثاث منزلي",
+    "title": "أثاث وأجهزة منزلية",
     "id": "household",
-    "meta_data": [
-      "أثاث منزلي",
-    ]
+    // "meta_data": [
+    //   "أثاث منزلي",
+    // ]
   },
   {
     "icon": Icons.pets,
     "title": "حيوانات أليفة",
     "id": "pets",
-    "meta_data": [
-      "قطط",
-      "كلاب",
-    ]
+    // "meta_data": [
+    //   "قطط",
+    //   "كلاب",
+    // ]
+  },
+  {
+    "icon": Icons.tablet_android,
+    "title": "أجهزة والكترونيات",
+    "id": "electronics",
+    // "meta_data": [
+    //   "تليفون",
+    //   "لابتوب",
+    //   "شاشات",
+    //   "ساعات",
+    // ]
   },
   {
     "icon": Ionicons.book_sharp,
     "title": "كتب",
     "id": "books",
-    "meta_data": [
-      "كتب",
-    ]
+    // "meta_data": [
+    //   "كتب",
+    // ]
   },
   {
     "icon": Ionicons.arrow_back_circle,
     "title": "الكل",
     "id": "all",
-    "meta_data": [
-      "الكل",
-    ]
+    // "meta_data": [
+    //   "الكل",
+    // ]
   },
 ];
 

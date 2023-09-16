@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/colors.dart';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,9 +22,8 @@ class SectionItem extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: ColorManager
-                    .primaryColorLight, // Customize the border color
-                width: 2, // Customize the border width
+                color: ColorManager.primaryColorLight,
+                width: 2,
               ),
             ),
             child: CircleAvatar(
@@ -43,6 +43,7 @@ class SectionItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               maxLines: 1,
+              style: StyleManager.title,
             ),
           ),
         ],

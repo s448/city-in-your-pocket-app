@@ -29,7 +29,7 @@ class StyleManager {
     fontFamily: font,
     fontWeight: FontWeight.w500,
     color: Colors.black,
-    height: 1.1,
+    height: 1.5,
   );
 
   static const TextStyle warningTextStyle = TextStyle(
@@ -73,14 +73,17 @@ class StyleManager {
 
   //light theme
   static final themeManager = ThemeData(
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-      fontFamily: font,
-      primaryColor: ColorManager.primaryColorDark,
-      hintColor: ColorManager.accentColor,
-      appBarTheme: const AppBarTheme(
-          color: ColorManager.primaryColorDark, titleTextStyle: headlineWhite));
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    hoverColor: Colors.transparent,
+    fontFamily: font,
+    primaryColor: ColorManager.primaryColorDark,
+    hintColor: ColorManager.accentColor,
+    appBarTheme: const AppBarTheme(
+      color: ColorManager.primaryColorDark,
+      titleTextStyle: title,
+    ),
+  );
 
   //box decorations
   static const BoxDecoration roundedBoxDecoration = BoxDecoration(
