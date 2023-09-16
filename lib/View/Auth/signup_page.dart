@@ -133,11 +133,11 @@ class SignUpPage extends StatelessWidget {
               focusedErrorBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(10)),
-              prefix: authController.showPrefix.value
+              suffix: authController.showPrefix.value
                   ? const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
-                        '+2',
+                        '2+',
                       ),
                     )
                   : null,

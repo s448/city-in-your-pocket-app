@@ -111,24 +111,30 @@ class AuthController extends GetxController {
       FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: '+2${phoneNo.value}',
         verificationCompleted: (PhoneAuthCredential credential) {
+          isLoading.value = false;
+
           saveUserData();
         },
         verificationFailed: (FirebaseAuthException e) {
+          isLoading.value = false;
+
           Get.snackbar(
             "الرسائل غير متاحة حاليا",
             "جرب تسجيل الدخول باستخدام جوجل",
           );
         },
         codeSent: (String verificationId, int? resendToken) {
+          isLoading.value = false;
+
           firebaseVerificationId = verificationId;
           isOtpSent.value = true;
           statusMessage.value = "تم الارسال الى ${phoneNo.value}";
           startResendOtpTimer();
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
           isLoading.value = false;
         },
-        codeAutoRetrievalTimeout: (String verificationId) {},
       );
-      isLoading.value = false;
     }
   }
 
@@ -163,7 +169,8 @@ class AuthController extends GetxController {
       if (!await userExist(phoneNo.value)) {
         saveUserData();
       }
-      Get.off(const SnakeNavigationBarExampleScreen());
+      isLoading.value = false;
+      Get.offAndToNamed(Routes.navbar);
     } catch (e) {
       statusMessage.value = "رقم OTP غير صحيح";
       statusMessageColor = Colors.red.obs;

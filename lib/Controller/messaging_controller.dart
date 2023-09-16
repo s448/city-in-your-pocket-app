@@ -12,7 +12,6 @@ class MessagingController extends GetxController {
   var uuid = const Uuid();
 
   final userController = Get.find<UserController>();
-  Timestamp timestamp = Timestamp.now();
 
   Stream<List<Message>> getMessages() {
     return messageRef
@@ -31,7 +30,7 @@ class MessagingController extends GetxController {
 
     try {
       Message message = Message(
-        date: timestamp,
+        date: Timestamp.fromDate(DateTime.now()),
         message: sendMessageController.text.toString(),
         user: userController.userModel,
         id: docId,

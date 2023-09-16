@@ -29,9 +29,7 @@ class UserController extends GetxController {
     String userId = _sharedPrefController.getItem('phoneNumber');
     print(userId);
     var result = await _firestore.collection("users").doc(userId).get();
-    // if (kDebugMode) {
-    //   print(result.data().toString());
-    // }
+    print(result.data().toString());
     return result;
   }
 

@@ -90,11 +90,11 @@ class LoginPage extends StatelessWidget {
                           focusedErrorBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.red),
                               borderRadius: BorderRadius.circular(10)),
-                          prefix: authController.showPrefix.value
+                          suffix: authController.showPrefix.value
                               ? const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 8),
                                   child: Text(
-                                    '+2',
+                                    '2+',
                                   ),
                                 )
                               : null,
@@ -133,7 +133,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 12.0,
+                        height: 16.0,
                       ),
                       GoogleAuthButton(
                         isLoading: authController.isGoogleLoading.value,
@@ -148,6 +148,9 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 16.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -182,20 +185,6 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 0),
         child: Column(
           children: [
-            // Align(
-            //   alignment: Alignment.topLeft,
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       authController.isOtpSent.value = false;
-            //       Get.off(LoginPage());
-            //     },
-            //     child: const Icon(
-            //       Icons.arrow_forward,
-            //       size: 32,
-            //       color: Colors.black54,
-            //     ),
-            //   ),
-            // ),
             const SizedBox(
               height: 20,
             ),

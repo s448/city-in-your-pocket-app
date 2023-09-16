@@ -58,7 +58,7 @@ class AddJob extends StatelessWidget {
                     TextFormField(
                       minLines: 1,
                       maxLines: 1,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText: 'الراتب',
                         enabledBorder: OutlineInputBorder(
