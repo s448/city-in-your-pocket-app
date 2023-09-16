@@ -4,6 +4,8 @@ import 'package:cityinpocket/Controller/auth_controller.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:auth_buttons/auth_buttons.dart'
+    show GoogleAuthButton, AuthButtonStyle, AuthButtonType, AuthIconType;
 
 class LoginPage extends StatelessWidget {
   final authController = Get.put(AuthController());
@@ -57,81 +59,95 @@ class LoginPage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Obx(() => Column(
-                      children: [
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          maxLength: 11,
-                          onChanged: (val) {
-                            authController.phoneNo.value = val;
-                            authController.showPrefix.value = val.isNotEmpty;
-                          },
-                          onSaved: (val) => authController.phoneNo.value = val!,
-                          validator: (val) => (val!.isEmpty || val.length < 11)
-                              ? "أدخل رقم صحيح"
-                              : null,
-                          decoration: InputDecoration(
-                            labelText: "رقم المحمول",
-                            floatingLabelBehavior: FloatingLabelBehavior.auto,
-                            enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: Colors.black12),
-                                borderRadius: BorderRadius.circular(10)),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.red),
-                                borderRadius: BorderRadius.circular(10)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: Colors.black12),
-                                borderRadius: BorderRadius.circular(10)),
-                            focusedErrorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.red),
-                                borderRadius: BorderRadius.circular(10)),
-                            prefix: authController.showPrefix.value
-                                ? const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 8),
-                                    child: Text(
-                                      '+2',
-                                    ),
-                                  )
-                                : null,
-                            suffixIcon: _buildSuffixIcon(),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 22,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              final form =
-                                  authController.loginFormKey.currentState;
-                              if (form!.validate()) {
-                                form.save();
-                                authController.getOtp(true);
-                              }
-                            },
-                            style: StyleManager.primaryButtonStyle,
-                            child: authController.isLoading.value
-                                ? const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                : const Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Text(
-                                      'موافق',
-                                      style: StyleManager.headlineWhite,
-                                    ),
+                child: Obx(
+                  () => Column(
+                    children: [
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        maxLength: 11,
+                        onChanged: (val) {
+                          authController.phoneNo.value = val;
+                          authController.showPrefix.value = val.isNotEmpty;
+                        },
+                        onSaved: (val) => authController.phoneNo.value = val!,
+                        validator: (val) => (val!.isEmpty || val.length < 11)
+                            ? "أدخل رقم صحيح"
+                            : null,
+                        decoration: InputDecoration(
+                          labelText: "رقم المحمول",
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(10)),
+                          errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(10)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(10)),
+                          focusedErrorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(10)),
+                          prefix: authController.showPrefix.value
+                              ? const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  child: Text(
+                                    '+2',
                                   ),
-                          ),
-                        )
-                      ],
-                    )),
+                                )
+                              : null,
+                          suffixIcon: _buildSuffixIcon(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 22,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            final form =
+                                authController.loginFormKey.currentState;
+                            if (form!.validate()) {
+                              form.save();
+                              authController.getOtp(true);
+                            }
+                          },
+                          style: StyleManager.primaryButtonStyle,
+                          child: authController.isLoading.value
+                              ? const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Text(
+                                    'موافق',
+                                    style: StyleManager.headlineWhite,
+                                  ),
+                                ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12.0,
+                      ),
+                      GoogleAuthButton(
+                        isLoading: authController.isGoogleLoading.value,
+                        onPressed: () => authController.loginWithGoogle(),
+                        textDirection: TextDirection.ltr,
+                        text: "تسجيل بحساب جوجل",
+                        style: const AuthButtonStyle(
+                          iconType: AuthIconType.secondary,
+                          textStyle: StyleManager.headline1,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

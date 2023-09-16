@@ -39,16 +39,17 @@ class _ProfilePageState extends State<ProfilePage> {
                   ));
                 } else if (snapshot.hasData) {
                   var data = snapshot.data!.data();
+                  print(data);
                   UserModel user = UserModel(
-                    id: data!['id'],
+                    id: data!['id'] == '' ? "غير معروف" : data['id'],
                     name: data['name'],
                     email: data['email'],
                     imgUrl: data['imgUrl'],
-                    phone: data['phone'],
+                    phone: data['phone'] == '' ? "غير معروف" : data['phone'],
                   );
-                  // if (kDebugMode) {
-                  //   print("${user.name}>>>>>>>>>>>");
-                  // }
+                  if (kDebugMode) {
+                    print("${user.id}>>>>>>>>>>>");
+                  }
                   return Column(
                     children: [
                       //user information

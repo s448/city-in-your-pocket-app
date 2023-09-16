@@ -113,7 +113,12 @@ class AuthController extends GetxController {
         verificationCompleted: (PhoneAuthCredential credential) {
           saveUserData();
         },
-        verificationFailed: (FirebaseAuthException e) {},
+        verificationFailed: (FirebaseAuthException e) {
+          Get.snackbar(
+            "الرسائل غير متاحة حاليا",
+            "جرب تسجيل الدخول باستخدام جوجل",
+          );
+        },
         codeSent: (String verificationId, int? resendToken) {
           firebaseVerificationId = verificationId;
           isOtpSent.value = true;
@@ -176,5 +181,87 @@ class AuthController extends GetxController {
       }
       update();
     });
+  }
+
+  //google auth
+  RxBool isGoogleLoading = false.obs;
+  loginWithGoogle() async {
+    isGoogleLoading.value = true;
+    bool authSucceess = false;
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+
+      final GoogleSignInAuthentication? googleSignInAuth =
+          await googleSignInAccount?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuth?.accessToken,
+        idToken: googleSignInAuth?.idToken,
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      User? user = userCredential.user;
+      print(">>>>>202 ${user?.displayName}");
+      if (user != null) {
+        if (userCredential.additionalUserInfo!.isNewUser) {
+          print(">>>>>>205 >>>>>new user");
+          try {
+            UserModel userModel = UserModel(
+              id: user.phoneNumber ?? '',
+              name: user.displayName,
+              email: user.email,
+              imgUrl: "",
+              phone: user.phoneNumber ?? '',
+              token: FcmServices().getToken(),
+            );
+            await _firestore
+                .collection('users')
+                .doc(user.phoneNumber ?? user.email)
+                .set(userModel.toJson());
+            print(">>>>>>user is set to the fiorestore");
+            print("user credentails : phone>>>${user.metadata}");
+            if (await userExist(user.phoneNumber ?? user.email!)) {
+              authSucceess = true;
+            }
+            isGoogleLoading.value = false;
+          } catch (e) {
+            print("?????????can't save the user data");
+            isGoogleLoading.value = false;
+            Get.snackbar(
+              "خطأ",
+              "لا يمكن تسجيل الدخول برجاء المحاولة لاحقا",
+            );
+          }
+        } else {
+          isGoogleLoading.value = false;
+          authSucceess = true;
+          print("user is already registerd >>>> login");
+        }
+        await _sharedPrefController.saveUserCredentials(
+            user.phoneNumber ?? user.email!,
+            userCredential.additionalUserInfo!.authorizationCode ?? 'unknown');
+        print(">>>>>>user is set to shared prefs");
+      }
+    } catch (e) {
+      print(e);
+      Get.snackbar(
+        "خطأ",
+        "لا يمكن تسجيل الدخول برجاء المحاولة لاحقا",
+      );
+      isGoogleLoading.value = false;
+      authSucceess = false;
+    }
+    if (authSucceess) {
+      print("auth success >>>>>>>>>>>>>>>>");
+      Get.offAndToNamed(Routes.navbar);
+    }
+  }
+
+  Future<void> logoutGoogle() async {
+    await googleSignIn.signOut();
+    Get.offAllNamed(Routes.navbar);
   }
 }

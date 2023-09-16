@@ -55,6 +55,7 @@ dependencies:
   firebase_messaging: ^14.6.7
   chat_bubble_tc: ^0.0.3
   flutter_share: ^2.0.0
+  auth_buttons: ^3.0.2
 
   #we_slide >>>>>>>>>>
 
