@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/user.dart';
 import 'package:cityinpocket/Services/fcm_services.dart';
-import 'package:cityinpocket/Widget/nav_bar.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

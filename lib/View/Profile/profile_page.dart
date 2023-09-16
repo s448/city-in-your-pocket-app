@@ -3,12 +3,13 @@ import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Model/user.dart';
 import 'package:cityinpocket/Widget/login_sign.dart';
 import 'package:cityinpocket/Widget/profile_button.dart';
+import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Controller/user_controller.dart';
+import '../../Controller/user_controller.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -112,6 +113,24 @@ class _ProfilePageState extends State<ProfilePage> {
                           )),
                       const SizedBox(
                         height: 10.0,
+                      ),
+                      InkWell(
+                        onTap: () => Get.toNamed(Routes.editProfile),
+                        child: Container(
+                          decoration: StyleManager.senderBoxDecoration,
+                          child: const ListTile(
+                            dense: false,
+                            titleTextStyle: StyleManager.headlineWhite,
+                            title: Text("تعديل الملف لشخصي"),
+                            trailing: Icon(
+                              CupertinoIcons.pencil_circle_fill,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       InkWell(
                         onTap: () {

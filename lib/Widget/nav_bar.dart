@@ -6,7 +6,7 @@ import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/messaging_page.dart';
 import 'package:cityinpocket/View/home_page.dart';
-import 'package:cityinpocket/View/profile_page.dart';
+import 'package:cityinpocket/View/Profile/profile_page.dart';
 // import 'package:cityinpocket/routes.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

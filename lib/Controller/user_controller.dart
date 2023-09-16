@@ -8,16 +8,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Model/user.dart';
 
 class UserController extends GetxController {
+  final TextEditingController nameController =
+      TextEditingController(text: "ssss");
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _sharedPrefController = Get.find<SharedPrefsController>();
   late UserModel userModel = UserModel();
+  RxBool editButtonIndicator = false.obs;
+
+  final editFormKey = GlobalKey<FormState>();
 
   @override
   void onInit() async {
     super.onInit();
     await loadUserData();
+    await setInitalData();
     // bindStream(FirebaseAuth.instance.authStateChanges());
+  }
+
+  setInitalData() {
+    nameController.text = userModel.name!;
+    phoneController.text = userModel.phone!;
+    emailController.text = userModel.email!;
+    update();
   }
 
   loadUserData() async {
@@ -63,6 +79,31 @@ class UserController extends GetxController {
           backgroundColor: Colors.redAccent.shade100,
           colorText: Colors.white,
           snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  updateProfile(String userId) async {
+    try {
+      if (editFormKey.currentState!.validate()) {
+        editButtonIndicator.value = true;
+
+        await _firestore.collection('users').doc(userId).update({
+          'name': nameController.text,
+          'phone': phoneController.text,
+          'email': emailController.text,
+        });
+      } else {
+        return;
+      }
+
+      Get.offAndToNamed(Routes.navbar);
+      Get.snackbar("تم التعديل بنجاح", "");
+      editButtonIndicator.value = false;
+      return true;
+    } catch (error) {
+      Get.snackbar("لم نستطع تطبيق التغيير المطلوب", "برجاء المحاولة مجددا");
+      editButtonIndicator.value = false;
+      return false;
     }
   }
 }

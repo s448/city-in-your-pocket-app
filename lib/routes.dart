@@ -6,6 +6,7 @@ import 'package:cityinpocket/View/BuySell/item_details.dart';
 import 'package:cityinpocket/View/Jobs/add_job.dart';
 import 'package:cityinpocket/View/Jobs/job_details.dart';
 import 'package:cityinpocket/View/Jobs/jobs_view_page.dart';
+import 'package:cityinpocket/View/Profile/edit_profile_page.dart';
 import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/search_page.dart';
 // import 'package:cityinpocket/View/notifications.dart';
@@ -28,6 +29,7 @@ class Routes {
   static String adDetails = '/ad_details';
   // static String notifications = '/notifications';
   static String search = '/search';
+  static String editProfile = '/edit_profile';
 }
 
 final getPages = [
@@ -82,5 +84,9 @@ final getPages = [
   GetPage(
     name: Routes.search,
     page: () => SearchScreen(),
+  ),
+  GetPage(
+    name: Routes.editProfile,
+    page: () => EditProfile(),
   ),
 ];

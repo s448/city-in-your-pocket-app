@@ -5,7 +5,7 @@ import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:auth_buttons/auth_buttons.dart'
-    show GoogleAuthButton, AuthButtonStyle, AuthButtonType, AuthIconType;
+    show GoogleAuthButton, AuthButtonStyle, AuthIconType;
 
 class LoginPage extends StatelessWidget {
   final authController = Get.put(AuthController());

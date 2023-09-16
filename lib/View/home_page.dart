@@ -9,7 +9,6 @@ import 'package:cityinpocket/Widget/login_sign.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/cupertino.dart';
 import '../Widget/Categories/section_container.dart';
 
 class HomePage extends StatefulWidget {
