@@ -81,7 +81,7 @@ class StyleManager {
     hintColor: ColorManager.accentColor,
     appBarTheme: const AppBarTheme(
       color: ColorManager.primaryColorDark,
-      titleTextStyle: title,
+      titleTextStyle: headlineWhite,
     ),
   );
 

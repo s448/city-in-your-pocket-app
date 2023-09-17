@@ -24,6 +24,14 @@ List shoppingCategories = [
     // ]
   },
   {
+    "icon": Icons.shopping_bag_outlined,
+    "title": "ملابس وأحذية",
+    "id": "clothing",
+    // "meta_data": [
+    //   "كتب",
+    // ]
+  },
+  {
     "icon": Icons.home,
     "title": "أثاث وأجهزة منزلية",
     "id": "household",

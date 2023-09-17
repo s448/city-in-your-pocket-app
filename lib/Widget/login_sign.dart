@@ -14,6 +14,7 @@ class LoginSign extends StatelessWidget {
       },
       child: Container(
         decoration: StyleManager.senderBoxDecoration,
+        padding: const EdgeInsets.all(4.0),
         child: const ListTile(
           title: Text(
             "تسجيل الدخول",

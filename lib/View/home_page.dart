@@ -50,9 +50,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )),
             const SizedBox(
-              height: 12,
+              height: 8.0,
             ),
             const CarouselSlider(),
+            const SizedBox(
+              height: 12,
+            ),
             SectionContainer(
               listOfElements: shoppingCategories,
               heading: 'بيع وشراء',
