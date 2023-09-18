@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/app_details.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Model/user.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../Controller/user_controller.dart';
 
@@ -200,11 +202,23 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 30,
             ),
             ProfileButton(
-              isShare: false,
-              title: "تواصل مع المطور",
+              isShare: true,
+              title: "صفحتنا علي الفيسبوك",
               icon: const Icon(
-                CupertinoIcons.chat_bubble_2_fill,
+                Ionicons.logo_facebook,
                 color: ColorManager.primaryColor,
+              ),
+              url: fbPageUrl,
+            ),
+            // const SizedBox(
+            //   height: 15.0,
+            // ),
+            ProfileButton(
+              isShare: false,
+              title: "تواصل معنا",
+              icon: Icon(
+                Ionicons.logo_whatsapp,
+                color: Colors.green,
               ),
               url:
                   'https://api.whatsapp.com/send?phone=+201557912724&text=${Uri.encodeComponent("السلام عليكم")}',

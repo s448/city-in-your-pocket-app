@@ -9,10 +9,18 @@ class StyleManager {
 
   //text style
   static const TextStyle headline1 = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
+    height: 1.2,
+  );
+
+  static const TextStyle headlineWithPrimaryColor = TextStyle(
+    fontSize: 16,
+    fontFamily: font,
+    fontWeight: FontWeight.bold,
+    color: ColorManager.primaryColorDark,
     height: 1.2,
   );
 
@@ -25,7 +33,7 @@ class StyleManager {
   );
 
   static const TextStyle title = TextStyle(
-    fontSize: 13,
+    fontSize: 15,
     fontFamily: font,
     fontWeight: FontWeight.w500,
     color: Colors.black,
@@ -33,7 +41,7 @@ class StyleManager {
   );
 
   static const TextStyle warningTextStyle = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: font,
     color: Colors.redAccent,
     height: 1,
@@ -48,7 +56,7 @@ class StyleManager {
       height: 1.2);
 
   static const TextStyle bodyText1 = TextStyle(
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: font,
     color: Colors.black,
     height: 1,
@@ -56,7 +64,7 @@ class StyleManager {
   );
 
   static const TextStyle bodyWithPrimaryColor = TextStyle(
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: font,
     color: ColorManager.primaryColorDark,
     fontWeight: FontWeight.w100,
@@ -64,7 +72,7 @@ class StyleManager {
   );
 
   static const TextStyle bodyWhiteText = TextStyle(
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: font,
     height: 1.2,
     fontWeight: FontWeight.w100,

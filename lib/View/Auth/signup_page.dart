@@ -13,6 +13,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(
@@ -42,7 +43,11 @@ class SignUpPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("أدخل بياناتك", style: StyleManager.headline1),
+          const SizedBox(
+            height: 30.0,
+          ),
+          const Text("تسجيل حساب",
+              style: StyleManager.headlineWithPrimaryColor),
           const SizedBox(
             height: 6.0,
           ),

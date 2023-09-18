@@ -36,6 +36,9 @@ class SectionItem extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 5,
+          ),
           Expanded(
             child: Text(
               title,
@@ -43,7 +46,7 @@ class SectionItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               maxLines: 1,
-              style: StyleManager.title,
+              style: StyleManager.bodyText1,
             ),
           ),
         ],

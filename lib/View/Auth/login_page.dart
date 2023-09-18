@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/app_details.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/auth_controller.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:auth_buttons/auth_buttons.dart'
     show GoogleAuthButton, AuthButtonStyle, AuthIconType;
+import 'dart:math' as math;
 
 class LoginPage extends StatelessWidget {
   final authController = Get.put(AuthController());
@@ -15,6 +17,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(
@@ -22,11 +25,13 @@ class LoginPage extends StatelessWidget {
           style: StyleManager.headlineWhite,
         ),
       ),
-      body: Stack(children: [
-        Obx(() => authController.isOtpSent.value
-            ? _buildVerifyOtpForm()
-            : _buildGetOtpForm())
-      ]),
+      body: Stack(
+        children: [
+          Obx(() => authController.isOtpSent.value
+              ? _buildVerifyOtpForm()
+              : _buildGetOtpForm())
+        ],
+      ),
     );
   }
 
@@ -50,9 +55,40 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("تسجيل الدخول", style: StyleManager.headline1),
+              Center(
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(math.pi / 4),
+                  child: Container(
+                    width: Get.width * 0.3,
+                    height: Get.width * 0.3,
+                    decoration: StyleManager.gradientBoxDecoration,
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.rotationZ(
+                          -math.pi / 4), // Apply the inverse rotation
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/images/cnp-logo-removebg.png',
+                          width: Get.width * 0.3,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Center(
+                child: Text(
+                  appName,
+                  style: StyleManager.headlineWithPrimaryColor,
+                ),
+              ),
               const SizedBox(
-                height: 10,
+                height: 35.0,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -75,6 +111,7 @@ class LoginPage extends StatelessWidget {
                             : null,
                         decoration: InputDecoration(
                           labelText: "رقم المحمول",
+                          fillColor: ColorManager.accentColor,
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           enabledBorder: OutlineInputBorder(
                               borderSide:
