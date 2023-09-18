@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 8.0,
             ),
-            // const CarouselSlider(),
+            const CarouselSlider(),
             const SizedBox(
               height: 12,
             ),
