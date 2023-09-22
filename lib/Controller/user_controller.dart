@@ -42,9 +42,9 @@ class UserController extends GetxController {
 
   Future<DocumentSnapshot<Map<String, dynamic>>> fetchUserData() async {
     String userId = _sharedPrefController.getItem('phoneNumber');
-    print(userId);
+    // print(userId);
     var result = await _firestore.collection("users").doc(userId).get();
-    print(result.data().toString());
+    // print(result.data().toString());
     return result;
   }
 

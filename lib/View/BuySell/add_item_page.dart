@@ -91,7 +91,7 @@ class AddItem extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         controller.price.value = value;
-                        print(controller.price.value);
+                        //    print(controller.price.value);
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
