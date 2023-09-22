@@ -13,7 +13,7 @@ class StyleManager {
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
-    height: 1.2,
+    height: 1.4,
   );
 
   static const TextStyle headlineWithPrimaryColor = TextStyle(
@@ -21,11 +21,11 @@ class StyleManager {
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: ColorManager.primaryColorDark,
-    height: 1.2,
+    height: 1.4,
   );
 
   static const TextStyle priceStyle = TextStyle(
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: font,
     fontWeight: FontWeight.w700,
     color: Colors.green,
@@ -33,7 +33,7 @@ class StyleManager {
   );
 
   static const TextStyle title = TextStyle(
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: font,
     fontWeight: FontWeight.w500,
     color: Colors.black,
@@ -44,37 +44,38 @@ class StyleManager {
     fontSize: 16,
     fontFamily: font,
     color: Colors.redAccent,
-    height: 1,
+    height: 1.2,
     fontWeight: FontWeight.w100,
   );
 
   static const TextStyle headlineWhite = TextStyle(
-      fontSize: 14,
-      fontFamily: font,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-      height: 1.2);
+    fontSize: 16,
+    fontFamily: font,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    height: 1.4,
+  );
 
   static const TextStyle bodyText1 = TextStyle(
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: font,
     color: Colors.black,
-    height: 1,
+    height: 1.2,
     fontWeight: FontWeight.w100,
   );
 
   static const TextStyle bodyWithPrimaryColor = TextStyle(
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: font,
     color: ColorManager.primaryColorDark,
     fontWeight: FontWeight.w100,
-    height: 1,
+    height: 1.2,
   );
 
   static const TextStyle bodyWhiteText = TextStyle(
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: font,
-    height: 1.2,
+    height: 1.4,
     fontWeight: FontWeight.w100,
     color: Colors.white,
   );

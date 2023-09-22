@@ -10,7 +10,7 @@ class BannerAdsController extends GetxController {
   }
 
   final CollectionReference _bannerRef =
-      FirebaseFirestore.instance.collection('banners');
+      FirebaseFirestore.instance.collection('banner');
 
   RxList<BannerAd> listOfAds = RxList<BannerAd>();
 
@@ -19,9 +19,11 @@ class BannerAdsController extends GetxController {
       for (var i in value.docs) {
         listOfAds.add(
           BannerAd(
-              details: i['details'],
-              imgUrl: i['imgUrl'],
-              contactUrl: i['contact']),
+            details: i['details'],
+            imgUrl: i['imgUrl'],
+            contactUrl: i['contact'],
+            navType: i['nav'],
+          ),
         );
       }
     });

@@ -8,8 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Model/user.dart';
 
 class UserController extends GetxController {
-  final TextEditingController nameController =
-      TextEditingController(text: "ssss");
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
@@ -95,7 +94,9 @@ class UserController extends GetxController {
       } else {
         return;
       }
-
+      //ارجع للبوفايل
+      Get.back();
+      //اسحب البوفايل وحط مكانها الرئيسيه
       Get.offAndToNamed(Routes.navbar);
       Get.snackbar("تم التعديل بنجاح", "");
       editButtonIndicator.value = false;

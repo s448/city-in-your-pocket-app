@@ -45,9 +45,9 @@ class AuthController extends GetxController {
   }
 
   Future<bool> userExist(String documentId) async {
-    if (kDebugMode) {
-      print("call user exist methode >>>>>>>>>>");
-    }
+    // if (kDebugMode) {
+    //   print("call user exist methode >>>>>>>>>>");
+    // }
     try {
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
           .collection('users')
@@ -57,12 +57,12 @@ class AuthController extends GetxController {
       if (documentSnapshot.exists) {
         return true;
       } else {
-        print('Document does not exist');
+        // print('Document does not exist');
         return false;
       }
     } catch (e) {
       // Error occurred while searching for the document
-      print('Error searching document: $e');
+      // print('Error searching document: $e');
       return false;
     }
   }
@@ -210,10 +210,10 @@ class AuthController extends GetxController {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
       User? user = userCredential.user;
-      print(">>>>>202 ${user?.displayName}");
+      // print(">>>>>202 ${user?.displayName}");
       if (user != null) {
         if (userCredential.additionalUserInfo!.isNewUser) {
-          print(">>>>>>205 >>>>>new user");
+          // print(">>>>>>205 >>>>>new user");
           try {
             UserModel userModel = UserModel(
               id: user.phoneNumber ?? '',
@@ -227,14 +227,14 @@ class AuthController extends GetxController {
                 .collection('users')
                 .doc(user.phoneNumber ?? user.email)
                 .set(userModel.toJson());
-            print(">>>>>>user is set to the fiorestore");
-            print("user credentails : phone>>>${user.metadata}");
+            // print(">>>>>>user is set to the fiorestore");
+            // print("user credentails : phone>>>${user.metadata}");
             if (await userExist(user.phoneNumber ?? user.email!)) {
               authSucceess = true;
             }
             isGoogleLoading.value = false;
           } catch (e) {
-            print("?????????can't save the user data");
+            // print("?????????can't save the user data");
             isGoogleLoading.value = false;
             Get.snackbar(
               "خطأ",
@@ -244,15 +244,15 @@ class AuthController extends GetxController {
         } else {
           isGoogleLoading.value = false;
           authSucceess = true;
-          print("user is already registerd >>>> login");
+          // print("user is already registerd >>>> login");
         }
         await _sharedPrefController.saveUserCredentials(
             user.phoneNumber ?? user.email!,
             userCredential.additionalUserInfo!.authorizationCode ?? 'unknown');
-        print(">>>>>>user is set to shared prefs");
+        // print(">>>>>>user is set to shared prefs");
       }
     } catch (e) {
-      print(e);
+      // print(e);
       Get.snackbar(
         "خطأ",
         "لا يمكن تسجيل الدخول برجاء المحاولة لاحقا",
@@ -261,7 +261,7 @@ class AuthController extends GetxController {
       authSucceess = false;
     }
     if (authSucceess) {
-      print("auth success >>>>>>>>>>>>>>>>");
+      // print("auth success >>>>>>>>>>>>>>>>");
       Get.offAndToNamed(Routes.navbar);
     }
   }

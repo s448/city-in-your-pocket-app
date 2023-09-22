@@ -14,6 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await Get.putAsync(() => SharedPreferences.getInstance());
+  // print(SharedPrefsController().getItem('phoneNumber') + "is the id of prefs");
   runApp(App());
   await FcmServices().initNotification();
 }

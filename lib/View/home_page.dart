@@ -31,31 +31,35 @@ class _HomePageState extends State<HomePage> {
         physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
+            //البحث
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () => Get.toNamed(Routes.search),
-                  child: Container(
-                    padding: const EdgeInsets.all(6.0),
-                    decoration: StyleManager.listTileStyle,
-                    child: const Row(
-                      children: [
-                        Icon(Icons.search, color: ColorManager.primaryColor),
-                        Text(
-                          "بحث . .",
-                          style: TextStyle(color: ColorManager.primaryColor),
-                        ),
-                      ],
-                    ),
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () => Get.toNamed(Routes.search),
+                child: Container(
+                  padding: const EdgeInsets.all(6.0),
+                  decoration: StyleManager.listTileStyle,
+                  child: const Row(
+                    children: [
+                      Icon(Icons.search, color: ColorManager.primaryColor),
+                      Text(
+                        "بحث . .",
+                        style: TextStyle(color: ColorManager.primaryColor),
+                      ),
+                    ],
                   ),
-                )),
+                ),
+              ),
+            ),
             const SizedBox(
               height: 8.0,
             ),
+            //بانر الاعلانات
             const CarouselSlider(),
             const SizedBox(
               height: 12,
             ),
+            //الاقسام
             SectionContainer(
               listOfElements: shoppingCategories,
               heading: 'بيع وشراء',
@@ -67,9 +71,9 @@ class _HomePageState extends State<HomePage> {
                 ? const SizedBox()
                 : const LoginSign(),
             const SizedBox(height: 15),
+            //الوظائف
             const FeaturedCard(),
-            const SizedBox(height: 15),
-            const SizedBox(height: 15),
+            const SizedBox(height: 30),
           ],
         ),
       ),

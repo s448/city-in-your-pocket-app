@@ -6,7 +6,6 @@ import 'package:cityinpocket/Widget/login_sign.dart';
 import 'package:cityinpocket/Widget/profile_button.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -42,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ));
                 } else if (snapshot.hasData) {
                   var data = snapshot.data!.data();
-                  print(data);
+                  // print(data);
                   UserModel user = UserModel(
                     id: data!['id'] == '' ? "غير معروف" : data['id'],
                     name: data['name'],
@@ -50,9 +49,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     imgUrl: data['imgUrl'],
                     phone: data['phone'] == '' ? "غير معروف" : data['phone'],
                   );
-                  if (kDebugMode) {
-                    print("${user.id}>>>>>>>>>>>");
-                  }
+                  // if (kDebugMode) {
+                  //   print("${user.id}>>>>>>>>>>>");
+                  // }
                   return Column(
                     children: [
                       //user information
@@ -125,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             titleTextStyle: StyleManager.headlineWhite,
                             title: Text("تعديل الملف لشخصي"),
                             trailing: Icon(
-                              CupertinoIcons.pencil_circle_fill,
+                              Icons.edit_note_outlined,
                               color: Colors.white,
                             ),
                           ),
@@ -202,7 +201,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 30,
             ),
             ProfileButton(
-              isShare: true,
+              isShare: false,
               title: "صفحتنا علي الفيسبوك",
               icon: const Icon(
                 Ionicons.logo_facebook,
