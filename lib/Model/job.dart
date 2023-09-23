@@ -9,6 +9,7 @@ class Job {
   Timestamp? date;
   UserModel? user;
   String? docId;
+  String? email;
 
   Job({
     this.title,
@@ -18,6 +19,7 @@ class Job {
     this.date,
     this.user,
     this.docId,
+    this.email,
   });
 
   Job.fromJson(Map<String, dynamic> json) {
@@ -27,6 +29,7 @@ class Job {
     date = json['date'];
     docId = json['docid'];
     description = json['description'];
+    email = json['email'];
     user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
   }
 
@@ -38,6 +41,7 @@ class Job {
     data['date'] = date;
     data['docid'] = docId;
     data['description'] = description;
+    data['email'] = email;
     if (user != null) {
       data['user'] = user!.toJson();
     }

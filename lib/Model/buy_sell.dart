@@ -10,6 +10,7 @@ class BuySell {
   UserModel? user;
   List<dynamic>? images;
   Timestamp? date;
+  String? phone;
 
   BuySell({
     this.title,
@@ -20,6 +21,7 @@ class BuySell {
     this.price,
     this.images,
     this.date,
+    this.phone,
   });
 
   BuySell.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class BuySell {
     description = json['description'];
     user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
     images = json['images'].cast<String>();
+    phone = json['phone'];
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +48,7 @@ class BuySell {
       data['user'] = user!.toJson();
     }
     data['images'] = images;
+    data['phone'] = phone;
     return data;
   }
 }

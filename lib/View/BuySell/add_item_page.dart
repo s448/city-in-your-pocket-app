@@ -124,6 +124,36 @@ class AddItem extends StatelessWidget {
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
+                    ///////
+                    const SizedBox(
+                      height: 7.0,
+                    ),
+                    TextFormField(
+                      autocorrect: true,
+                      autofocus: true,
+                      maxLines: 1,
+                      maxLength: 11,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        labelText: 'رقم التليفون للتواصل',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      onChanged: (value) {
+                        controller.phone.value = value;
+                      },
+                      validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
+                    ),
                     const SizedBox(height: 16.0),
                   ],
                 ),

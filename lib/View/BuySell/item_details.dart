@@ -226,7 +226,7 @@ class ProductDetails extends StatelessWidget {
                   InkWell(
                       onTap: () {
                         UrlLauncherService.launch(
-                            'https://api.whatsapp.com/send?phone=+20${productController.product.user?.phone}&text=${Uri.encodeComponent("مرحبا أ/${productController.product.user?.name}, انا مهتم بشراء العنصر ${productController.product.title} المعروض في تطبيق $appName")}');
+                            'https://api.whatsapp.com/send?phone=+2${productController.product.phone}&text=${Uri.encodeComponent("مرحبا أ/${productController.product.user?.name}, انا مهتم بشراء العنصر ${productController.product.title} المعروض في تطبيق $appName")}');
                       },
                       child: Container(
                         width: 50,

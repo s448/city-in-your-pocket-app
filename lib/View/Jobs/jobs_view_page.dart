@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/colors.dart';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/jobs_controller.dart';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/job.dart';
@@ -50,7 +51,7 @@ class JobPage extends StatelessWidget {
                 ? Get.toNamed(
                     Routes.addJob,
                   )
-                : Get.snackbar("يجب تسجيل حساب اولا", '');
+                : customSnackbar("أنت غير مسجل", "قم بتسجيل الدخول اولا");
           },
           // tooltip: "أضف $title للبيع ",
           child: const Icon(CupertinoIcons.add),

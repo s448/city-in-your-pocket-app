@@ -137,6 +137,36 @@ class AddJob extends StatelessWidget {
                       },
                       validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
                     ),
+
+                    ///
+                    const SizedBox(
+                      height: 7.0,
+                    ),
+                    TextFormField(
+                      minLines: 1,
+                      maxLines: 1,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'البريد الالكتروني للتواصل',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      onChanged: (value) {
+                        controller.email.value = value;
+                        // print(controller.salary.value);
+                      },
+                      validator: (val) => (val!.isEmpty) ? "حقل فارغ" : null,
+                    ),
                     const SizedBox(height: 16.0),
                   ],
                 ),

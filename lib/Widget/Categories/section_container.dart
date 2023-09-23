@@ -25,11 +25,12 @@ class SectionContainer extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 3,
+          height: 4,
         ),
         GridView.count(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
+          mainAxisSpacing: 12,
           crossAxisCount: 4,
           physics: const NeverScrollableScrollPhysics(),
           children: List.generate(listOfElements.length, (index) {

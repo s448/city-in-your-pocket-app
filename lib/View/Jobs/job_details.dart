@@ -112,7 +112,7 @@ class JobDetails extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         height: Get.height * 0.1,
-        color: Colors.white,
+        color: Colors.transparent,
         padding: const EdgeInsets.all(8.0),
         child: jobsController.isPublisher(_job)
             ? IconButton(
@@ -154,27 +154,28 @@ class JobDetails extends StatelessWidget {
                 children: [
                   const SizedBox(width: 20),
                   InkWell(
-                      onTap: () {
-                        UrlLauncherService.launch(
-                            'https://wa.me/+20${_job.user?.phone}/?text=${Uri.encodeQueryComponent('رأيت اعلانك علي تطبيق $appName')}');
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: StyleManager.roundedBoxDecoration,
-                        child: Icon(
-                          Ionicons.logo_whatsapp,
-                          size: 30,
-                          color: Colors.greenAccent.shade700,
-                        ),
-                      )),
+                    onTap: () {
+                      UrlLauncherService.launch(
+                          'https://wa.me/+2${_job.user?.phone}/?text=${Uri.encodeQueryComponent('رأيت اعلانك علي تطبيق $appName g,/dtm ${_job.title}')}');
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: StyleManager.roundedBoxDecoration,
+                      child: Icon(
+                        Ionicons.logo_whatsapp,
+                        size: 30,
+                        color: Colors.greenAccent.shade700,
+                      ),
+                    ),
+                  ),
                   const SizedBox(width: 6),
                   Expanded(
                     child: InkWell(
                       onTap: () {
                         //TODO finish mail parameters
-                        UrlLauncherService.sendEmail(_job.user!.email, "", "");
+                        UrlLauncherService.sendEmail(_job.email, "", "");
                       },
                       child: Container(
                         alignment: Alignment.center,

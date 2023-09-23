@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/Model/buy_sell.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,6 +24,6 @@ class ProductDetailsController extends GetxController {
 
   deleteItem(String? docId) async {
     await buySellRef.doc(docId).delete();
-    Get.snackbar("تم حذف العنصر", '');
+    customSnackbar("تم حذف العنصر", '');
   }
 }

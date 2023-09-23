@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/Model/job.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,6 +17,7 @@ class JobsController extends GetxController {
   var description = ''.obs;
   var company = ''.obs;
   var salary = ''.obs;
+  var email = ''.obs;
   var isUploading = false.obs;
   Timestamp timestamp = Timestamp.now();
 
@@ -32,16 +34,17 @@ class JobsController extends GetxController {
           salary: salary.value,
           user: userController.userModel,
           date: timestamp,
+          email: email.value,
           docId: docId,
         );
         userController.loadUserData();
         await jobsRef.doc(docId).set(model.toJson()).then((value) {
           isUploading.value = false;
           Get.back();
-          Get.snackbar("تم النشر", "يمكنك الان تلقي طلبات التقديم");
+          customSnackbar("تم النشر", "يمكنك الان تلقي طلبات التقديم");
         });
       } catch (e) {
-        Get.snackbar("خطأ", e.toString());
+        customSnackbar("خطأ", e.toString());
       }
     } else {
       return;
@@ -59,7 +62,7 @@ class JobsController extends GetxController {
 
   deleteJob(String? docId) async {
     await jobsRef.doc(docId).delete();
-    Get.snackbar("تم حذف الاعلان", '');
+    customSnackbar("تم حذف الاعلان", '');
   }
 
   isPublisher(Job job) {

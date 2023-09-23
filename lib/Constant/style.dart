@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'colors.dart';
 
 class StyleManager {
   //font name
-  static const font = "regular";
-
+  static const font = "basic";
   //text style
   static const TextStyle headline1 = TextStyle(
     fontSize: 16,
@@ -27,7 +25,7 @@ class StyleManager {
   static const TextStyle priceStyle = TextStyle(
     fontSize: 18,
     fontFamily: font,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w500,
     color: Colors.green,
     height: 1.2,
   );
@@ -51,7 +49,7 @@ class StyleManager {
   static const TextStyle headlineWhite = TextStyle(
     fontSize: 16,
     fontFamily: font,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     color: Colors.white,
     height: 1.4,
   );
@@ -155,5 +153,15 @@ class StyleManager {
     backgroundColor: MaterialStateProperty.all(ColorManager.secondaryColor),
     textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.white)),
     // Add more properties like padding, shape, etc.
+  );
+}
+
+void customSnackbar(String title, String subtitle) {
+  Get.snackbar(
+    title,
+    subtitle,
+    backgroundColor: ColorManager.primaryColor,
+    colorText: Colors.white,
+    duration: Duration(seconds: 5),
   );
 }

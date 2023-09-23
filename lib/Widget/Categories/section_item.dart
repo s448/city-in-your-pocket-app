@@ -27,7 +27,7 @@ class SectionItem extends StatelessWidget {
               ),
             ),
             child: CircleAvatar(
-              radius: Get.width * 0.08,
+              radius: Get.width * 0.06,
               backgroundColor: Colors.white,
               child: Icon(
                 icon,
@@ -37,7 +37,7 @@ class SectionItem extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 5,
+            height: 3,
           ),
           Expanded(
             child: Text(
@@ -45,7 +45,7 @@ class SectionItem extends StatelessWidget {
               softWrap: true,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              maxLines: 1,
+              maxLines: 2,
               style: StyleManager.bodyText1,
             ),
           ),

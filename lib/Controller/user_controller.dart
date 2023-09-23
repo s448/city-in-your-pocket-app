@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -59,7 +60,12 @@ class UserController extends GetxController {
         await docSnapshot.reference.delete();
       }
     } catch (e) {
-      Get.snackbar('error', e.toString());
+      Get.snackbar(
+        'خطأ',
+        e.toString(),
+        backgroundColor: Colors.redAccent.shade100,
+        colorText: Colors.white,
+      );
     }
   }
 
@@ -71,7 +77,8 @@ class UserController extends GetxController {
       _sharedPrefController.clearUserCredentials();
       await user!.delete();
       Get.offAllNamed(Routes.navbar);
-      Get.snackbar("تم حذف حسابك نهائيا", "بما في ذلك كل منشوراتك على التطبيق");
+      customSnackbar(
+          "تم حذف حسابك نهائيا", "بما في ذلك كل منشوراتك على التطبيق");
     } catch (e) {
       Get.snackbar(
           "لم نستطع حذف حسابك حالبا", "برجاء التحقق من جودة الشبكه لديك",
@@ -98,11 +105,11 @@ class UserController extends GetxController {
       Get.back();
       //اسحب البوفايل وحط مكانها الرئيسيه
       Get.offAndToNamed(Routes.navbar);
-      Get.snackbar("تم التعديل بنجاح", "");
+      customSnackbar("تم التعديل بنجاح", "");
       editButtonIndicator.value = false;
       return true;
     } catch (error) {
-      Get.snackbar("لم نستطع تطبيق التغيير المطلوب", "برجاء المحاولة مجددا");
+      customSnackbar("لم نستطع تطبيق التغيير المطلوب", "برجاء المحاولة مجددا");
       editButtonIndicator.value = false;
       return false;
     }

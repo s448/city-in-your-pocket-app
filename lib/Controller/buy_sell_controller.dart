@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/user_controller.dart';
 import 'package:cityinpocket/Model/buy_sell.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +22,7 @@ class BuySellController extends GetxController {
   RxString title = ''.obs;
   RxString price = ''.obs;
   RxString description = ''.obs;
+  RxString phone = ''.obs;
   RxList<File> selectedImages = <File>[].obs;
   List<String> imageUrls = [];
 
@@ -46,6 +48,7 @@ class BuySellController extends GetxController {
         id: product['id'],
         docId: docId,
         price: price.value,
+        phone: phone.value,
         description: description.value,
         user: userController.userModel,
         images: imageUrls,
@@ -55,7 +58,7 @@ class BuySellController extends GetxController {
       await buySellRef.doc(docId).set(model.toJson());
       // print("Post created successfully");
     } catch (e) {
-      Get.snackbar("خطأ", e.toString());
+      customSnackbar("خطأ", e.toString());
       // print('Error creating post: $e');
     }
   }
@@ -78,16 +81,16 @@ class BuySellController extends GetxController {
         await createItem().then((value) {
           isUploading.value = false;
           Get.back();
-          Get.snackbar("تم النشر", "يمكنك الان تلقي العروض");
+          customSnackbar("تم النشر", "يمكنك الان تلقي العروض");
         });
         // print(imageUrls);
       } catch (e) {
-        Get.snackbar("خطأ", e.toString());
+        customSnackbar("خطأ", e.toString());
 
         // print('Error uploading images: $e');
       }
     } else if (selectedImages.isEmpty || selectedImages.length > 6) {
-      Get.snackbar("يشترط أن يكون عدد الصور بين 1 و6", "");
+      customSnackbar("يشترط أن يكون عدد الصور بين 1 و6", "");
     } else {
       return;
     }

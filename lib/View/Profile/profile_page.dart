@@ -245,6 +245,17 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(
               height: 15.0,
             ),
+            Center(
+              child: Text(
+                "التطبيق ليس تابع لأي جهه حكومية ولا نقوم بتحصيل أموال من المستخدمين",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w100,
+                  color: Colors.black,
+                ),
+              ),
+            )
           ],
         ),
       ),

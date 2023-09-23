@@ -1,4 +1,5 @@
 import 'package:cityinpocket/Constant/colors.dart';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/buy_sell_controller.dart';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/buy_sell.dart';
@@ -65,7 +66,7 @@ class _BuySellPageState extends State<BuySellPage> {
                       "id": marketController.product['id'],
                     },
                   )
-                : Get.snackbar("يجب تسجيل حساب اولا", '');
+                : customSnackbar("أنت غير مسجل", "قم بتسجيل الدخول اولا");
           },
           // tooltip: "أضف $title للبيع ",
           child: const Icon(CupertinoIcons.add),

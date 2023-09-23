@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Controller/shared_prefs_controller.dart';
 import 'package:cityinpocket/Model/user.dart';
 import 'package:cityinpocket/Services/fcm_services.dart';
@@ -19,7 +20,10 @@ class AuthController extends GetxController {
     await _auth.signOut();
     _sharedPrefController.clearUserCredentials();
     Get.offAllNamed(Routes.navbar);
-    Get.snackbar("تم تسجيل الخروج", '');
+    customSnackbar(
+      "تم تسجيل الخروج",
+      '',
+    );
   }
 
   Future<bool> saveUserData() async {
@@ -97,11 +101,10 @@ class AuthController extends GetxController {
 
     if (exist == false && login == true) {
       // print("phone number does not exist");
-      Get.snackbar(
-          "الرقم ${phoneNo.value}غير مسجل لدينا", "قم بتسجيل حساب أولا");
+      customSnackbar("الرقم ${phoneNo.value}غير مسجل لدينا", "");
       isLoading.value = false;
     } else if (exist == true && login == false) {
-      Get.snackbar(
+      customSnackbar(
           "الرقم ${phoneNo.value} مسجل بالفعل", "قم بتسجيل الدخول بدلا من ذلك");
       isLoading.value = false;
     } else {
@@ -116,7 +119,7 @@ class AuthController extends GetxController {
         verificationFailed: (FirebaseAuthException e) {
           isLoading.value = false;
 
-          Get.snackbar(
+          customSnackbar(
             "الرسائل غير متاحة حاليا",
             "جرب تسجيل الدخول باستخدام جوجل",
           );
@@ -226,16 +229,19 @@ class AuthController extends GetxController {
                 .collection('users')
                 .doc(user.phoneNumber ?? user.email)
                 .set(userModel.toJson());
-            // print(">>>>>>user is set to the fiorestore");
-            // print("user credentails : phone>>>${user.metadata}");
+
             if (await userExist(user.phoneNumber ?? user.email!)) {
               authSucceess = true;
+              customSnackbar(
+                "تم تسجيلك بنجاح",
+                "قم بالذهاب لصفحة الملف الشخصي > تعديل الملف الشخصي لاكمال بياناتك",
+              );
             }
             isGoogleLoading.value = false;
           } catch (e) {
             // print("?????????can't save the user data");
             isGoogleLoading.value = false;
-            Get.snackbar(
+            customSnackbar(
               "خطأ",
               "لا يمكن تسجيل الدخول برجاء المحاولة لاحقا",
             );
@@ -252,7 +258,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       // print(e);
-      Get.snackbar(
+      customSnackbar(
         "خطأ",
         "لا يمكن تسجيل الدخول برجاء المحاولة لاحقا",
       );
