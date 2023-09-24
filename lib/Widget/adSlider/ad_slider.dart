@@ -28,8 +28,8 @@ class _CarouselSliderState extends State<CarouselSlider> {
             width: Get.width,
             height: Get.height * 0.3,
             autoScrollDuration: const Duration(seconds: 4),
-            activateIndicatorColor: ColorManager.primaryColor,
-            indicatorBarColor: ColorManager.secondaryColor,
+            activateIndicatorColor: Colors.white,
+            indicatorBarColor: Colors.transparent,
             unActivatedIndicatorColor: ColorManager.navBarUnselectedColor,
             isCircle: true,
             items: [

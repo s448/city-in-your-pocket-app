@@ -181,7 +181,7 @@ class ProductDetails extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         height: Get.height * 0.1,
-        color: Colors.white,
+        color: Colors.transparent,
         padding: const EdgeInsets.all(8.0),
         child: productController.isPublisher()
             ? IconButton(

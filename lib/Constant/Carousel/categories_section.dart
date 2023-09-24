@@ -14,13 +14,11 @@ List shoppingCategories = [
     // ]
   },
   {
-    "icon": Icons.real_estate_agent_outlined,
-    "title": "عقارات وأراضي",
-    "id": "real_estates",
+    "icon": Ionicons.book_sharp,
+    "title": "كتب",
+    "id": "books",
     // "meta_data": [
-    //   "منازل",
-    //   "أراضي",
-    //   "محلات تجارية",
+    //   "كتب",
     // ]
   },
   {
@@ -60,11 +58,13 @@ List shoppingCategories = [
     // ]
   },
   {
-    "icon": Ionicons.book_sharp,
-    "title": "كتب",
-    "id": "books",
+    "icon": Icons.real_estate_agent_outlined,
+    "title": "عقارات وأراضي",
+    "id": "real_estates",
     // "meta_data": [
-    //   "كتب",
+    //   "منازل",
+    //   "أراضي",
+    //   "محلات تجارية",
     // ]
   },
   {
