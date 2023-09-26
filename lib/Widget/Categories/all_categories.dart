@@ -1,7 +1,6 @@
 import 'package:cityinpocket/Constant/Carousel/categories_section.dart';
 import 'package:cityinpocket/Constant/colors.dart';
 import 'package:cityinpocket/Constant/style.dart';
-import 'package:cityinpocket/Widget/Categories/section_item.dart';
 import 'package:cityinpocket/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

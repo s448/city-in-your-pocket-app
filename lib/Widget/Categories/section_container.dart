@@ -1,4 +1,3 @@
-import 'package:cityinpocket/Constant/font_sizes.dart';
 import 'package:cityinpocket/Constant/style.dart';
 import 'package:cityinpocket/Widget/Categories/section_item.dart';
 import 'package:cityinpocket/routes.dart';

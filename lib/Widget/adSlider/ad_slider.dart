@@ -26,7 +26,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
         : Carousel(
             autoScroll: true,
             width: Get.width,
-            height: Get.height * 0.3,
+            height: Get.height * 0.25,
             autoScrollDuration: const Duration(seconds: 4),
             activateIndicatorColor: Colors.white,
             indicatorBarColor: Colors.transparent,

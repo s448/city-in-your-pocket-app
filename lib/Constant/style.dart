@@ -82,7 +82,7 @@ class StyleManager {
   static const TextStyle metaDataText = TextStyle(
     fontSize: medtaDataSize,
     fontFamily: font,
-    height: 1.2,
+    height: 1.3,
     fontWeight: FontWeight.w100,
     color: Colors.black,
   );

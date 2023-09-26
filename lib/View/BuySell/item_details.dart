@@ -47,7 +47,7 @@ class ProductDetails extends StatelessWidget {
                 width: Get.width,
                 autoScrollDuration: const Duration(seconds: 4),
                 activateIndicatorColor: ColorManager.primaryColor,
-                indicatorBarColor: ColorManager.secondaryColor,
+                indicatorBarColor: Colors.transparent,
                 unActivatedIndicatorColor: ColorManager.navBarUnselectedColor,
                 isCircle: true,
                 items: [
@@ -88,7 +88,7 @@ class ProductDetails extends StatelessWidget {
                         .addRemoveFavItem(productController.product.docId),
                     child: Container(
                         width: 50,
-                        height: 50,
+                        height: 40,
                         color: Colors.transparent,
                         alignment: Alignment.center,
                         // decoration: StyleManager.roundedBoxDecoration,
@@ -98,7 +98,7 @@ class ProductDetails extends StatelessWidget {
                                     .contains(productController.product.docId)
                                 ? CupertinoIcons.heart_fill
                                 : CupertinoIcons.heart,
-                            size: 30,
+                            size: 25,
                             color: ColorManager.primaryColorDark,
                           ),
                         )),
@@ -115,6 +115,7 @@ class ProductDetails extends StatelessWidget {
                       icon: const Icon(
                         Ionicons.share_social_outline,
                         color: ColorManager.primaryColorDark,
+                        size: 25,
                       ))
                 ],
               ),
