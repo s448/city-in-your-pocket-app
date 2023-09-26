@@ -3,6 +3,7 @@ import 'package:cityinpocket/Controller/buy_sell_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class AddItem extends StatelessWidget {
   final controller = Get.find<BuySellController>();
@@ -158,6 +159,55 @@ class AddItem extends StatelessWidget {
                   ],
                 ),
               ),
+
+              const SizedBox(height: 10.0),
+              Divider(
+                thickness: 1,
+              ),
+              Text(
+                "حدد جديد أو مستعمل *",
+                style: StyleManager.title,
+              ),
+              ToggleSwitch(
+                animate: true,
+                initialLabelIndex: null,
+                totalSwitches: 2,
+                isVertical: true,
+                dividerMargin: 0,
+                dividerColor: Colors.white,
+                labels: ["جديد", "مستعمل"],
+                onToggle: (index) {
+                  index == 0
+                      ? controller.isHousehold.value = false
+                      : controller.isHousehold.value = true;
+                  print('switched to: $index');
+                },
+              ),
+
+              const SizedBox(height: 10.0),
+              Divider(
+                thickness: 1,
+              ),
+              Text(
+                "حدد بيع أو ايجار *",
+                style: StyleManager.title,
+              ),
+              ToggleSwitch(
+                animate: true,
+                initialLabelIndex: null,
+                totalSwitches: 2,
+                isVertical: true,
+                dividerMargin: 0,
+                dividerColor: Colors.white,
+                labels: ["بيع نهائي", "تأجير"],
+                onToggle: (index) {
+                  index == 0
+                      ? controller.isRental.value = true
+                      : controller.isHousehold.value = false;
+                  print('switched to: $index');
+                },
+              ),
+              const SizedBox(height: 16.0),
               TextButton.icon(
                 onPressed: controller.selectImages,
                 style: StyleManager.primaryButtonStyle,
@@ -179,7 +229,6 @@ class AddItem extends StatelessWidget {
                   "اضغط ضغط مطول علي الصور لاختيار أكثر من صورة",
                 ),
               ),
-              const SizedBox(height: 16.0),
               Obx(
                 () => SizedBox(
                   height: controller.selectedImages.isNotEmpty
@@ -205,27 +254,30 @@ class AddItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16.0),
-              Obx(
-                () => controller.selectedImages.isEmpty
-                    ? const SizedBox()
-                    : ElevatedButton(
-                        onPressed: controller.isUploading.value
-                            ? null
-                            : controller.submitPost,
-                        style: StyleManager.primaryButtonStyle,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: !controller.isUploading.value
-                              ? const Text('نشر الاعلان')
-                              : const CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                        ),
-                      ),
-              )
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Obx(
+        () => controller.selectedImages.isEmpty
+            ? const SizedBox()
+            : Padding(
+                padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 10.0),
+                child: ElevatedButton(
+                  onPressed: controller.isUploading.value
+                      ? null
+                      : controller.submitPost,
+                  style: StyleManager.primaryButtonStyle,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: !controller.isUploading.value
+                        ? const Text('نشر الاعلان')
+                        : const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                  ),
+                ),
+              ),
       ),
     );
   }

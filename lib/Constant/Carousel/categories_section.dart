@@ -5,7 +5,7 @@ import 'package:ionicons/ionicons.dart';
 List shoppingCategories = [
   {
     "icon": CupertinoIcons.car_detailed,
-    "title": "مركبات",
+    "title": "سيارات وقطع غيار",
     "id": "vehicles",
     // "meta_data": [
     //   "سيارات",
@@ -14,47 +14,11 @@ List shoppingCategories = [
     // ]
   },
   {
-    "icon": Ionicons.book_sharp,
-    "title": "كتب",
-    "id": "books",
-    // "meta_data": [
-    //   "كتب",
-    // ]
-  },
-  {
     "icon": Icons.shopping_bag_outlined,
-    "title": "ملابس وأحذية",
+    "title": "ملابس وأدوات تجميل",
     "id": "clothing",
     // "meta_data": [
     //   "كتب",
-    // ]
-  },
-  {
-    "icon": Icons.home,
-    "title": "أثاث وأجهزة منزلية",
-    "id": "household",
-    // "meta_data": [
-    //   "أثاث منزلي",
-    // ]
-  },
-  {
-    "icon": Icons.pets,
-    "title": "حيوانات أليفة",
-    "id": "pets",
-    // "meta_data": [
-    //   "قطط",
-    //   "كلاب",
-    // ]
-  },
-  {
-    "icon": Icons.tablet_android,
-    "title": "أجهزة والكترونيات",
-    "id": "electronics",
-    // "meta_data": [
-    //   "تليفون",
-    //   "لابتوب",
-    //   "شاشات",
-    //   "ساعات",
     // ]
   },
   {
@@ -68,8 +32,53 @@ List shoppingCategories = [
     // ]
   },
   {
+    "icon": Icons.home,
+    "title": "أثاث وأجهزة منزلية",
+    "id": "household",
+    // "meta_data": [
+    //   "أثاث منزلي",
+    // ]
+  },
+  {
+    "icon": Icons.tablet_android,
+    "title": "موبايلات وأجهزة والكترونيات",
+    "id": "electronics",
+    // "meta_data": [
+    //   "تليفون",
+    //   "لابتوب",
+    //   "شاشات",
+    //   "ساعات",
+    // ]
+  },
+  {
+    "icon": CupertinoIcons.person_2_square_stack_fill,
+    "title": "خدمات وأعمال حرة",
+    "id": "services",
+    // "meta_data": [
+    //   "قطط",
+    //   "كلاب",
+    // ]
+  },
+  {
+    "icon": Icons.pets,
+    "title": "حيوانات أليفة",
+    "id": "pets",
+    // "meta_data": [
+    //   "قطط",
+    //   "كلاب",
+    // ]
+  },
+  {
+    "icon": Ionicons.book_sharp,
+    "title": "كتب",
+    "id": "books",
+    // "meta_data": [
+    //   "كتب",
+    // ]
+  },
+  {
     "icon": Ionicons.arrow_back_circle,
-    "title": "الكل",
+    "title": "أشياء أخرى",
     "id": "all",
     // "meta_data": [
     //   "الكل",

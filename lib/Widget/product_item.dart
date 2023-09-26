@@ -18,6 +18,9 @@ class ProductItem extends StatelessWidget {
       itemCount: marketItems.length,
       itemBuilder: (context, index) {
         final item = marketItems[index];
+        String Usagetype = item.household == true ? "مستعمل" : "جديد";
+        String dealtype = item.rental == true ? "ايجار" : "بيع نهائي";
+
         return InkWell(
           onTap: () {
             Get.toNamed(
@@ -49,9 +52,36 @@ class ProductItem extends StatelessWidget {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            Text(
-                              "${item.price} جنيه",
-                              style: StyleManager.priceStyle,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${item.price}  ج.م",
+                                  style: StyleManager.priceStyle,
+                                ),
+                                SizedBox(
+                                  width: 8.0,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(3.0),
+                                  decoration: StyleManager.accentBoxDecoration,
+                                  child: Text(
+                                    Usagetype,
+                                    style: StyleManager.metaDataText,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 4.0,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(3.0),
+                                  decoration: StyleManager.accentBoxDecoration,
+                                  child: Text(
+                                    dealtype,
+                                    style: StyleManager.metaDataText,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

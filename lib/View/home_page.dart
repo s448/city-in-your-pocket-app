@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Icon(Icons.search, color: ColorManager.primaryColor),
                       Text(
-                        "بحث . .",
+                        "بتدور علي ايه . .",
                         style: TextStyle(color: ColorManager.primaryColor),
                       ),
                     ],

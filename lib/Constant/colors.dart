@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ColorManager {
@@ -11,7 +10,7 @@ class ColorManager {
   static const secondaryColor = Colors.white;
 
   // Accent color
-  static const accentColor = Color(0xFF717B9A);
+  static const accentColor = Color.fromARGB(255, 230, 240, 253);
 
   //unselected items
   static const navBarUnselectedColor = Colors.grey;

@@ -14,43 +14,73 @@ class SectionItem extends StatelessWidget {
   // final BuySell category;
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: ColorManager.primaryColorLight,
-                width: 2,
-              ),
-            ),
-            child: CircleAvatar(
-              radius: Get.width * 0.06,
-              backgroundColor: Colors.white,
-              child: Icon(
+    // return IntrinsicHeight(
+    //   child: Column(
+    //     crossAxisAlignment: CrossAxisAlignment.center,
+    //     children: [
+    //       Container(
+    //         decoration: BoxDecoration(
+    //           shape: BoxShape.circle,
+    //           border: Border.all(
+    //             color: ColorManager.primaryColorLight,
+    //             width: 2,
+    //           ),
+    //         ),
+    //         child: CircleAvatar(
+    //           radius: Get.width * 0.06,
+    //           backgroundColor: Colors.white,
+    //           child: Icon(
+    //             icon,
+    //             color: ColorManager.primaryColorLight,
+    //             size: Get.width * 0.09,
+    //           ),
+    //         ),
+    //       ),
+    //       SizedBox(
+    //         height: 3,
+    //       ),
+    //       Expanded(
+    // child: Text(
+    //   title,
+    //   softWrap: true,
+    //   overflow: TextOverflow.ellipsis,
+    //   textAlign: TextAlign.center,
+    //   maxLines: 2,
+    //   style: StyleManager.bodyText1,
+    // ),
+    //       ),
+    //     ],
+    //   ),
+    // );
+    return Container(
+        padding: EdgeInsets.all(6.0),
+        decoration: StyleManager.accentBoxDecoration,
+        // height: Get.height * 0.09,
+        width: Get.width * 0.3,
+        alignment: Alignment.centerRight,
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
                 icon,
-                color: ColorManager.primaryColorLight,
+                color: ColorManager.primaryColor,
                 size: Get.width * 0.09,
               ),
-            ),
+              SizedBox(width: 6.0),
+              Expanded(
+                child: Text(
+                  title,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: StyleManager.metaDataText,
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            height: 3,
-          ),
-          Expanded(
-            child: Text(
-              title,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              style: StyleManager.bodyText1,
-            ),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }

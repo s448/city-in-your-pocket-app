@@ -1,3 +1,4 @@
+import 'package:cityinpocket/Constant/font_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'colors.dart';
@@ -7,7 +8,7 @@ class StyleManager {
   static const font = "basic";
   //text style
   static const TextStyle headline1 = TextStyle(
-    fontSize: 16,
+    fontSize: headlineSize,
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: Colors.black,
@@ -15,7 +16,7 @@ class StyleManager {
   );
 
   static const TextStyle headlineWithPrimaryColor = TextStyle(
-    fontSize: 16,
+    fontSize: headlineSize,
     fontFamily: font,
     fontWeight: FontWeight.bold,
     color: ColorManager.primaryColorDark,
@@ -23,15 +24,15 @@ class StyleManager {
   );
 
   static const TextStyle priceStyle = TextStyle(
-    fontSize: 18,
+    fontSize: numiricSize,
     fontFamily: font,
-    fontWeight: FontWeight.w500,
-    color: Colors.green,
+    fontWeight: FontWeight.w900,
+    color: ColorManager.primaryColorDark,
     height: 1.2,
   );
 
   static const TextStyle title = TextStyle(
-    fontSize: 16,
+    fontSize: headlineSize,
     fontFamily: font,
     fontWeight: FontWeight.w500,
     color: Colors.black,
@@ -39,7 +40,7 @@ class StyleManager {
   );
 
   static const TextStyle warningTextStyle = TextStyle(
-    fontSize: 16,
+    fontSize: headlineSize,
     fontFamily: font,
     color: Colors.redAccent,
     height: 1.2,
@@ -47,7 +48,7 @@ class StyleManager {
   );
 
   static const TextStyle headlineWhite = TextStyle(
-    fontSize: 16,
+    fontSize: headlineSize,
     fontFamily: font,
     fontWeight: FontWeight.w500,
     color: Colors.white,
@@ -55,7 +56,7 @@ class StyleManager {
   );
 
   static const TextStyle bodyText1 = TextStyle(
-    fontSize: 15,
+    fontSize: bodySize,
     fontFamily: font,
     color: Colors.black,
     height: 1.2,
@@ -63,7 +64,7 @@ class StyleManager {
   );
 
   static const TextStyle bodyWithPrimaryColor = TextStyle(
-    fontSize: 15,
+    fontSize: bodySize,
     fontFamily: font,
     color: ColorManager.primaryColorDark,
     fontWeight: FontWeight.w100,
@@ -71,9 +72,25 @@ class StyleManager {
   );
 
   static const TextStyle bodyWhiteText = TextStyle(
-    fontSize: 15,
+    fontSize: bodySize,
     fontFamily: font,
     height: 1.4,
+    fontWeight: FontWeight.w100,
+    color: Colors.white,
+  );
+
+  static const TextStyle metaDataText = TextStyle(
+    fontSize: medtaDataSize,
+    fontFamily: font,
+    height: 1.2,
+    fontWeight: FontWeight.w100,
+    color: Colors.black,
+  );
+
+  static const TextStyle metaDataWhiteText = TextStyle(
+    fontSize: medtaDataSize,
+    fontFamily: font,
+    height: 1.2,
     fontWeight: FontWeight.w100,
     color: Colors.white,
   );
@@ -85,7 +102,7 @@ class StyleManager {
     hoverColor: Colors.transparent,
     fontFamily: font,
     primaryColor: ColorManager.primaryColorDark,
-    hintColor: ColorManager.accentColor,
+    hintColor: Colors.black54,
     appBarTheme: const AppBarTheme(
       color: ColorManager.primaryColorDark,
       titleTextStyle: headlineWhite,
@@ -99,7 +116,7 @@ class StyleManager {
   );
 
   static BoxDecoration borderedRoundedBoxDecoration = BoxDecoration(
-    borderRadius: const BorderRadius.all(Radius.circular(10)),
+    borderRadius: const BorderRadius.all(Radius.circular(5)),
     border: Border.all(color: Colors.black54),
     color: ColorManager.secondaryColor,
   );
@@ -111,6 +128,11 @@ class StyleManager {
   static BoxDecoration shadowBoxDecoration = BoxDecoration(
     borderRadius: BorderRadius.circular(4),
     color: ColorManager.primaryColor,
+  );
+
+  static BoxDecoration accentBoxDecoration = BoxDecoration(
+    borderRadius: BorderRadius.circular(8),
+    color: ColorManager.accentColor,
   );
 
   static BoxDecoration senderBoxDecoration = BoxDecoration(

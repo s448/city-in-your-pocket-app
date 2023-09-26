@@ -21,6 +21,10 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String Usagetype =
+        productController.product.household == true ? "مستعمل" : "جديد";
+    String dealtype =
+        productController.product.rental == true ? "ايجار" : "بيع نهائي";
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -72,24 +76,7 @@ class ProductDetails extends StatelessWidget {
                 color: ColorManager.primaryColorLight,
               ),
             ),
-            Row(
-              children: [
-                Icon(
-                  CupertinoIcons.time,
-                  color: Colors.redAccent[400],
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                SizedBox(
-                  width: Get.width * 0.25,
-                  child: Text(
-                    TimeManager.formatDateTimeOfMessage(
-                        productController.product.date!.toDate()),
-                  ),
-                ),
-              ],
-            ),
+
             //START BUTTON GROUP
             const Divider(),
             IntrinsicHeight(
@@ -133,34 +120,83 @@ class ProductDetails extends StatelessWidget {
               ),
             ),
             const Divider(),
-            const SizedBox(
-              height: 12,
-            ),
             //END BUTTON GROUP
             const SizedBox(
               height: 8.0,
             ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text("السعر"),
-                  Text(
-                    "${productController.product.price ?? '0.0'} جنيه",
+            // Center(
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     children: [
+            //       const Text("السعر"),
+            //       Text(
+            //         "${productController.product.price ?? '0.0'} ج.م",
+            //         style: StyleManager.priceStyle,
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(
+                    "${productController.product.price ?? '0.0'} ج.م",
                     style: StyleManager.priceStyle,
                   ),
-                ],
-              ),
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      CupertinoIcons.time,
+                      color: Colors.redAccent[400],
+                    ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.25,
+                      child: Text(
+                        TimeManager.formatDateTimeOfMessage(
+                            productController.product.date!.toDate()),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
+            Divider(),
             const SizedBox(
               height: 8.0,
-            ),
-            const SizedBox(
-              height: 12,
             ),
             Text(
               productController.product.title.toString(),
               style: StyleManager.title,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(6.0),
+                  decoration: StyleManager.borderedRoundedBoxDecoration,
+                  child: Text(
+                    Usagetype,
+                    style: StyleManager.bodyText1,
+                  ),
+                ),
+                SizedBox(
+                  width: 4.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(6.0),
+                  decoration: StyleManager.borderedRoundedBoxDecoration,
+                  child: Text(
+                    dealtype,
+                    style: StyleManager.bodyText1,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 12,
@@ -172,6 +208,7 @@ class ProductDetails extends StatelessWidget {
             const SizedBox(
               height: 6,
             ),
+
             Text(
               productController.product.description.toString(),
               style: StyleManager.bodyText1,

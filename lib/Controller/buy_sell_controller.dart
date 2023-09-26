@@ -25,6 +25,8 @@ class BuySellController extends GetxController {
   RxString phone = ''.obs;
   RxList<File> selectedImages = <File>[].obs;
   List<String> imageUrls = [];
+  RxBool isRental = false.obs;
+  RxBool isHousehold = false.obs;
 
   RxBool isUploading = false.obs;
   RxBool uploadButtonEnabled = true.obs;
@@ -53,6 +55,8 @@ class BuySellController extends GetxController {
         user: userController.userModel,
         images: imageUrls,
         date: Timestamp.now(),
+        household: isHousehold.value,
+        rental: isRental.value,
       );
       userController.loadUserData();
       await buySellRef.doc(docId).set(model.toJson());
@@ -81,11 +85,13 @@ class BuySellController extends GetxController {
         await createItem().then((value) {
           isUploading.value = false;
           Get.back();
+          selectedImages.clear();
           customSnackbar("تم النشر", "يمكنك الان تلقي العروض");
         });
         // print(imageUrls);
       } catch (e) {
         customSnackbar("خطأ", e.toString());
+        selectedImages.clear();
 
         // print('Error uploading images: $e');
       }

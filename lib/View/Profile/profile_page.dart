@@ -86,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 title: Text(user.phone.toString()),
                                 subtitle: const Text(
                                   "رقم الهاتف المحمول",
-                                  style: StyleManager.bodyWhiteText,
+                                  style: StyleManager.metaDataWhiteText,
                                 ),
                                 trailing: const Icon(
                                   CupertinoIcons.device_phone_portrait,
@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 title: Text(user.email.toString()),
                                 subtitle: const Text(
                                   "البريد الالكتروني",
-                                  style: StyleManager.bodyWhiteText,
+                                  style: StyleManager.metaDataWhiteText,
                                 ),
                                 trailing: const Icon(
                                   CupertinoIcons.mail,

@@ -9,6 +9,7 @@ import 'package:cityinpocket/View/Jobs/jobs_view_page.dart';
 import 'package:cityinpocket/View/Profile/edit_profile_page.dart';
 import 'package:cityinpocket/View/favorites_page.dart';
 import 'package:cityinpocket/View/search_page.dart';
+import 'package:cityinpocket/Widget/Categories/all_categories.dart';
 // import 'package:cityinpocket/View/notifications.dart';
 import 'package:cityinpocket/Widget/adSlider/ad_details.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -30,6 +31,7 @@ class Routes {
   // static String notifications = '/notifications';
   static String search = '/search';
   static String editProfile = '/edit_profile';
+  static String allCategories = '/all_categories';
 }
 
 final getPages = [
@@ -88,5 +90,9 @@ final getPages = [
   GetPage(
     name: Routes.editProfile,
     page: () => EditProfile(),
+  ),
+  GetPage(
+    name: Routes.allCategories,
+    page: () => AllCategories(),
   ),
 ];
