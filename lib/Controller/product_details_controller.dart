@@ -19,7 +19,8 @@ class ProductDetailsController extends GetxController {
   var userController = Get.find<UserController>();
 
   isPublisher() {
-    return product.user!.id == userController.userModel.id;
+    return product.user!.id == userController.userModel.id &&
+        product.user!.id != "";
   }
 
   deleteItem(String? docId) async {

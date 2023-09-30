@@ -282,7 +282,7 @@ class ProductDetails extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         UrlLauncherService.launch(
-                            'tel:${productController.product.user?.phone}');
+                            'tel:${productController.product.phone}');
                       },
                       child: Container(
                         alignment: Alignment.center,
